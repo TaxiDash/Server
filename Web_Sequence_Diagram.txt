@@ -20,8 +20,8 @@ server->client: push requested info back to the client
 
 client->server: push driver/cab rating
 server->database: store rating data
-database->database: sort rating information
-database->database: track taxi and driver statistics
+server->server: sort rating information
+server->server: track taxi and driver statistics
 
 client->server: set GPS tacking, log name
 loop while GPS tracking activated && in range of bluetooth beacon
@@ -33,7 +33,8 @@ note left of client
 manager/administrator
 end note
 
-database->client: send drivers' ratings, averages, statistics for each company
+database->server: send drivers' ratings/info
+server->client: send drivers' ratings, averages, statistics for each company
 
 client->server: request passenger location
 
