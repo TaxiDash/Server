@@ -1,0 +1,40 @@
+title Taxi Rating App
+
+note right of client
+iOS frontend for client-server interaction
+end note
+
+note right of server
+Ruby on Rails to implement server and database
+end note
+
+note left of client
+paasenger 
+end note
+
+client->client: scans QR code or\nin range of bluetooth beacon
+client->server: request cab and driver info and ratings
+server->database: request info on cab
+database->server: send info back to server
+server->client: push requested info back to the client
+
+client->server: push driver/cab rating
+server->database: store rating data
+database->database: sort rating information
+database->database: track taxi and driver statistics
+
+client->server: set GPS tacking, log name
+loop while GPS tracking activated && in range of bluetooth beacon
+client-->server: send location updates
+end loop
+server-->client: deactivate GPS tracking once outside\nbluetooth range
+
+note left of client
+manager/administrator
+end note
+
+database->client: send drivers' ratings, averages, statistics for each company
+
+client->server: request passenger location
+
+client->server: set minimum rating for driver discounts
