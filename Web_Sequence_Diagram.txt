@@ -8,8 +8,10 @@ note right of server
 Ruby on Rails to implement server and database
 end note
 
+#Getting the cab rating and license info
+opt Getting Taxi Info
 note left of client
-paasenger 
+passenger 
 end note
 
 client->client: scans QR code or\nin range of bluetooth beacon
@@ -17,25 +19,40 @@ client->server: request cab and driver info and ratings
 server->database: request info on cab
 database->server: send info back to server
 server->client: push requested info back to the client
+end
 
+#Rating the driver
+opt Rating the driver
 client->server: push driver/cab rating
-server->database: store rating data
-server->server: sort rating information
-server->server: track taxi and driver statistics
 
+#By meta-data, I am referring to average rating, rating count, etc.
+server->database: request driver's meta-data
+database->server: return driver's meta-data
+server->server: adjust driver meta-data (given new rating)
+server->database: store rating data and adjusted meta-data
+end
+
+
+#GPS tracking feature
+opt GPS tracking feature
 client->server: set GPS tacking, log name
 loop while GPS tracking activated && in range of bluetooth beacon
 client-->server: send location updates
 end loop
 server-->client: deactivate GPS tracking once outside\nbluetooth range
+end
 
+#Viewing Meta-Data/Analytics
+opt Viewing Analytics
 note left of client
 manager/administrator
 end note
 
-database->server: send drivers' ratings/info
-server->client: send drivers' ratings, averages, statistics for each company
+client->server: request meta data on each company
+server->database: request minimum amount of data
+database->server: return data
+server->server: format/organize data
+server->client: send requested meta data
+end
 
-client->server: request passenger location
 
-client->server: set minimum rating for driver discounts
