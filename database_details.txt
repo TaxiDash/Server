@@ -4,6 +4,7 @@ NOTE: May need to add serial number from bluetooth device. For now, I will use t
 
 Entry Attribute             DataType
 
+id                          integer
 first_name                  string
 middle_name                 string
 last_name                   string
@@ -39,8 +40,8 @@ total_ratings               integer
 Rating Table:
 ================
 
-rating_id                          integer
-driver_id                    integer  ----> This will correspond to the driver's license number
+id                          integer
+driver_id                   integer  ----> This will correspond to the driver's license number
 rating                      integer
 comments                    string
 timestamp                   timestamp

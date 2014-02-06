@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  middle_name: MyString
+  last_name: MyString
+  dob: 2014-02-05
+  typeid: MyString
+  address: MyString
+  city: MyString
+  state: MyString
+  zipcode: 1
+  race: MyString
+  sex: MyString
+  height: 1
+  weight: 1
+  license: 1
+  phone_number: 1
+  training_completion_date: 2014-02-05
+  permit_expiration_date: 2014-02-05
+  permit_number: 1
+  status: MyString
+  owner: MyString
+  company_name: MyString
+  physical_expiration_date: 2014-02-05
+  valid: false
+  average_rating: 9.99
+  total_ratings: 1
+
+two:
+  first_name: MyString
+  middle_name: MyString
+  last_name: MyString
+  dob: 2014-02-05
+  typeid: MyString
+  address: MyString
+  city: MyString
+  state: MyString
+  zipcode: 1
+  race: MyString
+  sex: MyString
+  height: 1
+  weight: 1
+  license: 1
+  phone_number: 1
+  training_completion_date: 2014-02-05
+  permit_expiration_date: 2014-02-05
+  permit_number: 1
+  status: MyString
+  owner: MyString
+  company_name: MyString
+  physical_expiration_date: 2014-02-05
+  valid: false
+  average_rating: 9.99
+  total_ratings: 1

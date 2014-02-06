@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  driver_id: 1
+  rating: 1
+  comments: MyString
+  timestamp: 2014-02-05 20:15:13
+
+two:
+  driver_id: 1
+  rating: 1
+  comments: MyString
+  timestamp: 2014-02-05 20:15:13

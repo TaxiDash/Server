@@ -1,0 +1,75 @@
+<h1>Listing drivers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Middle name</th>
+      <th>Last name</th>
+      <th>Dob</th>
+      <th>Typeid</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zipcode</th>
+      <th>Race</th>
+      <th>Sex</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>License</th>
+      <th>Phone number</th>
+      <th>Training completion date</th>
+      <th>Permit expiration date</th>
+      <th>Permit number</th>
+      <th>Status</th>
+      <th>Owner</th>
+      <th>Company name</th>
+      <th>Physical expiration date</th>
+      <th>Valid</th>
+      <th>Average rating</th>
+      <th>Total ratings</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @drivers.each do |driver| %>
+      <tr>
+        <td><%= driver.first_name %></td>
+        <td><%= driver.middle_name %></td>
+        <td><%= driver.last_name %></td>
+        <td><%= driver.dob %></td>
+        <td><%= driver.typeid %></td>
+        <td><%= driver.address %></td>
+        <td><%= driver.city %></td>
+        <td><%= driver.state %></td>
+        <td><%= driver.zipcode %></td>
+        <td><%= driver.race %></td>
+        <td><%= driver.sex %></td>
+        <td><%= driver.height %></td>
+        <td><%= driver.weight %></td>
+        <td><%= driver.license %></td>
+        <td><%= driver.phone_number %></td>
+        <td><%= driver.training_completion_date %></td>
+        <td><%= driver.permit_expiration_date %></td>
+        <td><%= driver.permit_number %></td>
+        <td><%= driver.status %></td>
+        <td><%= driver.owner %></td>
+        <td><%= driver.company_name %></td>
+        <td><%= driver.physical_expiration_date %></td>
+        <td><%= driver.valid %></td>
+        <td><%= driver.average_rating %></td>
+        <td><%= driver.total_ratings %></td>
+        <td><%= link_to 'Show', driver %></td>
+        <td><%= link_to 'Edit', edit_driver_path(driver) %></td>
+        <td><%= link_to 'Destroy', driver, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Driver', new_driver_path %>
