@@ -39,8 +39,8 @@ total_ratings               integer
 Rating Table:
 ================
 
-id                          integer  ----> This will correspond to the driver's license number
-driverid                    integer
+rating_id                          integer
+driver_id                    integer  ----> This will correspond to the driver's license number
 rating                      integer
 comments                    string
 timestamp                   timestamp
