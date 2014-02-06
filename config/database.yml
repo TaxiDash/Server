@@ -15,12 +15,10 @@
 # gem 'pg'
 #
 development:
-   adapter: postgresql
-   encoding: unicode
-   database: project_development
-   pool: 5
-   username:
-   password:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
 
 production:
    adapter: postgresql
