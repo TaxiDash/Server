@@ -12,6 +12,7 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
+gem 'safe_attributes' #Handling name collisions
 
 group :doc do
     gem 'sdoc', '0.3.20', require: false
