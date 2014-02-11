@@ -5,6 +5,6 @@ class Rating < ActiveRecord::Base
     COMMENT_FORMAT = /[a-zA-Z. !?\d,#$'"()]*/
     validates :comments, length: { maximum: 250 ,
                                    message: "must be 250 characters or fewer." },
-    format: { with: Regexp.new('\A' + COMMENT_FORMAT.source + '\z'), 
-                                   message: "Contains invalid characters" }
+					     format: { with: Regexp.new('\A' + COMMENT_FORMAT.source + '\z'), 
+										   message: "Contains invalid characters" }
 end
