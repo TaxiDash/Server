@@ -24,6 +24,7 @@ class RatingsController < ApplicationController
   # POST /ratings
   # POST /ratings.json
   def create
+      # TODO Prevent fraud entries
     @rating = Rating.new(rating_params)
 
     respond_to do |format|
