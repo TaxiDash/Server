@@ -13,6 +13,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
 gem 'safe_attributes' #Handling name collisions
+gem 'bootstrap-sass' 
 
 group :doc do
     gem 'sdoc', '0.3.20', require: false
