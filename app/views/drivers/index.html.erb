@@ -16,19 +16,9 @@
         </form>
     </div>
     <div class="col-md-2 col-sm-2">
-        <div class="btn-group">
-            <button class="btn btn-default" type="button" title="New Driver">
-                <span class="glyphicon glyphicon-plus">
-                    <%= link_to '', new_driver_path %>
-                </span>
-            </button>
-            <button class="btn btn-default" type="button" title="Edit Driver">
-                <span class="glyphicon glyphicon-pencil"></span>
-            </button>
-            <button class="btn btn-default" type="button"  title="Delete Driver">
-                <span class="glyphicon glyphicon-trash"></span>
-            </button>
-        </div>
+            <%= button_to(new_driver_path, :class => "btn btn-default", role: "button", title: "New Driver", method: :get) do %>            
+                <span class="glyphicon glyphicon-plus"></span> Add Driver
+            <% end %>
     </div>
     </div></p>
     <!--          <h2 class="sub-header">Section title</h2> -->
@@ -40,6 +30,7 @@
           <th>Company Name</th>
           <th>Permit Expiration Date</th>
           <th>Permit #</th>
+          <th></th>
     <!--  <th>Dob</th>
           <th>Type Id</th>
           <th>Address</th>
@@ -67,6 +58,7 @@
       <tbody>
         <% @drivers.each do |driver| %>
           <tr>
+            <%= link_to '', driver %> <!--click to show Driver Profile-->
             <td><%= driver.last_name %>, <%= driver.first_name %> <%= driver.middle_name %></td>
             <td><%= driver.company_name %></td>
             <td><%= driver.permit_expiration_date %></td>
@@ -89,9 +81,10 @@
             <td><%= driver.physical_expiration_date %></td>
             <td><%= driver.valid %></td>
             <td><%= driver.average_rating %></td>-->
-            <td><%= link_to 'Show', driver %></td>
-            <td><%= link_to 'Edit', edit_driver_path(driver) %></td>
-            <td><%= link_to 'Destroy', driver, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
+            <td><%= link_to '', edit_driver_path(driver) %>    
+                <%= link_to 'Destroy', driver, method: :delete, 
+                          data: { confirm: 'Are you sure you want to delete this driver data?' } %>
+                </td>
           </tr>
         <% end %>
       </tbody>
