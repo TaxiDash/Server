@@ -11,7 +11,7 @@ class Driver < ActiveRecord::Base
     # names of the different types. The number of types is 
     # flexible and can be any number of options
     TYPE_OPTIONS = /(taxi|wrecker)/
-    SEX_OPTIONS = /([Mm]ale|[Ff]emale)/
+    SEX_OPTIONS = /(male|female)/
 
     # Uncomment the following when status options are known
     # STATUS_OPTIONS = /(status1|status2)/
