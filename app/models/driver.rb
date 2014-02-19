@@ -17,28 +17,28 @@ class Driver < ActiveRecord::Base
     # STATUS_OPTIONS = /(status1|status2)/
 
     # Length validations
-    validates :license, length: { is:9, message: "must be 9 digits long." }
-    validates :phone_number, length: { is: 10, message: "must be 10 digits long."  }
-    validates :zipcode, length: { is: 5, message: "must be 5 digits long."  }
-    # validates :permit_number, length: { is: 5, message: "Permit must be 5 digits long."  }
+    validates :license, length: { is: 9, message: 'must be 9 digits long.' }
+    validates :phone_number, length: { is: 10, message: 'must be 10 digits long.' }
+    validates :zipcode, length: { is: 5, message: 'must be 5 digits long.'  }
+    # validates :permit_number, length: { is: 5, message: 'Permit must be 5 digits long.'  }
 
     # LETTERS_ONLY validations
     validates :city, format: { with: Regexp.new('\A' + LETTERS_ONLY.source + '\z'), 
-                                 message: "can only contain letters." }
+                                 message: 'can only contain letters.' }
     validates :race, format: { with: Regexp.new('\A' + LETTERS_ONLY.source + '\z'), 
-                                 message: "can only contain letters." }
+                                 message: 'can only contain letters.' }
     validates :company_name, format: { with: Regexp.new('\A' + LETTERS_ONLY.source + '\z'), 
-                                 message: "can only contain letters." }
+                                 message: 'can only contain letters.' }
 
     # For now, the owner will be letters only. Later this may be adjusted to be more specific
     validates :owner, format: { with: Regexp.new('\A' + LETTERS_ONLY.source + '\z'), 
-                                 message: "can only contain letters." }
+                                 message: 'can only contain letters.' }
 
     # Specific input validations
     #validates :typeid, format: { with: Regexp.new('\A' + TYPE_OPTIONS.source + '\z'), 
-                                 #message: "must be a valid type." }
+                                 #message: 'must be a valid type.' }
     validates :sex, format: { with: Regexp.new('\A' + SEX_OPTIONS.source + '\z'), 
-                                 message: "must be a valid type." }
+                                 message: 'must be a valid type.' }
     #validates :status, format: { with: Regexp.new('\A' + STATUS_OPTIONS.source + '\z'), 
-    #                             message: "Status must be a valid type." }
+    #                             message: 'Status must be a valid type.' }
 end
