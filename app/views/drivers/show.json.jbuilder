@@ -1,1 +1,1 @@
-json.extract! @driver, :first_name, :middle_name, :last_name, :license, :permit_number, :status, :company_name, :physical_expiration_date, :valid, :average_rating, :total_ratings, :created_at, :updated_at
+json.extract! @driver, :id, :first_name, :middle_name, :last_name, :license, :permit_number, :status, :company_name, :physical_expiration_date, :valid, :average_rating, :total_ratings, :created_at, :updated_at
