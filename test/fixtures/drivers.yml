@@ -5,7 +5,7 @@ one:
   middle_name: MyString
   last_name: MyString
   dob: 2014-02-05
-  typeid: MyString
+  type_id: MyString
   address: MyString
   city: MyString
   state: MyString
@@ -32,7 +32,7 @@ two:
   middle_name: MyString
   last_name: MyString
   dob: 2014-02-05
-  typeid: MyString
+  type_id: MyString
   address: MyString
   city: MyString
   state: MyString

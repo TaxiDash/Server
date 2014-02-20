@@ -5,7 +5,7 @@ class CreateDrivers < ActiveRecord::Migration
       t.string :middle_name
       t.string :last_name
       t.date :dob
-      t.string :typeid
+      t.string :type_id
       t.string :address
       t.string :city
       t.string :state
@@ -14,7 +14,7 @@ class CreateDrivers < ActiveRecord::Migration
       t.string :sex
       t.integer :height
       t.integer :weight
-      t.integer :license
+      t.string :license
       t.integer :phone_number
       t.date :training_completion_date
       t.date :permit_expiration_date
@@ -24,6 +24,7 @@ class CreateDrivers < ActiveRecord::Migration
       t.string :company_name
       t.date :physical_expiration_date
       t.boolean :valid
+      t.string :beacon_id
       t.decimal :average_rating
       t.integer :total_ratings
 

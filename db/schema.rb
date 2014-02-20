@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220012102) do
+ActiveRecord::Schema.define(version: 20140206021513) do
 
   create_table "drivers", force: true do |t|
     t.string   "first_name"
     t.string   "middle_name"
     t.string   "last_name"
     t.date     "dob"
-    t.string   "typeid"
+    t.string   "type_id"
     t.string   "address"
     t.string   "city"
     t.string   "state"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20140220012102) do
     t.string   "sex"
     t.integer  "height"
     t.integer  "weight"
-    t.integer  "license"
+    t.string   "license"
     t.integer  "phone_number"
     t.date     "training_completion_date"
     t.date     "permit_expiration_date"
@@ -37,11 +37,11 @@ ActiveRecord::Schema.define(version: 20140220012102) do
     t.string   "company_name"
     t.date     "physical_expiration_date"
     t.boolean  "valid"
+    t.string   "beacon_id"
     t.decimal  "average_rating"
     t.integer  "total_ratings"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "beacon_id"
   end
 
   create_table "ratings", force: true do |t|
