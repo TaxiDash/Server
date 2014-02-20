@@ -3,6 +3,7 @@ class Driver < ActiveRecord::Base
 
     #Regex expressions defining valid input
     LETTERS_ONLY = /[a-zA-Z]*/
+    LETTERS_AND_NUMBERS = /[a-zA-Z\d]*/
 
     #Possible type options to be stored in the database
     #Add more types by modifying the following statement to
@@ -20,6 +21,8 @@ class Driver < ActiveRecord::Base
     validates :license, length: { is: 9, message: 'must be 9 digits long.' }
     validates :phone_number, length: { is: 10, message: 'must be 10 digits long.' }
     validates :zipcode, length: { is: 5, message: 'must be 5 digits long.'  }
+    validates :beacon_id, format: { with: Regexp.new('\A' + LETTERS_AND_NUMBERS.source + '\z'), 
+                                 message: 'must be a valid type.' }
     # validates :permit_number, length: { is: 5, message: 'Permit must be 5 digits long.'  }
 
     # LETTERS_ONLY validations
