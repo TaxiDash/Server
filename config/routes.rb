@@ -1,6 +1,6 @@
 TaxiRatingServer::Application.routes.draw do
-  get "static_pages/help"
-  get "static_pages/login"
+  get 'static_pages/help'
+  get 'static_pages/login'
   resources :ratings
 
   resources :drivers
