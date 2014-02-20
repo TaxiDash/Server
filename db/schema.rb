@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206021513) do
+ActiveRecord::Schema.define(version: 20140220012102) do
 
   create_table "drivers", force: true do |t|
     t.string   "first_name"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20140206021513) do
     t.integer  "total_ratings"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "beacon_id"
   end
 
   create_table "ratings", force: true do |t|
