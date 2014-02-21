@@ -27,6 +27,12 @@ class RatingsController < ApplicationController
       # TODO Prevent fraud entries
     @rating = Rating.new(rating_params)
 
+    # Adjust the given driver's meta data
+    @driver = @rating.driver 
+    @driver.average_rating = (@driver.average_rating * @driver.total_ratings + @rating.rating)/(@driver.total_ratings + 1)
+    @driver.total_ratings +=  1
+    @driver.save
+
     respond_to do |format|
       if @rating.save
         format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
@@ -36,6 +42,7 @@ class RatingsController < ApplicationController
         format.json { render json: @rating.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /ratings/1
