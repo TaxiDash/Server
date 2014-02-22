@@ -9,6 +9,10 @@
       <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
       <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
+    <!-- The next two lines are where login related errors can be found 
+    TODO: Move these somewhere nice -->
+    <p class="notice"><%= notice %></p> 
+    <p class="alert"><%= alert %></p>
   </head>
 
   <body>
@@ -33,6 +37,8 @@
         </div>
         <div class="col-sm-9 col-md-10 main">
             <%= yield %>
+   <!-- TODO: This next line is how you get the user widget information. Maybe in a corner? -->
+            <%= render 'layouts/user_widget' %>
         </div>
       </div>
     </div>

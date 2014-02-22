@@ -1,4 +1,5 @@
 TaxiRatingServer::Application.routes.draw do
+  devise_for :users
   get 'static_pages/help'
   get 'static_pages/login'
   resources :ratings
