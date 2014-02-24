@@ -13,3 +13,23 @@
  */
 
 
+
+/* User sign in and sign up forms. */
+
+.user-form {
+  max-width: 300px;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px;
+}
+.user-form .form-signin-heading,
+.user-form .checkbox {
+  margin-bottom: 10px;
+}
+.user-form input[type="text"],
+.user-form input[type="email"],
+.user-form input[type="password"] {
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+}
