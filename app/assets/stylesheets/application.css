@@ -17,11 +17,14 @@
 /* User sign in and sign up forms. */
 
 .user-form {
-  max-width: 300px;
   padding: 19px 29px 29px;
   margin: 0 auto 20px;
 }
-.user-form .form-signin-heading,
+
+.user-form .user-form-heading {
+  margin-bottom: 15px;
+}
+
 .user-form .checkbox {
   margin-bottom: 10px;
 }
