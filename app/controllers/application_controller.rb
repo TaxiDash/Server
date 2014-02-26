@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   layout "users", :only=>[:sign_in]
   protect_from_forgery
-  skip_before_action :verify_authenticity_token, if: :json_request?
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :unless => [:json_request?]
+  #skip_before_action :verify_authenticity_token, if: :json_request?
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   def configure_permitted_parameters
