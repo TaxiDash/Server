@@ -1,134 +1,169 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, 'Drivers') %>
 
-<p>
-  <strong>First name:</strong>
-  <%= @driver.first_name %>
-</p>
+<div class="col-sm-11 col-md-11 main">
+    <h1 class="page-header">
+    	<div><%= @driver.first_name %> <%= @driver.middle_name %> <%= @driver.last_name %></div>
+    	
+    	<div class="col-md-2 col-sm-2">
+            <%= button_to(drivers_path, :class => "btn btn-default", role: "button", title: "Back", method: :get) do %>            
+                <span class="glyphicon glyphicon-arrow-left"></span> Back
+            <% end %>
+    	</div>
+    	
+    	<div class="col-md-2 col-sm-2">
+            <%= button_to(edit_driver_path(@driver), :class => "btn btn-default", role: "button", title: "Edit", method: :get) do %>            
+                <span class="glyphicon glyphicon-pencil"></span> Edit
+            <% end %>
+    	</div>
+    </h1>
+    
+	<div class="row">
+	  <div class="col-sm-6 col-md-4">
+		<div class="thumbnail">
+		  <img data-src="holder.js/300x200" alt=> 
+		  	<span class="glyphicon glyphicon-picture"></span>
+		</div>
+	  </div>
+	</div>
+		
 
-<p>
-  <strong>Middle name:</strong>
-  <%= @driver.middle_name %>
-</p>
+<!--<p id="notice"><%= notice %></tr>
+	<%= link_to 'Edit', edit_driver_path(@driver) %> |
+	<%= link_to 'Back', drivers_path %>-->
+	
+		<table cellspacing=20 cellpadding="20%">
+			<tbody>
+				<!--<tr>
+		  			<th>First name:</th>	
+		  			<td><var><%= @driver.first_name %></var></td>
+		  		</tr>
+				
+				<tr>
+	  				<th>Middle name:</th>
+	  				<td><var><%= @driver.middle_name %></var></td>
+				</tr>
+		
+				<tr>
+				  	<th>Last name:</th>
+				  	<td><var><%= @driver.last_name %></var></td>
+				</tr> -->
 
-<p>
-  <strong>Last name:</strong>
-  <%= @driver.last_name %>
-</p>
+				<tr>
+				  	<th>Dob:</th>
+				  	<td><var><%= @driver.dob %></var></td>
+				</tr>
 
-<p>
-  <strong>Dob:</strong>
-  <%= @driver.dob %>
-</p>
+				<tr>
+				  	<th>Type Id:</th>
+				  	<td><var><%= @driver.type_id %></var></td>
+				</tr>
 
-<p>
-  <strong>Type Id:</strong>
-  <%= @driver.type_id %>
-</p>
+				<tr>
+				  	<th>Address:</th>
+				  	<td><var><%= @driver.address %></var></td>
+				</tr>
 
-<p>
-  <strong>Address:</strong>
-  <%= @driver.address %>
-</p>
+				<tr>
+				  	<th>City:</th>
+				  	<td><var><%= @driver.city %></var></td>
+				</tr>
 
-<p>
-  <strong>City:</strong>
-  <%= @driver.city %>
-</p>
+				<tr>
+				  	<th>State:</th>
+				  	<td><var><%= @driver.state %></var></td>
+				</tr>
 
-<p>
-  <strong>State:</strong>
-  <%= @driver.state %>
-</p>
+				<tr>
+				  	<th>Zipcode:</th>
+				  	<td><var><%= @driver.zipcode %></var></td>
+				</tr>
 
-<p>
-  <strong>Zipcode:</strong>
-  <%= @driver.zipcode %>
-</p>
+				<tr>
+					<th>Race:</th>
+					<td><var><%= @driver.race %></var></td>
+				</tr>
 
-<p>
-  <strong>Race:</strong>
-  <%= @driver.race %>
-</p>
+				<tr>
+				  	<th>Sex:</th>
+				  	<td><var><%= @driver.sex %></var></td>
+				</tr>
 
-<p>
-  <strong>Sex:</strong>
-  <%= @driver.sex %>
-</p>
+				<tr>
+				  	<th>Height:</th>
+				  	<td><var><%= @driver.height %></var></td>
+				</tr>
 
-<p>
-  <strong>Height:</strong>
-  <%= @driver.height %>
-</p>
+				<tr>
+				  	<th>Weight:</th>
+				  	<td><var><%= @driver.weight %></var></td>
+				</tr>
 
-<p>
-  <strong>Weight:</strong>
-  <%= @driver.weight %>
-</p>
+				<tr>
+				  	<th>License:</th>
+				  	<td><var><%= @driver.license %></var></td>
+				</tr>
 
-<p>
-  <strong>License:</strong>
-  <%= @driver.license %>
-</p>
+				<tr>
+				  	<th>Phone number:</th>
+				  	<td><var>(<%= @driver.phone_number/10000000 %>) <%= (@driver.phone_number/10000)%1000 %>-<%= @driver.phone_number%10000 %> </var></td>
+				</tr>
 
-<p>
-  <strong>Phone number:</strong>
-  <%= @driver.phone_number %>
-</p>
+				<tr>
+				  	<th>Training completion date: </th>
+				  	<td><var><%= @driver.training_completion_date %></var></td>
+				</tr>
 
-<p>
-  <strong>Training completion date:</strong>
-  <%= @driver.training_completion_date %>
-</p>
+				<tr>
+				  	<th>Permit expiration date:</th>
+				  	<td><var><%= @driver.permit_expiration_date %></var></td>
+				</tr>
 
-<p>
-  <strong>Permit expiration date:</strong>
-  <%= @driver.permit_expiration_date %>
-</p>
+				<tr>
+				  	<th>Permit number:</th>
+				  	<td><var><%= @driver.permit_number %></var></td>
+				</tr>
 
-<p>
-  <strong>Permit number:</strong>
-  <%= @driver.permit_number %>
-</p>
+				<tr>
+				  	<th>Status:</th>
+				  	<td><var><%= @driver.status %></var></td>
+				</tr>
 
-<p>
-  <strong>Status:</strong>
-  <%= @driver.status %>
-</p>
+				<tr>
+				  	<th>Owner:</th>
+				  	<td><var><%= @driver.owner %></var></td>
+				</tr>
 
-<p>
-  <strong>Owner:</strong>
-  <%= @driver.owner %>
-</p>
+				<tr>
+				  	<th>Company name:</th>
+				  	<td><var><%= @driver.company_name %></var></td>
+				</tr>
 
-<p>
-  <strong>Company name:</strong>
-  <%= @driver.company_name %>
-</p>
+				<tr>
+				  	<th>Physical expiration date:</th>
+				  	<td><var><%= @driver.physical_expiration_date %></var></td>
+				</tr>
 
-<p>
-  <strong>Physical expiration date:</strong>
-  <%= @driver.physical_expiration_date %>
-</p>
+				<tr>
+				  	<th>Valid:</th>
+				  	<td><var><%= @driver.valid %></var></td>
+				</tr>
 
-<p>
-  <strong>Valid:</strong>
-  <%= @driver.valid %>
-</p>
+				<tr>
+				  	<th>Beacon Id:</th>
+				  	<td><var><%= @driver.beacon_id %></var></td>
+				</tr>
 
-<p>
-  <strong>Beacon Id:</strong>
-  <%= @driver.beacon_id %>
-</p>
+				<tr>
+				  	<th>Average rating:</th>
+				  	<td><var><%= @driver.average_rating %></var></td>
+				</tr>
 
-<p>
-  <strong>Average rating:</strong>
-  <%= @driver.average_rating %>
-</p>
+				<tr>
+				  	<th>Total ratings:</th>
+				  	<td><var><%= @driver.total_ratings %></var></td>
+				</tr>
 
-<p>
-  <strong>Total ratings:</strong>
-  <%= @driver.total_ratings %>
-</p>
+			</tbody>
+		</table>
 
-<%= link_to 'Edit', edit_driver_path(@driver) %> |
-<%= link_to 'Back', drivers_path %>
+</div>

@@ -2,7 +2,7 @@ class Driver < ActiveRecord::Base
     has_many :ratings
 
     #Regex expressions defining valid input
-    LETTERS_ONLY = /[a-zA-Z]*/
+    LETTERS_ONLY = /[a-zA-Z ]*/
     NUMBERS_ONLY = /[\d]*/
     LETTERS_AND_NUMBERS = /[a-zA-Z\d]*/
 
