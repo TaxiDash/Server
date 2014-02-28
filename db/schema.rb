@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(version: 20140222014340) do
     t.string   "owner"
     t.string   "company_name"
     t.date     "physical_expiration_date"
-    t.boolean  "valid"
+    t.boolean  "valid",                    default: true
     t.string   "beacon_id"
-    t.decimal  "average_rating"
-    t.integer  "total_ratings"
+    t.decimal  "average_rating",           default: 0.0
+    t.integer  "total_ratings",            default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
