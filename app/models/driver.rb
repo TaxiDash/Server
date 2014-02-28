@@ -1,6 +1,10 @@
 class Driver < ActiveRecord::Base
     has_many :ratings
 
+    #Required fields
+    validates :first_name, :last_name, :zipcode, :dob, :address, :city, :state, :license, :phone_number, :type_id, :race, :sex, :height, :weight, :training_completion_date, :permit_expiration_date, :permit_number, :owner, :company_name, :physical_expiration_date, :beacon_id,
+        presence: true
+
     #Regex expressions defining valid input
     LETTERS_ONLY = /[a-zA-Z ]*/
     NUMBERS_ONLY = /[\d]*/
