@@ -28,7 +28,7 @@ class Driver < ActiveRecord::Base
     validates :phone_number, length: { is: 10, message: 'must be 10 digits long.' }
     validates :zipcode, length: { is: 5, message: 'must be 5 digits long.'  }
     validates :beacon_id, format: { with: Regexp.new('\A' + LETTERS_AND_NUMBERS.source + '\z'), 
-                                 message: 'must be a valid type.' }
+                                 message: 'must be a valid type.' }, uniqueness: true
     # validates :permit_number, length: { is: 5, message: 'Permit must be 5 digits long.'  }
 
     # LETTERS_ONLY validations
