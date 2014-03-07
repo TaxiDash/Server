@@ -1,4 +1,6 @@
-<h2 class="user-form-heading">Sign up</h2>
+<% provide(:title, 'Sign up') %>
+<% provide(:heading, 'Sign up') %>
+
 <form class="form-horizontal">
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -15,6 +17,6 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation, :class=>'form-control', :placeholder=>'Confirm password' %>
     
-  <%= f.submit "Sign up", :class=>'btn btn-lg btn-primary pull-right' %><br>
+  <%= f.submit "Sign up", :class=>'btn btn-lg btn-primary pull-right' %><br /><br />
 <% end %>
 </form>

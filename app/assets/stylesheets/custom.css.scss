@@ -9,9 +9,21 @@ body {
   font-size: 1.7em;
   letter-spacing: -1px;
   font-weight: bold;
+  color: #fff;
 }
 
 #logo:hover {
-  color: #fff;
+  color: gray-lighter;
   text-decoration: none;
+}
+
+#logo-inverse {
+  font-size: 3em;
+  line-height: 95%;
+  letter-spacing: -2px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: gray-dark; 
+  text-align: center;
+  margin-bottom: 5px;
 }
