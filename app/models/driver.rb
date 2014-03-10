@@ -1,6 +1,10 @@
 class Driver < ActiveRecord::Base
     has_many :ratings
 
+    #Required fields
+    validates :first_name, :last_name, :zipcode, :dob, :address, :city, :state, :license, :phone_number, :type_id, :race, :sex, :height, :weight, :training_completion_date, :permit_expiration_date, :permit_number, :owner, :company_name, :physical_expiration_date, :beacon_id,
+        presence: true
+
     #Regex expressions defining valid input
     LETTERS_ONLY = /[a-zA-Z ]*/
     NUMBERS_ONLY = /[\d]*/
@@ -24,7 +28,7 @@ class Driver < ActiveRecord::Base
     validates :phone_number, length: { is: 10, message: 'must be 10 digits long.' }
     validates :zipcode, length: { is: 5, message: 'must be 5 digits long.'  }
     validates :beacon_id, format: { with: Regexp.new('\A' + LETTERS_AND_NUMBERS.source + '\z'), 
-                                 message: 'must be a valid type.' }
+                                 message: 'must be a valid type.' }, uniqueness: true
     # validates :permit_number, length: { is: 5, message: 'Permit must be 5 digits long.'  }
 
     # LETTERS_ONLY validations

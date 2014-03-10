@@ -64,7 +64,12 @@ class DriversController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_driver
-      @driver = Driver.find(params[:id])
+      if params[:beacon_id].nil?
+          @driver = Driver.find(params[:id])
+      else
+          @driver = Driver.where(:beacon_id => params[:beacon_id]).first
+          puts @driver
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

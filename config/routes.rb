@@ -6,6 +6,7 @@ TaxiRatingServer::Application.routes.draw do
   resources :drivers
 
   root 'drivers#index'
+  get 'mobile/:beacon_id' => 'drivers#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
