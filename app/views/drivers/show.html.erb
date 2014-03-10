@@ -2,19 +2,21 @@
 
 <div class="col-sm-11 col-md-11 main">
     <h1 class="page-header">
-    	<div><%= @driver.first_name %> <%= @driver.middle_name %> <%= @driver.last_name %></div>
+    	<%= @driver.first_name %> <%= @driver.middle_name %> <%= @driver.last_name %>
     	
-    	<div class="col-md-2 col-sm-2">
-            <%= button_to(drivers_path, :class => "btn btn-default", role: "button", title: "Back", method: :get) do %>            
-                <span class="glyphicon glyphicon-arrow-left"></span> Back
-            <% end %>
-    	</div>
-    	
-    	<div class="col-md-2 col-sm-2">
-            <%= button_to(edit_driver_path(@driver), :class => "btn btn-default", role: "button", title: "Edit", method: :get) do %>            
-                <span class="glyphicon glyphicon-pencil"></span> Edit
-            <% end %>
-    	</div>
+    	<span class="btn-group">
+			<div class="btn" class="col-md-2 col-sm-2">
+		        <%= button_to(drivers_path, :class => "btn btn-default", role: "button", title: "Back", method: :get) do %>            
+		            <span class="glyphicon glyphicon-arrow-left"></span> Back
+		        <% end %>
+			</div>
+			
+			<div class="btn" class="col-md-2 col-sm-2">
+		        <%= button_to(edit_driver_path(@driver), :class => "btn btn-default", role: "button", title: "Edit", method: :get) do %>            
+		            <span class="glyphicon glyphicon-pencil"></span> Edit
+		        <% end %>
+			</div>
+    	</span>
     </h1>
     
 	<div class="row">
@@ -109,7 +111,7 @@
 				</tr>
 
 				<tr>
-				  	<th>Training completion date: </th>
+				  	<th>Training completion date: &nbsp </th>
 				  	<td><var><%= @driver.training_completion_date %></var></td>
 				</tr>
 
@@ -166,4 +168,5 @@
 			</tbody>
 		</table>
 
-</div>
+</div>	
+
