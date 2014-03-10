@@ -3,13 +3,13 @@
  
  <!-- The next two lines are where login related errors can be found 
      TODO: Move these somewhere nice
- 
  <%= notice %> 
  <%= alert %>
--->
  
- <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>    
-  <%= f.text_field :username, :autofocus => true, :class =>'form-control', :required=>'true', :placeholder => "Username" %>
+  -->
+ 
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+   <%= f.text_field :username, :autofocus => true, :class =>'form-control', :required=>'true', :placeholder => "Username" %>
     <%= f.password_field :password, :class =>'form-control', :required=>'true', :placeholder => "Password" %>
 
     <% if devise_mapping.rememberable? -%>
@@ -20,4 +20,7 @@
     <% end -%>
     <%= f.submit "Sign in", :class => 'btn btn-lg btn-primary btn-block' %>
     <br /><%= render "devise/shared/links" %> 
- <% end %>
+  <% end %>
+ 
+
+
