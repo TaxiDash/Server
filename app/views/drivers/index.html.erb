@@ -58,7 +58,6 @@
       <tbody>
         <% @drivers.each do |driver| %>
           <tr>
-            <%= link_to '', driver %> <!--click to show Driver Profile-->
             <td><%= driver.last_name %>, <%= driver.first_name %> <%= driver.middle_name %></td>
             <td><%= driver.company_name %></td>
             <td><%= driver.permit_expiration_date %></td>
@@ -81,9 +80,10 @@
             <td><%= driver.physical_expiration_date %></td>
             <td><%= driver.valid %></td>
             <td><%= driver.average_rating %></td>-->
-            <td><%= link_to '', edit_driver_path(driver) %>    
+            <td><%= link_to '', driver %>
+                <%= link_to '', edit_driver_path(driver) %>    
                 <%= link_to 'Destroy', driver, method: :delete, 
-                          data: { confirm: 'Are you sure you want to delete this driver data?' } %>
+                          data: { confirm: 'Are you sure you want to delete this driver?' } %>
                 </td>
           </tr>
         <% end %>
