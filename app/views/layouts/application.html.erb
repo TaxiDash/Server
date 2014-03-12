@@ -4,27 +4,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Taxi Dashboard | <%= yield(:title) %></title>
+    <title>Taxi Dashboard | <%= yield(:title) %></title>    
       <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
       <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
       <%= csrf_meta_tags %>
-    <%= render 'layouts/shim' %>
-    <!-- The next two lines are where login related errors can be found 
-    TODO: Move these somewhere nice -->
-    <p class="notice"><%= notice %></p> 
-    <p class="alert"><%= alert %></p>
+      <%= render 'layouts/shim' %>
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <%= render 'layouts/sidebar' %>
-        <div class="col-sm-9 col-md-10 main">
-            <%= yield %>
-   <!-- TODO: This next line is how you get the user widget information. Maybe in a corner? -->
-            <%= render 'layouts/user_widget' %>
-        </div>
-      </div>
-    </div>
+    <% if user_signed_in? %>
+        <%= render 'layouts/general' %>
+    <% else %>
+        <%= render 'layouts/users' %>
+    <% end %>
+
   </body>
 </html>
 
