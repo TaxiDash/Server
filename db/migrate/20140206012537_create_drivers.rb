@@ -15,7 +15,7 @@ class CreateDrivers < ActiveRecord::Migration
       t.integer :height
       t.integer :weight
       t.string :license
-      t.integer :phone_number
+      t.string :phone_number
       t.date :training_completion_date
       t.date :permit_expiration_date
       t.integer :permit_number
