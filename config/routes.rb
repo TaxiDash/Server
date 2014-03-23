@@ -10,6 +10,7 @@ TaxiRatingServer::Application.routes.draw do
   get 'mobile/:beacon_id' => 'drivers#show'
 
   get 'drivers/:id' => 'drivers#show', :as => 'show_driver'
+  get 'users/:id' => 'users#show', :as => 'show_user'
   #get 'users/new/' => 'users/sign_up'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
