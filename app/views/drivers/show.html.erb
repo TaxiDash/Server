@@ -107,7 +107,7 @@
 
 				<tr>
 				  	<th>Phone number:</th>
-				  	<td><var>(<%= @driver.phone_number/10000000 %>) <%= (@driver.phone_number/10000)%1000 %>-<%= @driver.phone_number%10000 %> </var></td>
+				  	<td><var>(<%= @driver.phone_number[0, 3] %>) <%= @driver.phone_number[3, 3] %>-<%= @driver.phone_number[6, 10] %> </var></td>
 				</tr>
 
 				<tr>
