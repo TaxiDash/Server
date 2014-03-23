@@ -1,0 +1,61 @@
+<% provide(:title, 'Users') %>
+
+<% name = @user.first_name << " " << @user.last_name %>
+<div class="col-sm-11 col-md-11 main">
+    <h1 class="page-header">
+        <%= name %>
+    	
+    	<span class="btn-group">
+			<div class="btn" class="col-md-2 col-sm-2">
+		        <%= button_to(users_path, :class => "btn btn-default", role: "button", title: "Back", method: :get) do %>            
+		            <span class="glyphicon glyphicon-arrow-left"></span> Back
+		        <% end %>
+			</div>
+			
+			<div class="btn" class="col-md-2 col-sm-2">
+		        <%= button_to(edit_user_path(@user), :class => "btn btn-default", role: "button", title: "Edit", method: :get) do %>            
+		            <span class="glyphicon glyphicon-pencil"></span> Edit
+		        <% end %>
+			</div>
+    	</span>
+    </h1>
+    
+	<div class="row">
+	  <div class="col-sm-6 col-md-4">
+		<div class="thumbnail">
+		  <img data-src="holder.js/300x200" alt=> 
+		  	<span class="glyphicon glyphicon-picture"></span>
+		</div>
+	  </div>
+	</div>
+		
+
+<!--<p id="notice"><%= notice %></tr>
+	<%= link_to 'Edit', edit_user_path(@user) %> |
+	<%= link_to 'Back', users_path %>-->
+	
+		<table cellspacing=20 cellpadding="20%">
+			<tbody>
+
+				<tr>
+				  	<th>Name: </th>
+				  	<td><var><%= name %></var></td>
+				</tr>
+				<tr>
+				  	<th>Username:</th>
+				  	<td><var><%= @user.username %></var></td>
+				</tr>
+				<tr>
+				  	<th>Email:</th>
+				  	<td><var><%= @user.email %></var></td>
+				</tr>
+				<tr>
+				  	<th>Last Successful Login:</th>
+				  	<td><var><%= @user.last_sign_in_at.in_time_zone("America/Chicago") %></var></td>
+				</tr>
+
+			</tbody>
+		</table>
+
+</div>	
+

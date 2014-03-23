@@ -1,12 +1,14 @@
 TaxiRatingServer::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "users/registrations" }
   get 'static_pages/help'
   get 'static_pages/login'
   resources :ratings
   resources :drivers
+  resources :users
 
   root 'drivers#index'
   get 'mobile/:beacon_id' => 'drivers#show'
+  #get 'users/new/' => 'users/sign_up'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

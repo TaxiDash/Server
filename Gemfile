@@ -7,6 +7,7 @@ group :development do
 end
 
 gem 'devise'
+gem 'cancan'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
