@@ -10,14 +10,12 @@
       <%= csrf_meta_tags %>
       <%= render 'layouts/shim' %>
   </head>
-
   <body>
     <% if user_signed_in? %>
         <%= render 'layouts/general' %>
     <% else %>
         <%= render 'layouts/users' %>
     <% end %>
-
   </body>
 </html>
 
