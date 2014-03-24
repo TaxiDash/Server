@@ -12,173 +12,165 @@
   <% end %>
 
   <table>
-  		<tr>
-			<td>
-			  <div class="field">
-				<%= f.label :first_name %><br>
-				<%= f.text_field :first_name, :size => 10 %>
-			  </div>
-			</td>
-			<td> &nbsp <td>
-			<td>			
-			  <div class="field">
-				<%= f.label :middle_name %><br>
-				<%= f.text_field :middle_name, :size => 10 %>
-			  </div>
-			</td>
-			<td> &nbsp <td>
-  			<td>
-			  <div class="field">
-				<%= f.label :last_name %><br>
-				<%= f.text_field :last_name, :size => 15 %>
-			  </div>
-			</td>
-  		</tr>
+   <tr>
+<td>
+
+<%= f.label :first_name %><br>
+<%= f.text_field :first_name, :size => 10 %>
+
+</td>
+<td> &nbsp <td>
+<td>	
+
+<%= f.label :middle_name %><br>
+<%= f.text_field :middle_name, :size => 10 %>
+
+</td>
+<td> &nbsp <td>
+   <td>
+
+<%= f.label :last_name %><br>
+<%= f.text_field :last_name, :size => 15 %>
+
+</td>
+   </tr>
   </table>
   
-  <div class="field">
+
     <%= f.label :dob %><br>
     <%= f.date_select :dob, :start_year => 1950%>
-  </div>
-  <div class="field">
+
+
     <%= f.label :type_id %><br>
     <%= f.radio_button :type_id, "Taxi", :checked => "checked"%><strong>Taxi</strong><br>
     <%= f.radio_button :type_id, "Wrecker"%><strong>Wrecker</strong>
-  </div>
-  <div class="field">
+
     <%= f.label :address %><br>
     <%= f.text_field :address %>
-  </div>
   <table>
-  	<tr>
-  		<td>
-		  <div class="field">
-			<%= f.label :city %><br>
-			<%= f.text_field :city, :size => 15 %>
-		  </div>
-		</td>
-		<td> &nbsp <td>
-		<td>
-		  <div class="field">
-			<%= f.label :state %><br>
-			<%= f.select(:state, [ "TN", "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MY", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]) %>
-		  </div>
-		</td>
-		<td> &nbsp <td>
-		<td>
-		  <div class="field">
-			<%= f.label :zipcode %><br>
-			<%= f.number_field :zipcode, :size => 4%>
-		  </div>
-		</td>
-	</tr>
+   <tr>
+   <td>
+<%= f.label :city %><br>
+<%= f.text_field :city, :size => 15 %>
+</td>
+<td> &nbsp <td>
+<td>
+<%= f.label :state %><br>
+<%= f.select(:state, [ "TN", "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MY", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]) %>
+</td>
+<td> &nbsp <td>
+<td>
+
+<%= f.label :zipcode %><br>
+<%= f.number_field :zipcode, :size => 4%>
+
+</td>
+</tr>
   </table>
-  <div class="field">
+
     <%= f.label :race %><br>
-	<%= f.select(:race, [ "African American",  "Asian", "Caucasian", "Hispanic", "Indian", "Native American", "Other"], {include_blank: true}) %>
-  </div>
-  <div class="field">
+    <%= f.select(:race, [ "African American", "Asian", "Caucasian", "Hispanic", "Indian", "Native American", "Other"], {include_blank: true}) %>
+
+
     <%= f.label :sex %><br>
     <%= f.radio_button :sex, "male" %> <strong>Male</strong><br>
     <%= f.radio_button :sex, "female" %> <strong>Female</strong>
-  </div>
+
   <table>
-  	<tr>
-  		<td>
-		  <div class="field">
-			<%= f.label :height %><br>
-			<%= f.number_field :height, :size => 4 %>
-		  </div>
-  		</td>
-  		<td> &nbsp <td>
-  		<td>
-		  <div class="field">
-			<%= f.label :weight %><br>
-			<%= f.number_field :weight, :size => 4 %>
-		  </div>
-  		</td>
-  	</tr>
+   <tr>
+   <td>
+
+<%= f.label :height %><br>
+<%= f.number_field :height, :size => 4 %>
+
+   </td>
+   <td> &nbsp <td>
+   <td>
+
+<%= f.label :weight %><br>
+<%= f.number_field :weight, :size => 4 %>
+
+   </td>
+   </tr>
   </table>
-  <div class="field">
+
     <%= f.label :license %><br>
     <%= f.text_field :license %>
-  </div>
-  <div class="field">
+
     <%= f.label :phone_number %><br>
     <%= f.telephone_field :phone_number, :size => 10 %>
-  </div>
-  <div class="field">
+
     <%= f.label :training_completion_date %><br>
     <%= f.date_select :training_completion_date %>
-  </div>
+
   <table>
-  	<tr>
-  		<td>
-  		  <div class="field">
-			<%= f.label :permit_number %><br>
-			<%= f.number_field :permit_number %>
-		  </div>
-  		</td>
-  		<td> &nbsp <td>
-  		<td>
-		  <div class="field">
-			<%= f.label :permit_expiration_date %><br>
-			<%= f.date_select :permit_expiration_date %>
-		  </div>
-  		</td>
-  	</tr>
+   <tr>
+   <td>
+
+    <%= f.label :permit_number %><br>
+    <%= f.number_field :permit_number %>
+
+   </td>
+   <td> &nbsp <td>
+   <td>
+
+    <%= f.label :permit_expiration_date %><br>
+    <%= f.date_select :permit_expiration_date %>
+
+   </td>
+   </tr>
   </table>
-  <div class="field">
+
     <%= f.label :status %><br>
     <%= f.text_field :status %>
-  </div>
+
   <table>
-  	<tr>
-  		<td>
-		  <div class="field">
-			<%= f.label :owner %><br>
-			<%= f.text_field :owner %>
-		  </div>
-  		</td>
-  		<td> &nbsp <td>
-  		<td>
-		  <div class="field">
-			<%= f.label :company_name %><br>
-			<%= f.text_field :company_name %>
-		  </div>
-  		</td>
-  	</tr>
+   <tr>
+   <td>
+
+    <%= f.label :owner %><br>
+    <%= f.text_field :owner %>
+
+   </td>
+   <td> &nbsp <td>
+   <td>
+
+    <%= f.label :company_name %><br>
+    <%= f.text_field :company_name %>
+
+   </td>
+   </tr>
   </table>
   <table>
-  	<tr>
-  		<td>
-		  <div class="field">
-			<%= f.label :physical_expiration_date %><br>
-			<%= f.date_select :physical_expiration_date %>
-		  </div>
-  		</td>
-  		<td> &nbsp &nbsp &nbsp &nbsp <td>
-  		<td>
-		  <div class="field">
-			<%= f.label :valid %><br>
-			<%= f.check_box :valid %>
-		  </div>
-  		</td>
-  	</tr>
+   <tr>
+   <td>
+
+<%= f.label :physical_expiration_date %><br>
+<%= f.date_select :physical_expiration_date %>
+
+   </td>
+   <td> &nbsp &nbsp &nbsp &nbsp <td>
+   <td>
+
+<%= f.label :valid %><br>
+<%= f.check_box :valid %>
+
+   </td>
+   </tr>
   </table>
-  <div class="field">
+
     <%= f.label :beacon_id %><br>
     <%= f.text_field :beacon_id %>
-  </div>
-<!--  <div class="field">
-    <%= f.label :average_rating %><br>
-    <%= f.text_field :average_rating %>
-  </div>
-  <div class="field">
-    <%= f.label :total_ratings %><br>
-    <%= f.number_field :total_ratings %>
-  </div> -->
-  <div class="actions">
+
+<!-- <div class="field">
+<%= f.label :average_rating %><br>
+<%= f.text_field :average_rating %>
+</div>
+<div class="field">
+<%= f.label :total_ratings %><br>
+<%= f.number_field :total_ratings %>
+</div> -->
+
     <%= f.submit %>
-  </div>
+
 <% end %>
