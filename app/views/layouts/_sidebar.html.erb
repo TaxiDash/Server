@@ -1,9 +1,10 @@
 
 <div id="navbar_sidebar" class="container-fluid">
       <ul class="nav nav-sidebar">
-        <li class= <%= controller.controller_path == 'drivers' ? 'active' : '' %> ><%= link_to "Driver Dashboard", drivers_path %></li>
-      <% if current_user.try(:admin?) %>
-          <li class= <%= controller.controller_path == 'users' ? 'active' : '' %> ><%= link_to "User Dashboard", users_path %></li>
-        </ul>
-      <% end %>
+        <li class= <%= controller.controller_path == 'drivers' ? 'active' : '' %> ><%= link_to "Drivers", drivers_path %></li>
+        <li class= <%= controller.controller_path == 'ratings' ? 'active' : '' %> ><%= link_to "Ratings", ratings_path %></li>    
+        <% if current_user.try(:admin?) %>
+            <li class= <%= controller.controller_path == 'users' ? 'active' : '' %> ><%= link_to "Users", users_path %></li>
+        <% end %>
+      </ul>
 </div>
