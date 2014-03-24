@@ -11,156 +11,109 @@
     </div>
   <% end %>
 
-  <table>
-   <tr>
-<td>
 
-<%= f.label :first_name %><br>
-<%= f.text_field :first_name, :size => 10 %>
-
-</td>
-<td> &nbsp <td>
-<td>	
-
-<%= f.label :middle_name %><br>
-<%= f.text_field :middle_name, :size => 10 %>
-
-</td>
-<td> &nbsp <td>
-   <td>
-
-<%= f.label :last_name %><br>
-<%= f.text_field :last_name, :size => 15 %>
-
-</td>
-   </tr>
-  </table>
-  
-
-    <%= f.label :dob %><br>
-    <%= f.date_select :dob, :start_year => 1950%>
-
-
-    <%= f.label :type_id %><br>
-    <%= f.radio_button :type_id, "Taxi", :checked => "checked"%><strong>Taxi</strong><br>
-    <%= f.radio_button :type_id, "Wrecker"%><strong>Wrecker</strong>
-
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  <table>
-   <tr>
-   <td>
-<%= f.label :city %><br>
-<%= f.text_field :city, :size => 15 %>
-</td>
-<td> &nbsp <td>
-<td>
-<%= f.label :state %><br>
-<%= f.select(:state, [ "TN", "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MY", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]) %>
-</td>
-<td> &nbsp <td>
-<td>
-
-<%= f.label :zipcode %><br>
-<%= f.number_field :zipcode, :size => 4%>
-
-</td>
-</tr>
-  </table>
-
-    <%= f.label :race %><br>
-    <%= f.select(:race, [ "African American", "Asian", "Caucasian", "Hispanic", "Indian", "Native American", "Other"], {include_blank: true}) %>
-
-
-    <%= f.label :sex %><br>
-    <%= f.radio_button :sex, "male" %> <strong>Male</strong><br>
-    <%= f.radio_button :sex, "female" %> <strong>Female</strong>
-
-  <table>
-   <tr>
-   <td>
-
-<%= f.label :height %><br>
-<%= f.number_field :height, :size => 4 %>
-
-   </td>
-   <td> &nbsp <td>
-   <td>
-
-<%= f.label :weight %><br>
-<%= f.number_field :weight, :size => 4 %>
-
-   </td>
-   </tr>
-  </table>
-
-    <%= f.label :license %><br>
-    <%= f.text_field :license %>
-
-    <%= f.label :phone_number %><br>
-    <%= f.telephone_field :phone_number, :size => 10 %>
-
-    <%= f.label :training_completion_date %><br>
-    <%= f.date_select :training_completion_date %>
-
-  <table>
-   <tr>
-   <td>
-
-    <%= f.label :permit_number %><br>
-    <%= f.number_field :permit_number %>
-
-   </td>
-   <td> &nbsp <td>
-   <td>
-
-    <%= f.label :permit_expiration_date %><br>
-    <%= f.date_select :permit_expiration_date %>
-
-   </td>
-   </tr>
-  </table>
-
-    <%= f.label :status %><br>
-    <%= f.text_field :status %>
-
-  <table>
-   <tr>
-   <td>
-
-    <%= f.label :owner %><br>
-    <%= f.text_field :owner %>
-
-   </td>
-   <td> &nbsp <td>
-   <td>
-
-    <%= f.label :company_name %><br>
-    <%= f.text_field :company_name %>
-
-   </td>
-   </tr>
-  </table>
-  <table>
-   <tr>
-   <td>
-
-<%= f.label :physical_expiration_date %><br>
-<%= f.date_select :physical_expiration_date %>
-
-   </td>
-   <td> &nbsp &nbsp &nbsp &nbsp <td>
-   <td>
-
-<%= f.label :valid %><br>
-<%= f.check_box :valid %>
-
-   </td>
-   </tr>
-  </table>
-
-    <%= f.label :beacon_id %><br>
-    <%= f.text_field :beacon_id %>
+    <div class="form-horizontal">
+      <div class="form-group">
+        <%= f.label :first_name, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.text_field :first_name, :class => "form-control" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :middle_name, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.text_field :middle_name, :class => "form-control" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :last_name, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.text_field :last_name, :class => "form-control" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :dob, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.date_select :dob, :start_year => 1950%></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :type_id, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5">
+          <%= f.radio_button :type_id, "Taxi", :class=>"radio-inline", :checked => "checked"%> <strong>Taxi</strong><br>
+          <%= f.radio_button :type_id, "Wrecker", :class=>"radio-inline"%> <strong>Wrecker</strong>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :address, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.text_field :address, :class => "form-control" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :city, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.text_field :city, :class => "form-control" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :state, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.select(:state, [ "TN", "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MY", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"])%>
+</div>
+      </div>
+      <div class="form-group">
+        <%= f.label :zipcode, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.number_field :zipcode, :class=>"form-control", :size => 4%></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :race, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.select(:race, [ "African American", "Asian", "Caucasian", "Hispanic", "Indian", "Native American", "Other"], {include_blank: true}) %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :sex, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5">
+          <%= f.radio_button :sex, "male", :class=>"radio-inline", :checked => "checked"%> <strong>Male</strong><br>
+          <%= f.radio_button :sex, "female", :class=>"radio-inline"%> <strong>Female</strong>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :height, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.number_field :height, :class=>"form-control", :size => 4%></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :weight, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.number_field :weight, :class=>"form-control", :size => 4%></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :license, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.text_field :license, :class=>"form-control" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :phone_number, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.telephone_field :phone_number, :class=>"form-control", :size => 10 %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :training_completion_date, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.date_select :training_completion_date %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :permit_number, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.number_field :permit_number, :class => "form-control" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :permit_expiration_date, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.date_select :permit_expiration_date %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :status, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.text_field :status, :class=>"form-control" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :owner, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.text_field :owner, :class=>"form-control" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :company_name, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.text_field :company_name, :class=>"form-control" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :physical_expiration_date, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.date_select :physical_expiration_date %>
+          <%= f.check_box :valid, :class=>"checkbox-inline" %> <%= f.label :valid %> 
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :beacon_id, :class => "col-sm-3 control-label" %>
+        <div class="col-sm-5"><%= f.text_field :beacon_id, :class=>"form-control" %></div>
+      </div>
 
 <!-- <div class="field">
 <%= f.label :average_rating %><br>
@@ -171,6 +124,9 @@
 <%= f.number_field :total_ratings %>
 </div> -->
 
-    <%= f.submit %>
-
+<div class="form-group">
+    <div class="col-sm-offset-3 col-sm-7">
+        <%= f.submit "Submit", :class=>"btn btn-primary" %>
+    </div>
+  </div>
 <% end %>

@@ -30,27 +30,6 @@
           <th>Permit Expiration Date</th>
           <th>Permit #</th>
           <th></th>
-    <!--  <th>Dob</th>
-          <th>Type Id</th>
-          <th>Address</th>
-          <th>City</th>
-          <th>State</th>
-          <th>Zipcode</th>
-          <th>Race</th>
-          <th>Sex</th>
-          <th>Height</th>
-          <th>Weight</th> 
-          <th>License</th>
-          <th>Phone number</th>
-          <th>Training completion date</th>
-          <th>Status</th>
-          <th>Owner</th>
-          <th>Physical expiration date</th>
-          <th>Valid</th>
-          <th>Average rating</th>
-          <th></th>
-          <th></th>
-          <th></th> -->
         </tr>
       </thead>
 
@@ -61,29 +40,25 @@
             <td><%= driver.company_name %></td>
             <td><%= driver.permit_expiration_date %></td>
             <td><%= driver.permit_number %></td>
-    <!--    <td><%= driver.dob %></td>
-            <td><%= driver.type_id %></td>
-            <td><%= driver.address %></td>
-            <td><%= driver.city %></td>
-            <td><%= driver.state %></td>
-            <td><%= driver.zipcode %></td>
-            <td><%= driver.race %></td>
-            <td><%= driver.sex %></td>
-            <td><%= driver.height %></td>
-            <td><%= driver.weight %></td>
-            <td><%= driver.license %></td>
-            <td><%= driver.phone_number %></td>
-            <td><%= driver.training_completion_date %></td>
-            <td><%= driver.status %></td>
-            <td><%= driver.owner %></td>
-            <td><%= driver.physical_expiration_date %></td>
-            <td><%= driver.valid %></td>
-            <td><%= driver.average_rating %></td>-->
-            <td><%= link_to '', edit_driver_path(driver) %>    
-                <%= link_to 'View', show_driver_path(driver)%>
-                <%= link_to 'Destroy', driver, method: :delete, 
-                          data: { confirm: 'Are you sure you want to delete this driver?' } %>
-                </td>
+            <td><div class="btn-group">
+                    <div class="btn-group">
+                        <%= button_to(show_driver_path(driver), :class => "btn btn-mini", title: "View", method: :get) do %>
+                          <span class="glyphicon glyphicon-eye-open"></span>
+                        <% end %>
+                    </div>
+                    <div class="btn-group">
+                        <%= button_to(edit_driver_path(driver), :class => "btn btn-mini", title: "Edit", method: :get) do %>
+                          <span class="glyphicon glyphicon-pencil"></span>
+                        <% end %>
+                    </div>
+                    <div class="btn-group">
+                        <%= button_to(show_driver_path(driver), :class => "btn btn-mini", title: "Destroy", method: :delete, 
+                            data: { confirm: 'Are you sure you want to delete this driver?' } ) do %>
+                          <span class="glyphicon glyphicon-trash"></span>
+                        <% end %>
+                    </div>
+                </div>
+            </td>
           </tr>
         <% end %>
       </tbody>
