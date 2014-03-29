@@ -22,8 +22,7 @@
 	<div class="row">
 	  <div class="col-sm-6 col-md-4">
 		<div class="thumbnail">
-		  <img data-src="holder.js/300x200" alt=> 
-		  	<span class="glyphicon glyphicon-picture"></span>
+            <%= image_tag @driver.avatar.url %>
 		</div>
 	  </div>
 	</div>
@@ -51,12 +50,12 @@
 				</tr> -->
 
 				<tr>
-				  	<th>Dob:</th>
+				  	<th>Date of Birth:</th>
 				  	<td><var><%= @driver.dob %></var></td>
 				</tr>
 
 				<tr>
-				  	<th>Type Id:</th>
+				  	<th>Type:</th>
 				  	<td><var><%= @driver.type_id %></var></td>
 				</tr>
 

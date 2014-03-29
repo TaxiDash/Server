@@ -1,5 +1,20 @@
 class Driver < ActiveRecord::Base
     has_many :ratings
+    has_attached_file :avatar, 
+        :path => ":rails_root/public/images/:class/:id/:basename_:style.:extension",
+        :url => "/images/:class/:id/:basename_:style.:extension",
+        :default_style => :preview,
+        :styles => {
+            :thumb    => ['100x100^',  :jpg, :quality => 70],
+            :preview  => ['300x300^',  :jpg, :quality => 70],
+            :large    => ['600>',      :jpg, :quality => 70]
+        }
+
+    validates_attachment :avatar,
+        :presence => true,
+        :size => { :in => 0..10.megabytes },
+        :content_type => { :content_type => /^image\/(jpeg|png|gif|tiff)$/ }
+
 
     #Required fields
     validates :first_name, :last_name, :zipcode, :dob, :address, :city, :state, :license, :phone_number, :type_id, :race, :sex, :height, :weight, :training_completion_date, :permit_expiration_date, :permit_number, :owner, :company_name, :physical_expiration_date, :beacon_id,
