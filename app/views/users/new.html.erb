@@ -1,0 +1,41 @@
+<% provide(:title, 'Create User') %>
+<% provide(:heading, 'Create User') %>
+
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being created:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name, :autofocus => true, :class=>'form-control', :placeholder=>'John' %>
+
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name, :class=>'form-control', :placeholder=>'Smith' %>
+
+  <%= f.label :username %>
+  <%= f.text_field :username, :class=>'form-control', :placeholder=>'Username' %>
+  
+  <%= f.label :email %>
+  <%= f.text_field :email, :class=>'form-control', :placeholder=>'Email' %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password, :class=>'form-control', :placeholder=>'Password' %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, :class=>'form-control', :placeholder=>'Confirm password' %>
+    
+  <%= f.label :admin %> 
+  <%= f.check_box :admin, :class=>"form-control checkbox-inline" %> 
+
+  <%= f.submit "Create User", :class=>'btn btn-lg btn-primary pull-right' %><br /><br />
+
+<% end %>
+<%= link_to "Back", :back, :class=>"btn btn-primary" %> 

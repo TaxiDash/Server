@@ -51,7 +51,7 @@
 				</tr>
 				<tr>
 				  	<th>Last Successful Login:</th>
-				  	<td><var><%= @user.last_sign_in_at.in_time_zone("America/Chicago") %></var></td>
+				  	<td><var><%= @user.last_sign_in_at.nil? ? " N/A" : @user.last_sign_in_at.in_time_zone("America/Chicago") %></var></td>
 				</tr>
 
 			</tbody>

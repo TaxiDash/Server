@@ -25,6 +25,7 @@ class RatingsController < ApplicationController
   # POST /ratings.json
   def create
       # TODO Prevent fraud entries
+puts "CREATE" 
     @rating = Rating.new(rating_params)
 
     # Adjust the given driver's meta data
@@ -72,6 +73,7 @@ class RatingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rating
+      puts "Setting @rating to " << params[:id]
       @rating = Rating.find(params[:id])
     end
 

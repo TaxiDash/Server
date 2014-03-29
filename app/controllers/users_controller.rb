@@ -43,7 +43,9 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    puts "Creating USER -------------------------------------------------------------------------"
     @user = User.new(user_params)
+puts "USER: " << @user.first_name
 
     respond_to do |format|
       if @user.save
@@ -59,6 +61,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    puts "Updating USER -------------------------------------------------------------------------"
       if params[:user][:password].blank?
           [:password,:password_confirmation,:current_password].collect{|p| params[:user].delete(p) }
       else
@@ -88,16 +91,13 @@ class UsersController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
-      if params[:beacon_id].nil?
-          @user = User.find(params[:id])
-      else
-          @user = User.where(:beacon_id => params[:beacon_id]).first
-          puts @user
-      end
+    puts "Finding user with id " << params[:id]
+    @user = User.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-      params.require(:user).permit(:first_name, :last_name, :username, :password)
+    puts "Getting params -------------------------------------------------------------------------"
+      params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, :admin)
   end
 end

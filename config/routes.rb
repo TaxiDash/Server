@@ -1,5 +1,5 @@
 TaxiRatingServer::Application.routes.draw do
-  devise_for :users, :controllers => { :registrations => "users/registrations" }
+  devise_for :users, :controllers => { :registrations => "users/registrations" }, skip: [:registrations]
   get 'static_pages/help'
   get 'static_pages/login'
   resources :ratings
@@ -15,7 +15,6 @@ TaxiRatingServer::Application.routes.draw do
   get 'ratings/:id' => 'ratings#show', :as => 'show_rating'
 
   get 'users/modify/:id' => 'users#edit', :as => 'edit_other_user'#Edit users as admin
-  
 
   #get 'users/new/' => 'users/sign_up'
   # The priority is based upon order of creation: first created -> highest priority.
