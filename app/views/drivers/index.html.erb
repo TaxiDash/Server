@@ -25,11 +25,47 @@
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th>Name (Last, First Middle)</th>
-          <th>Company Name</th>
-          <th>Permit Expiration Date</th>
-          <th>Permit #</th>
-          <th></th>
+          <th>
+          	<%= sortable "last_name", "Name (Last, First Middle)" %>
+          	<% if sort_column == "last_name" %>
+          		<% if sort_direction == "asc" %>
+          			<span class="glyphicon glyphicon-arrow-up"></span>
+          		<% else %>
+          			<span class="glyphicon glyphicon-arrow-down"></span>
+          		<% end %>
+          	<% end %>
+          </th>
+		  <th>
+		  	<%= sortable "company_name", "Company Name" %>
+		  	<% if sort_column == "company_name" %>
+          		<% if sort_direction == "asc" %>
+          			<span class="glyphicon glyphicon-arrow-up"></span>
+          		<% else %>
+          			<span class="glyphicon glyphicon-arrow-down"></span>
+          		<% end %>
+          	<% end %>
+		  </th>
+		  <th>
+		  	<%= sortable "permit_expiration_date", "Permit Expiration Date" %>
+		  	<% if sort_column == "permit_expiration_date" %>
+          		<% if sort_direction == "asc" %>
+          			<span class="glyphicon glyphicon-arrow-up"></span>
+          		<% else %>
+          			<span class="glyphicon glyphicon-arrow-down"></span>
+          		<% end %>
+          	<% end %>
+		  </th>
+		  <th>
+		  	<%= sortable "permit_number", "Permit #" %>
+		  	<% if sort_column == "permit_number" %>
+          		<% if sort_direction == "asc" %>
+          			<span class="glyphicon glyphicon-arrow-up"></span>
+          		<% else %>
+          			<span class="glyphicon glyphicon-arrow-down"></span>
+          		<% end %>
+          	<% end %>
+		  </th>
+		  <th></th>
         </tr>
       </thead>
 

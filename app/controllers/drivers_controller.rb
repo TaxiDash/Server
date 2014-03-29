@@ -1,10 +1,11 @@
 class DriversController < ApplicationController
   before_action :set_driver, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /drivers
   # GET /drivers.json
   def index
-    @drivers = Driver.all
+    @drivers = params[:sort] == nil ? Driver.all : Driver.order(sort_column + " " + sort_direction)
   end
 
   # GET /drivers/1
@@ -76,4 +77,13 @@ class DriversController < ApplicationController
     def driver_params
       params.require(:driver).permit(:first_name, :middle_name, :last_name, :avatar, :dob, :type_id, :address, :city, :state, :zipcode, :race, :sex, :height, :weight, :license, :phone_number, :training_completion_date, :permit_expiration_date, :permit_number, :status, :owner, :company_name, :physical_expiration_date, :valid, :beacon_id, :average_rating, :total_ratings)
     end
+       
+    def sort_column
+    	Driver.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+
+	def sort_direction
+		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+	end
+	
 end
