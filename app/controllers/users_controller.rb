@@ -35,8 +35,9 @@ class UsersController < ApplicationController
     #redirect_to '/users/sign_up'
   end
 
-  # GET /users/1/edit
+  # GET /users/modify/1
   def edit
+    @user = User.find(params[:id])
   end
 
   # POST /users
