@@ -8,6 +8,7 @@ TaxiRatingServer::Application.routes.draw do
 
   root 'drivers#index'
   get 'mobile/:beacon_id' => 'drivers#show'
+  get 'mobile/image/:beacon_id' => 'drivers#get_image'
 
   get 'drivers/:id' => 'drivers#show', :as => 'show_driver'
   get 'users/:id' => 'users#show', :as => 'show_user'
