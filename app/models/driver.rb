@@ -1,5 +1,7 @@
 class Driver < ActiveRecord::Base
     has_many :ratings
+    has_many :documents
+    belongs_to :company
     has_attached_file :avatar, 
         :path => ":rails_root/public/images/:class/:id/:basename_:style.:extension",
         :url => "/images/:class/:id/:basename_:style.:extension",
@@ -16,7 +18,7 @@ class Driver < ActiveRecord::Base
         :content_type => { :content_type => /^image\/(jpeg|png|gif|tiff)$/ }
 
     #Required fields
-    validates :first_name, :last_name, :zipcode, :dob, :address, :city, :state, :license, :phone_number, :type_id, :race, :sex, :height, :weight, :training_completion_date, :permit_expiration_date, :permit_number, :owner, :company_name, :physical_expiration_date, :beacon_id,
+    validates :first_name, :last_name, :zipcode, :dob, :address, :city, :state, :license, :phone_number, :type_id, :race, :sex, :height, :weight, :training_completion_date, :permit_expiration_date, :permit_number, :owner, :company, :physical_expiration_date, :beacon_id,
         presence: true
 
     #Regex expressions defining valid input
@@ -50,8 +52,6 @@ class Driver < ActiveRecord::Base
     validates :city, format: { with: Regexp.new('\A' + LETTERS_ONLY.source + '\z'), 
                                  message: 'can only contain letters.' }
     validates :race, format: { with: Regexp.new('\A' + LETTERS_ONLY.source + '\z'), 
-                                 message: 'can only contain letters.' }
-    validates :company_name, format: { with: Regexp.new('\A' + LETTERS_ONLY.source + '\z'), 
                                  message: 'can only contain letters.' }
 
     # For now, the owner will be letters only. Later this may be adjusted to be more specific

@@ -6,5 +6,8 @@
         <% end %>
         <li class= <%= controller.controller_path == 'drivers' ? 'active' : '' %> ><%= link_to "Drivers", drivers_path %></li>
         <li class= <%= controller.controller_path == 'ratings' ? 'active' : '' %> ><%= link_to "Ratings", ratings_path %></li>    
+        <li class= <%= controller.controller_path == 'riders' ? 'active' : '' %> ><%= link_to "Riders", riders_path %></li>    
+        <li class= <%= controller.controller_path == 'companies' ? 'active' : '' %> ><%= link_to "Companies", companies_path %></li>    
+        <li class= <%= controller.controller_path == 'documents' ? 'active' : '' %> ><%= link_to "Documents", documents_path %></li>    
       </ul>
 </div>

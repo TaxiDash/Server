@@ -11,12 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140222014340) do
+ActiveRecord::Schema.define(version: 20140402205132) do
+
+  create_table "companies", force: true do |t|
+    t.string   "name"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "companies", ["name"], name: "index_companies_on_name", unique: true
+
+  create_table "documents", force: true do |t|
+    t.integer  "driver_id"
+    t.string   "doc_file_name"
+    t.string   "doc_content_type"
+    t.integer  "doc_file_size"
+    t.datetime "doc_updated_at"
+    t.string   "title"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "drivers", force: true do |t|
     t.string   "first_name"
     t.string   "middle_name"
     t.string   "last_name"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.date     "dob"
     t.string   "type_id"
     t.string   "address"
@@ -33,8 +61,9 @@ ActiveRecord::Schema.define(version: 20140222014340) do
     t.date     "permit_expiration_date"
     t.integer  "permit_number"
     t.string   "status"
-    t.string   "owner"
-    t.string   "company_name"
+    t.string   "vehicle_owner"
+    t.integer  "vehicle_number"
+    t.integer  "company_id"
     t.date     "physical_expiration_date"
     t.boolean  "valid",                    default: true
     t.string   "beacon_id"
@@ -46,12 +75,21 @@ ActiveRecord::Schema.define(version: 20140222014340) do
 
   create_table "ratings", force: true do |t|
     t.integer  "driver_id"
+    t.integer  "rider_id"
     t.integer  "rating"
     t.string   "comments"
     t.datetime "timestamp"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "riders", force: true do |t|
+    t.string   "uuid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "riders", ["uuid"], name: "index_riders_on_uuid", unique: true
 
   create_table "users", force: true do |t|
     t.string   "first_name",             default: "",    null: false
