@@ -1,4 +1,10 @@
 TaxiRatingServer::Application.routes.draw do
+  resources :documents
+
+  resources :riders
+
+  resources :companies
+
   devise_for :users, :controllers => { :registrations => "users/registrations" }, skip: [:registrations]
   get 'static_pages/help'
   get 'static_pages/login'
