@@ -64,6 +64,17 @@ class CompaniesController < ApplicationController
     end
   end
 
+  # GET /mobile/images/companies/:id
+  def get_image
+    @company = Company.find(params[:id])
+    if !@company.nil?
+        puts "Getting the image for " << @company.name
+        File.open(@company.logo.path, 'rb') do |f|
+          send_data f.read, :type => @company.logo.content_type, :filename => @company.name, :disposition => "inline"
+        end
+    end
+  end
+
   # DELETE /companies/1
   # DELETE /companies/1.json
   def destroy

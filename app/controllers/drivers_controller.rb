@@ -65,14 +65,13 @@ class DriversController < ApplicationController
     end
   end
 
-  # GET /mobile/image/:beacon_id
+  # GET /mobile/images/drivers/:beacon_id
   def get_image
     @driver = Driver.where(:beacon_id => params[:beacon_id]).first
     if !@driver.nil?
         puts "Getting the image for " << @driver.first_name << " " << @driver.last_name
         File.open(@driver.avatar.path, 'rb') do |f|
           send_data f.read, :type => @driver.avatar.content_type, :filename => @driver.last_name, :disposition => "inline"
-        #send_data open(@driver.avatar.path, 'rb') { |f| f.read }, :type => :@driver.avatar_content_type
         end
     end
   end

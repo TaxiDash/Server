@@ -9,7 +9,7 @@ TaxiRatingServer::Application.routes.draw do
   resources :drivers
   root 'drivers#index'
   get 'mobile/:beacon_id' => 'drivers#show'
-  get 'mobile/images/:beacon_id' => 'drivers#get_image'
+  get 'mobile/images/drivers/:beacon_id' => 'drivers#get_image'
   get 'drivers/:id' => 'drivers#show', :as => 'show_driver'
   get 'drivers_download' => 'drivers#download', :as => 'download_drivers'
   post 'drivers_import' => 'drivers#import', :as => 'import_drivers'
@@ -24,6 +24,7 @@ TaxiRatingServer::Application.routes.draw do
   #Company stuff
   resources :companies
   get 'companies/:id' => 'companies#show', :as => 'show_company'
+  get 'mobile/images/companies/:id' => 'companies#get_image'
   get 'companies_download' => 'companies#download', :as => 'download_companies'
   post 'companies_import' => 'companies#import', :as => 'import_companies'
 
