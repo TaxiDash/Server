@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20140402205132) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.date     "dob"
+    t.date     "date_of_birth"
     t.string   "type_id"
     t.string   "address"
     t.string   "city",                     default: "Nashville"
