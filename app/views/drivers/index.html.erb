@@ -73,7 +73,7 @@
         <% @drivers.each do |driver| %>
           <tr>
             <td><%= driver.last_name %>, <%= driver.first_name %> <%= driver.middle_name %></td>
-            <td><%= driver.company_name %></td>
+            <td><%= driver.company.name %></td>
             <td><%= driver.permit_expiration_date %></td>
             <td><%= driver.permit_number %></td>
             <td><div class="btn-group">
