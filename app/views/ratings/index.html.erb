@@ -38,7 +38,7 @@
         <% @ratings.each do |rating| %>
           <tr>
             <td><%= rating.driver.last_name << ", " << rating.driver.first_name  %></td>
-            <td><%= rating.driver.company_name %></td>
+            <td><%= rating.driver.company.name %></td>
             <td><%= rating.rating %></td>
             <td><%= rating.comments %></td>
             <td><%= rating.timestamp %></td>
