@@ -15,5 +15,15 @@ class Company < ActiveRecord::Base
         :size => { :in => 0..10.megabytes },
         :content_type => { :content_type => /^image\/(jpeg|png|gif|tiff)$/ }
 
+    # Export as CSV 
+    #
+    def self.as_csv
+        CSV.generate do |csv|
+            csv << column_names
+            all.each do |item|
+                csv << item.attributes.values_at(*column_names)
+            end
+        end
+    end
 
 end

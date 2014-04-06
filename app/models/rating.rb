@@ -8,4 +8,14 @@ class Rating < ActiveRecord::Base
                                    message: 'must be 250 characters or fewer.' },
 					     format: { with: Regexp.new('\A' + COMMENT_FORMAT.source + '\z'), 
 										   message: 'Contains invalid characters' }
+  # Export as CSV 
+  #
+  def self.as_csv
+      CSV.generate do |csv|
+          csv << column_names
+          all.each do |item|
+              csv << item.attributes.values_at(*column_names)
+          end
+      end
+  end
 end
