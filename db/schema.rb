@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20140402205132) do
 
   create_table "ratings", force: true do |t|
     t.integer  "driver_id"
-    t.integer  "rider_id"
+    t.string   "rider_id"
     t.integer  "rating"
     t.string   "comments"
     t.datetime "timestamp"
