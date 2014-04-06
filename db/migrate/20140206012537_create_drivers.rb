@@ -5,7 +5,7 @@ class CreateDrivers < ActiveRecord::Migration
       t.string :middle_name
       t.string :last_name
       t.attachment :avatar
-      t.date :dob
+      t.date :date_of_birth
       t.string :type_id
       t.string :address
       t.string :city, :default => "Nashville"
