@@ -5,7 +5,8 @@ class Document < ActiveRecord::Base
         :url => "/documents/:class/:id/:basename_:style.:extension"
 
     validates_attachment :doc,
-        :presence => true
+        :presence => true,
+        :content_type => { :content_type => ["text/plain", "application/x-dvi", "application/msword", "application/pdf"] }
 
     # Export as CSV 
     #
