@@ -12,6 +12,19 @@ class CompaniesController < ApplicationController
   def show
   end
 
+  # Download CSV
+  def download
+      @companies = Company.all
+      puts "Sending data as csv..."
+      send_data @companies.as_csv, :filename => "companies.csv"
+  end
+
+  # Import CSV
+  def import
+      Company.import(params[:file])
+      redirect_to root_url, notice: "Companies imported."
+  end
+
   # GET /companies/new
   def new
     @company = Company.new

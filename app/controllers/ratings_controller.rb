@@ -12,6 +12,19 @@ class RatingsController < ApplicationController
   def show
   end
 
+  # Download CSV
+  def download
+      @ratings = Document.all
+      puts "Sending data as csv..."
+      send_data @ratings.as_csv, :filename => "ratings.csv"
+  end
+
+  # Import CSV
+  def import
+      Rating.import(params[:file])
+      redirect_to root_url, notice: "Ratings imported."
+  end
+
   # GET /ratings/new
   def new
     @rating = Rating.new

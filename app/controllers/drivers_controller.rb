@@ -13,6 +13,19 @@ class DriversController < ApplicationController
   def show
   end
 
+  # Download CSV
+  def download
+      @drivers = Driver.all
+      puts "Sending data as csv..."
+      send_data @drivers.as_csv, :filename => "drivers.csv"
+  end
+
+  # Import CSV
+  def import
+      Driver.import(params[:file])
+      redirect_to root_url, notice: "Drivers imported."
+  end
+
   # GET /drivers/new
   def new
     @driver = Driver.new
@@ -87,7 +100,7 @@ class DriversController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def driver_params
-      params.require(:driver).permit(:first_name, :middle_name, :last_name, :avatar, :dob, :type_id, :address, :city, :state, :zipcode, :race, :sex, :height, :weight, :license, :phone_number, :training_completion_date, :permit_expiration_date, :permit_number, :status, :vehicle_owner, :company_name, :physical_expiration_date, :valid, :beacon_id, :average_rating, :total_ratings)
+      params.require(:driver).permit(:first_name, :middle_name, :last_name, :avatar, :date_of_birth, :type_id, :address, :city, :state, :zipcode, :race, :sex, :height, :weight, :license, :phone_number, :training_completion_date, :permit_expiration_date, :permit_number, :status, :vehicle_owner, :company_id, :physical_expiration_date, :valid, :beacon_id, :average_rating, :total_ratings)
     end
        
     def sort_column

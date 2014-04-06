@@ -12,6 +12,19 @@ class DocumentsController < ApplicationController
   def show
   end
 
+  # Download CSV
+  def download
+      @documents = Document.all
+      puts "Sending data as csv..."
+      send_data @documents.as_csv, :filename => "documents.csv"
+  end
+
+  # Import CSV
+  def import
+      Document.import(params[:file])
+      redirect_to root_url, notice: "Documents imported."
+  end
+
   # GET /documents/new
   def new
     @document = Document.new
