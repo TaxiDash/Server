@@ -10,6 +10,8 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
+    send_file(@document.doc.path, :type =>
+          'application/pdf', :disposition => 'inline')
   end
 
   # Download CSV
@@ -41,7 +43,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: 'Document was successfully created.' }
+        format.html { redirect_to @document.driver, notice: 'Document was successfully created.' }
         format.json { render action: 'show', status: :created, location: @document }
       else
         format.html { render action: 'new' }
