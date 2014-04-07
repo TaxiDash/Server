@@ -6,7 +6,7 @@ class Document < ActiveRecord::Base
 
     validates_attachment :doc,
         :presence => true,
-        :content_type => { :content_type => ["text/plain", "application/x-dvi", "application/msword", "application/pdf"] }
+        :content_type => { :content_type => ["image/jpeg", "image/png", "text/plain", "application/x-dvi", "application/msword", "application/pdf"] }
 
     # Export as CSV 
     #
@@ -19,5 +19,10 @@ class Document < ActiveRecord::Base
         end
     end
 
+    def self.import(file)
+          CSV.foreach(file.path, headers: true) do |row|
+                  Document.create! row.to_hash
+                    end
+    end
 
 end
