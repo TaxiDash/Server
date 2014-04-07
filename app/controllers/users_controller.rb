@@ -20,6 +20,12 @@ class UsersController < ApplicationController
       send_data @users.as_csv, :filename => "users.csv"
   end
 
+  # Import CSV
+  def import
+      User.import(params[:file])
+      redirect_to root_url, notice: "Users imported."
+  end
+
   def role?(role)
       #roles should be stored in CamelCase
       return !!self.roles.find_by_name(role.to_s.camelize)

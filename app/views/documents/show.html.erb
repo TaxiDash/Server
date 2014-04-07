@@ -2,7 +2,7 @@
 
 <p>
   <strong>Driver:</strong>
-  <%= @document.driver_id %>
+  <%= @document.driver.last_name %>, <%= @document.driver.first_name %>
 </p>
 
 <p>
@@ -14,6 +14,9 @@
   <strong>Description:</strong>
   <%= @document.description %>
 </p>
+
+<%= send_file(@document.doc.url, :type =>
+'application/pdf', :disposition => 'inline') %>
 
 <%= link_to 'Edit', edit_document_path(@document) %> |
 <%= link_to 'Back', documents_path %>

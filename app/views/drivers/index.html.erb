@@ -78,6 +78,11 @@
             <td><%= driver.permit_number %></td>
             <td><div class="btn-group">
                     <div class="btn-group">
+                        <%= button_to(attach_doc_path(driver), :class => "btn btn-mini", title: "Attach Document", method: :get) do %>
+                          <span class="glyphicon glyphicon-paperclip"></span>
+                        <% end %>
+                    </div>
+                    <div class="btn-group">
                         <%= button_to(show_driver_path(driver), :class => "btn btn-mini", title: "View", method: :get) do %>
                           <span class="glyphicon glyphicon-eye-open"></span>
                         <% end %>

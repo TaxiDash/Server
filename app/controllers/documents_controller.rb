@@ -27,9 +27,10 @@ class DocumentsController < ApplicationController
       redirect_to root_url, notice: "Documents imported."
   end
 
-  # GET /documents/new
+  # GET /drivers/docs/new/:id
   def new
     @document = Document.new
+    @document.driver = Driver.find(:id)
   end
 
   # GET /documents/1/edit
@@ -57,7 +58,7 @@ class DocumentsController < ApplicationController
   def update
     respond_to do |format|
       if @document.update(document_params)
-        format.html { redirect_to @document, notice: 'Document was successfully updated.' }
+        format.html { redirect_to @document.driver, notice: 'Document was successfully updated.' }
         format.json { render action: 'show', status: :ok, location: @document }
       else
         format.html { render action: 'edit' }
