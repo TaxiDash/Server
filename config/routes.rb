@@ -3,7 +3,7 @@ TaxiRatingServer::Application.routes.draw do
   get 'static_pages/help'
 
   #Static Pages
-  get 'overview' => 'static_pages#overview', :as 'overview'
+  get 'overview' => 'static_pages#overview', :as => 'overview'
   get 'static_pages/import_export', :as => 'import_export'
 
   #Driver stuff
