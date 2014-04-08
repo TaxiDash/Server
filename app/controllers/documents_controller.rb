@@ -27,10 +27,9 @@ class DocumentsController < ApplicationController
       redirect_to root_url, notice: "Documents imported."
   end
 
-  # GET /drivers/docs/new/:id
+  # GET /drivers/docs/new/:driver_id
   def new
-    @document = Document.new
-    @document.driver = Driver.find(:id)
+    @document = Document.new(:driver_id => params[:driver_id])
   end
 
   # GET /documents/1/edit
