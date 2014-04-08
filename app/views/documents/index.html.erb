@@ -38,7 +38,11 @@
       <tbody>
         <% @documents.each do |document| %>
           <tr>
+          <% if document.driver.nil? %>
+            <td><strong>None</strong></td>
+          <% else %>
             <td><%= document.driver.last_name %>, <%= document.driver.first_name %> <%= document.driver.middle_name %></td>
+          <% end %>
             <td><%= document.title %></td>
             <td><div class="btn-group">
                     <div class="btn-group">
