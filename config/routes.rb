@@ -2,7 +2,8 @@ TaxiRatingServer::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "users/registrations" }, skip: [:registrations]
   get 'static_pages/help'
 
-  #Import/Export Page
+  #Static Pages
+  get 'overview' => 'static_pages#overview', :as 'overview'
   get 'static_pages/import_export', :as => 'import_export'
 
   #Driver stuff
@@ -11,7 +12,7 @@ TaxiRatingServer::Application.routes.draw do
   get 'mobile/:beacon_id' => 'drivers#show'
   get 'mobile/images/drivers/:beacon_id' => 'drivers#get_image'
   get 'drivers/:id' => 'drivers#show', :as => 'show_driver'
-  get 'drivers/docs/new/:id' => 'documents#new', :as => 'attach_doc'
+  get 'drivers/docs/new/:driver_id' => 'documents#new', :as => 'attach_doc'
   get 'drivers_download' => 'drivers#download', :as => 'download_drivers'
   post 'drivers_import' => 'drivers#import', :as => 'import_drivers'
 
