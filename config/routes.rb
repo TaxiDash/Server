@@ -34,6 +34,7 @@ TaxiRatingServer::Application.routes.draw do
   #Documents
   resources :documents
   get 'documents/:id' => 'documents#show', :as => 'show_document'
+  get 'documents/view/:id' => 'documents#view', :as => 'view_document'
   get 'documents_download' => 'documents#download', :as => 'download_documents'
   post 'documents_import' => 'documents#import', :as => 'import_documents'
 
