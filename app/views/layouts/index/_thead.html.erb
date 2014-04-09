@@ -1,0 +1,15 @@
+<tr>
+  <% titles.each do |a| %>
+    <th>
+  	  <%= sortable a[:sort], a[:title] %>
+    	<% if sort_column == a[:sort] %>
+    		<% if sort_direction == 'asc' %>
+    			<span class='glyphicon glyphicon-chevron-up'></span>
+    		<% else %>
+    			<span class='glyphicon glyphicon-chevron-down'></span>
+    		<% end %>
+    	<% end %>
+    </th>
+  <% end %>
+  <th><!-- buttons column --></th>
+</tr>

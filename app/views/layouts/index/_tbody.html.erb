@@ -1,0 +1,25 @@
+<% items.each do |row| %>
+    <tr>
+        <% if controller.controller_path == 'drivers' %>
+            <% link = "window.location.href = '" << url_for(controller: controller.controller_path, id: row, action: 'show') << "'" %>
+            <td class="table-link" onclick="<%= link %>">
+                <%= row.last_name << ", " << row.first_name << " " << row.middle_name %></td>
+            <td class="table-link" onclick="<%= link %>">
+                <%= row.company_name %></td>
+            <td class="table-link" onclick="<%= link %>">
+                <%= row.permit_expiration_date %></td>
+            <td class="table-link" onclick="<%= link %>">
+                <%= row.permit_number %></td>
+                </div>
+        <% elsif controller.controller_path == 'users' %>
+            <td></td>
+        <% elsif controller.controller_path == 'ratings' %>
+            <td><%= row.driver.last_name << ", " << row.driver.first_name %></td>
+            <td><%= row.driver.company_name %></td>
+            <td><%= row.rating %></td>
+            <td><%= row.comments %></td>
+            <td><%= row.timestamp %></td>
+        <% end %>
+        <td><%= render partial: 'layouts/index/row_buttons', locals: {item: row} %></td>
+    </tr>
+<% end %>

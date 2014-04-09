@@ -1,14 +1,8 @@
-<h1 class="page-header">Editing driver
+<% provide(:title, "Editing Driver") %>
 
-	<div class="btn" class="col-md-2 col-sm-2">
-		<%= button_to(@driver, :class => "btn btn-default", role: "button", title: "Back", method: :get) do %>            
-			<span class="glyphicon glyphicon-arrow-left"></span> Back
-		<% end %>
-	</div>
-</h1>
+<%= content_for :heading do %>
+    <%= render 'layouts/cancel_button' %>
+    Editing Driver
+<% end %>
+
 <%= render 'drivers/form' %>
-	
-<!--
-<%= link_to 'Show', @driver %> |
-<%= link_to 'Back', drivers_path %>
--->

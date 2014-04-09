@@ -1,0 +1,22 @@
+<span class="btn-toolbar pull-right">
+    <div class="btn-group">
+    <%= button_to({controller: controller.controller_path, id: item, action: 'show'}, 
+        method: :get, title: "Show", role: "button", class: "btn btn-xs btn-nav") do %>
+        <span class="glyphicon glyphicon-eye-open"></span>
+    <% end %>
+    </div>
+    <div class="btn-group">
+    <%= button_to({controller: controller.controller_path, id: item, action: 'edit'}, 
+        method: :get, title: "Edit", role: "button", class: "btn btn-xs btn-link") do %>
+        <span class="glyphicon glyphicon-pencil"></span>
+    <% end %>
+    </div>
+    <div class="btn-group">
+    <%= button_to({controller: controller.controller_path, id: item, action: 'show'}, 
+        method: :delete, title: "Destroy", class: "btn btn-xs btn-link", role: "button",
+        data: { confirm: 'Are you sure you want to delete?' }) do %>
+        <span class="glyphicon glyphicon-trash"></span> 
+    <% end %> 
+    </div>
+</span>
+
