@@ -1,69 +1,12 @@
-<% provide(:title, 'Ratings') %>
-<% provide(:heading, 'Ratings Dashboard') %>
-    
-    <p><div class="row">
-    <div class="col-md-10 col-sm-10">
-        <div class="form" role="search">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-            </div><!--input-group -->
-        </div>
-    </div>
-    <div class="col-md-2 col-sm-2">
-            <%= button_to(new_rating_path, :class => "btn btn-default", :method => :get) do %>            
-                <span class="glyphicon glyphicon-plus"></span> Add Rating
-            <% end %>
-    </div>
-    </div></p>
+<% @column_titles = [ 
+    {:sort => "driver.last_name", :title=>"Driver"},
+    {:sort => "driver.company_name", :title => "Company"},
+    {:sort => "rating", :title => "Rating"},
+    {:sort => "comments", :title => "Comments"},
+    {:sort => "timestamp", :title => "Timestamp"} ] %>
+            
 
-    <div class="table-responsive">
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>Driver</th>
-          <th>Company</th>
-          <th>Rating</th>
-          <th>Comments</th>
-          <th>Timestamp</th>
-          <th></th>
-        </tr>
-      </thead>
+<%= render partial: "layouts/index", locals: {type: "Rating", items: @ratings, titles: @column_titles} %>
+ 
+<!-- To specify how each cell is populated, modify layouts/index/_row.html.erb -->
 
-      <tbody>
-        <% @ratings.each do |rating| %>
-          <tr>
-            <td><%= rating.driver.last_name << ", " << rating.driver.first_name  %></td>
-            <td><%= rating.driver.company_name %></td>
-            <td><%= rating.rating %></td>
-            <td><%= rating.comments %></td>
-            <td><%= rating.timestamp %></td>
-            <td><div class="btn-group">
-                    <div class="btn-group">
-                        <%= button_to(show_rating_path(rating), :class => "btn btn-mini", title: "View", method: :get) do %>
-                          <span class="glyphicon glyphicon-eye-open"></span>
-                        <% end %>
-                    </div>
-                    <div class="btn-group">
-                        <%= button_to(edit_rating_path(rating), :class => "btn btn-mini", title: "Edit", method: :get) do %>
-                          <span class="glyphicon glyphicon-pencil"></span>
-                        <% end %>
-                    </div>
-                    <div class="btn-group">
-                        <%= button_to(show_rating_path(rating), :class => "btn btn-mini", title: "Destroy", method: :delete, 
-                            data: { confirm: 'Are you sure you want to delete this driver?' } ) do %>
-                          <span class="glyphicon glyphicon-trash"></span>
-                        <% end %>
-                    </div>
-                </div>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    </div>
-    <br>

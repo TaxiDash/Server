@@ -28,3 +28,10 @@
   padding: 7px 9px;
 }
 
+.table-link:hover {
+    cursor: pointer;
+}
+
+.btn-nav {
+  .button-variant(@btn-default-color; transparent; transparent;);
+}

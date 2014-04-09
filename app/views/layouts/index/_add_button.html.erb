@@ -1,0 +1,4 @@
+<%= button_to({:controller => controller.controller_path, :action => 'new'}, 
+                :title => "Add #{name}", :class => 'btn btn-default', :method => :get) do %>            
+    <span class="glyphicon glyphicon-plus"></span> Add <%= name %>
+<% end %>
