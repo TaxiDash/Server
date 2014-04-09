@@ -10,6 +10,10 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
+  end
+
+  def view
+    @document = Document.find(params[:id])
     send_file(@document.doc.path, :type =>
           'application/pdf', :disposition => 'inline')
   end
