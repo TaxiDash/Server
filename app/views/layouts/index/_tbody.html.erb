@@ -1,36 +1,17 @@
-<% items.each do |row| %>
-    <tr>
-    <% link = "window.location.href = '" << url_for(controller: controller.controller_path, id: row, action: 'show') << "'" %>
-        <% if controller.controller_path == 'drivers' %>
-            <td class="table-link" onclick="<%= link %>"><%= row.last_name << ", " << row.first_name << " " << row.middle_name %></td>
-            <td class="table-link" onclick="<%= link %>"><%= row.company_id %></td>
-            <td class="table-link" onclick="<%= link %>"><%= row.permit_expiration_date %></td>
-            <td class="table-link" onclick="<%= link %>"><%= row.permit_number %></td>
-        <% elsif controller.controller_path == 'users' %>
-            <td></td>
-        <% elsif controller.controller_path == 'ratings' %>
-            <td class="table-link" onclick="<%= link %>"><%= row.driver.last_name << ", " << row.driver.first_name %></td>
-            <td class="table-link" onclick="<%= link %>"><%= row.driver.company_id %></td>
-            <td class="table-link" onclick="<%= link %>"><%= row.rating %></td>
-            <td class="table-link" onclick="<%= link %>"><%= row.comments %></td>
-            <td class="table-link" onclick="<%= link %>"><%= row.timestamp %></td>
-        <% elsif controller.controller_path == 'documents' %>
-            <td class="table-link" onclick="<%= link %>">
-              <% if document.driver.nil? %>
-                None 
-              <% else %>
-                <%= document.driver.last_name %>, <%= document.driver.first_name %> <%= document.driver.middle_name %>
-              <% end %>
-            </td>
-            <td class="table-link" onclick="<%= link %>"><%= document.title %></td>
-        <% elsif controller.controller_path == 'riders' %>
-            <td class="table-link" onclick="<%= link %>"></td>
-        <% elsif controller.controller_path == 'companies' %>
-            <td class="table-link" onclick="<%= link %>"></td>
-        <% elsif controller.controller_path == 'documents' %>
-            <td class="table-link" onclick="<%= link %>"></td>
-        
-        <% end %>
-        <td><%= render partial: 'layouts/index/row_buttons', locals: {item: row} %></td>
-    </tr>
+<% if controller.controller_path == 'users' %>
+    <% items.each do |row| %>
+      <% link = "window.location.href = '" << url_for(controller: controller.controller_path, id: row, action: 'show') << "'" %>
+      <tr><%= render partial: "#{controller.controller_path}/row_content", locals: {row: row, link: link} %>
+      <td><%= link_to '', edit_other_user_path(row.id) %>
+            <%= render partial: 'layouts/index/row_buttons', locals: {item: row} %></td></tr>
+    <% end %>
+<% else %>
+    <% items.each do |row| %>
+      <% link = "window.location.href = '" << url_for(controller: controller.controller_path, id: row, action: 'show') << "'" %>
+      <tr><%= render partial: "#{controller.controller_path}/row_content", locals: {row: row, link: link} %>
+      <td><%= render partial: 'layouts/index/row_buttons', locals: {item: row} %></td></tr>
+    <% end %>
 <% end %>
+
+
+

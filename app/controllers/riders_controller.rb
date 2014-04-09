@@ -1,10 +1,11 @@
 class RidersController < ApplicationController
   before_action :set_rider, only: [:show, :edit, :update, :destroy]
-
+  helper_method :sort_column, :sort_direction
+  
   # GET /riders
   # GET /riders.json
   def index
-    @riders = Rider.all
+    @riders = params[:sort] == nil ? Rider.all : Rider.order(sort_column + " " + sort_direction)
   end
 
   # GET /riders/1
@@ -84,4 +85,12 @@ class RidersController < ApplicationController
     def rider_params
       params.require(:rider).permit(:uuid)
     end
+    
+    def sort_column
+    	Rider.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+
+	def sort_direction
+		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+	end
 end

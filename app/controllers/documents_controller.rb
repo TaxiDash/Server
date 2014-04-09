@@ -1,10 +1,11 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.all
+    @documents = params[:sort] == nil ? Document.all : Document.order(sort_column + " " + sort_direction)
   end
 
   # GET /documents/1
@@ -90,4 +91,12 @@ class DocumentsController < ApplicationController
     def document_params
       params.require(:document).permit(:driver_id, :doc, :title, :description)
     end
+    
+    def sort_column
+    	Document.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+
+	def sort_direction
+		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+	end
 end
