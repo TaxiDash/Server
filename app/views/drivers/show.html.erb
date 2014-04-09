@@ -7,12 +7,6 @@
     <% end %>
     <%= @driver.first_name %> <%= @driver.middle_name %> <%= @driver.last_name %>
 <% end %>
-
-			<div class="btn" class="col-md-2 col-sm-2">
-		        <%= button_to(attach_doc_path(@driver), :class => "btn btn-default", role: "button", title: "Attach Document", method: :get) do %>            
-		            <span class="glyphicon glyphicon-paperclip"></span> Attach Doc
-		        <% end %>
-			</div>
     
 	<div class="row">
 	  <div class="col-sm-6 col-md-4">
@@ -20,32 +14,13 @@
             <%= image_tag @driver.avatar.url %>
 		</div>
 	  </div>
->>>>>>> 835ac4d2c1e511572c126cd048a6969463524f0a
-	</div>
-  </div>
-</div>
 
-<table cellspacing=20 cellpadding="20%">
+      <table cellspacing=20 cellpadding="20%">
 	<tbody>
-		<!--<tr>
-  			<th>First name:</th>	
-  			<td><var><%= @driver.first_name %></var></td>
-  		</tr>
-		
-<<<<<<< HEAD
-		<tr>
-			<th>Middle name:</th>
-			<td><var><%= @driver.middle_name %></var></td>
-		</tr>
-
-		<tr>
-		  	<th>Last name:</th>
-		  	<td><var><%= @driver.last_name %></var></td>
-		</tr> -->
 
 		<tr>
 		  	<th>Date of Birth:</th>
-		  	<td><var><%= @driver.dob %></var></td>
+		  	<td><var><%= @driver.date_of_birth %></var></td>
 		</tr>
 
 		<tr>
@@ -125,12 +100,12 @@
 
 		<tr>
 		  	<th>Owner:</th>
-		  	<td><var><%= @driver.owner %></var></td>
+		  	<td><var><%= @driver.vehicle_owner %></var></td>
 		</tr>
 
 		<tr>
 		  	<th>Company name:</th>
-		  	<td><var><%= @driver.company_name %></var></td>
+		  	<td><var><%= @driver.company.name %></var></td>
 		</tr>
 
 		<tr>
@@ -160,147 +135,8 @@
 
 	</tbody>
 </table>
-=======
-
-<!--<p id="notice"><%= notice %></tr>
-	<%= link_to 'Edit', edit_driver_path(@driver) %> |
-	<%= link_to 'Back', drivers_path %>-->
-	
-		<table cellspacing=20 cellpadding="20%">
-			<tbody>
-				<!--<tr>
-		  			<th>First name:</th>	
-		  			<td><var><%= @driver.first_name %></var></td>
-		  		</tr>
-				
-				<tr>
-	  				<th>Middle name:</th>
-	  				<td><var><%= @driver.middle_name %></var></td>
-				</tr>
-		
-				<tr>
-				  	<th>Last name:</th>
-				  	<td><var><%= @driver.last_name %></var></td>
-				</tr> -->
-
-				<tr>
-				  	<th>Date of Birth:</th>
-				  	<td><var><%= @driver.date_of_birth %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>Type:</th>
-				  	<td><var><%= @driver.type_id %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>Address:</th>
-				  	<td><var><%= @driver.address %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>City:</th>
-				  	<td><var><%= @driver.city %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>State:</th>
-				  	<td><var><%= @driver.state %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>Zipcode:</th>
-				  	<td><var><%= @driver.zipcode %></var></td>
-				</tr>
-
-				<tr>
-					<th>Race:</th>
-					<td><var><%= @driver.race %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>Sex:</th>
-				  	<td><var><%= @driver.sex %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>Height:</th>
-				  	<td><var><%= @driver.height %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>Weight:</th>
-				  	<td><var><%= @driver.weight %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>License:</th>
-				  	<td><var><%= @driver.license %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>Phone number:</th>
-				  	<td><var>(<%= @driver.phone_number[0, 3] %>) <%= @driver.phone_number[3, 3] %>-<%= @driver.phone_number[6, 10] %> </var></td>
-				</tr>
-
-				<tr>
-				  	<th>Training completion date: &nbsp </th>
-				  	<td><var><%= @driver.training_completion_date %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>Permit expiration date:</th>
-				  	<td><var><%= @driver.permit_expiration_date %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>Permit number:</th>
-				  	<td><var><%= @driver.permit_number %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>Status:</th>
-				  	<td><var><%= @driver.status %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>Owner:</th>
-				  	<td><var><%= @driver.vehicle_owner %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>Company name:</th>
-				  	<td><var><%= @driver.company.name %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>Physical expiration date:</th>
-				  	<td><var><%= @driver.physical_expiration_date %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>Valid:</th>
-				  	<td><var><%= @driver.valid %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>Beacon Id:</th>
-				  	<td><var><%= @driver.beacon_id %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>Average rating:</th>
-				  	<td><var><%= @driver.average_rating %></var></td>
-				</tr>
-
-				<tr>
-				  	<th>Total ratings:</th>
-				  	<td><var><%= @driver.total_ratings %></var></td>
-				</tr>
-
-			</tbody>
-		</table>
-
-</div>	
->>>>>>> 835ac4d2c1e511572c126cd048a6969463524f0a
-
+			<div class="btn" class="col-md-2 col-sm-2">
+		        <%= button_to(attach_doc_path(@driver), :class => "btn btn-default", role: "button", title: "Attach Document", method: :get) do %>            
+		            <span class="glyphicon glyphicon-paperclip"></span> Attach Doc
+		        <% end %>
+			</div>
