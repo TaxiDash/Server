@@ -1,10 +1,11 @@
 class RatingsController < ApplicationController
   before_action :set_rating, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /ratings
   # GET /ratings.json
   def index
-    @ratings = Rating.all
+    @ratings = params[:sort] == nil ? Rating.all : Rating.order(sort_column + " " + sort_direction)
   end
 
   # GET /ratings/1
@@ -114,4 +115,13 @@ class RatingsController < ApplicationController
   def rating_params
     params.require(:rating).permit(:driver_id, :rider_id, :rating, :comments, :timestamp)
   end
+
+  def sort_column
+    	Rating.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+
+  def sort_direction
+		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
 end
