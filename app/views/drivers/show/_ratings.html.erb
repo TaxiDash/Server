@@ -5,13 +5,11 @@
       {:sort => "comments", :title => "Comments"},
       {:sort => "timestamp", :title => "Timestamp"} ]} %></thead>
     <tbody>
-        <% items.each do |r| %>
-            <% if r.driver_id == @driver %>
+        <% @driver.ratings.each do |r| %>
                 <td class="table-link" onclick="<%= link %>"><%= r.rating %></td>
                 <td class="table-link" onclick="<%= link %>"><%= r.comments %></td>
                 <td class="table-link" onclick="<%= link %>"><%= r.timestamp %></td>
                 <td><%= render partial: 'layouts/index/row_buttons', locals: {item: r} %></td>
-            <% end %>
         <% end %>
     </tbody>
   </table>

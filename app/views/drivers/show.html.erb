@@ -10,3 +10,8 @@
 <%= render 'drivers/tabs' %>
 <%= render partial: 'drivers/show/bio', locals: {driver: @driver} %>
 
+<br>
+<div class="container-fluid">
+<p><%= render partial: 'drivers/show/ratings', locals: {driver: @driver} %></p>
+<p><%= render partial: 'drivers/show/documents', locals: {driver: @driver} %></p>
+</div>

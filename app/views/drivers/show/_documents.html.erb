@@ -3,11 +3,9 @@
     <thead><%= render partial: 'layouts/index/thead', locals: {titles: [
       {:sort => "title", :title => "Title"} ]} %></thead>
     <tbody>
-        <% items.each do |d| %>
-            <% if d.driver_id == @driver %>
-                <td class="table-link" onclick="<%= link %>"><%= d.title %></td>
-                <td><%= render partial: 'layouts/index/row_buttons', locals: {item: d} %></td>
-            <% end %>
+        <% driver.documents.each do |d| %>
+            <td class="table-link" onclick="<%= link %>"><%= d.title %></td>
+            <td><%= render partial: 'layouts/index/row_buttons', locals: {item: d} %></td>
         <% end %>
     </tbody>
   </table>
