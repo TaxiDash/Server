@@ -1,0 +1,19 @@
+<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
+  <%= render 'layouts/logo_inverse' %>
+  <div class="user-form well well-lg">
+      <h2 class="user-form-heading"><%= yield(:heading) %></h2>
+      <%= yield %>
+      <br />
+  </div>
+    
+  <div class="text-center">
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+  </div>   
+ 
+</div>
+

@@ -1,17 +1,143 @@
 @import "bootstrap";
 
-
+/* Move down content because we have a fixed navbar that is 50px tall */
 body {
-  padding-top: 60px;
+  padding-top: 50px;
+}
+
+/* navbar-nav */
+
+.navbar-collapse > ul > li {
+  font-size: $font-size-h5;
+}
+
+
+
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #fff;
+    border-right: 1px solid #eee;
+  }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+  font-size: $font-size-h5;
+}
+.nav-sidebar > li:hover > a {
+  background-color: $gray;
+}
+
+.nav-sidebar > .active > a {
+  color: $body-bg;
+  background-color: $brand-primary;
+}
+
+
+/*
+ * Main content
+ */
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
 }
 
 #logo {
   font-size: 1.7em;
   letter-spacing: -1px;
   font-weight: bold;
+  text-transform: uppercase;
+  color: $body-bg;
+} 
+
+#logo-inverse {
+  font-size: 3em;
+  line-height: 95%;
+  letter-spacing: -2px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: $gray-dark; 
+  text-align: center;
+  margin-bottom: 5px;
 }
 
-#logo:hover {
-  color: #fff;
-  text-decoration: none;
+#error_explanation {
+  @extend .alert;
+  @extend .alert-danger;
+  width: inherit;
 }
+
+.field_with_errors {
+  @extend .has-error;
+  display: inherit;
+  padding: inherit;
+  background-color: inherit;
+}
+
+
+
+/* User sign in and sign up forms. */
+
+.user-form .user-form-heading {
+  margin-bottom: 15px;
+  margin-top: 0px;
+}
+
+.user-form input[type="text"],
+.user-form input[type="email"],
+.user-form input[type="password"] {
+  @extend form-group.form-control;
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+}
+
+
+.form input {
+  @extend form-group.form-control;
+}
+
+
+
+
+

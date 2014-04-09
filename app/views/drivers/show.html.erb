@@ -141,7 +141,7 @@
 
 				<tr>
 				  	<th>Company name:</th>
-				  	<td><var><%= Company.select('name').all.map(&:name)[@driver.company_id] %></var></td>
+				  	<td><var><%= @driver.company.name %></var></td>
 				</tr>
 
 				<tr>

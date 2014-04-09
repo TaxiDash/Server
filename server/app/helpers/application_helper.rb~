@@ -1,0 +1,12 @@
+# Methods added to this helper will be available to all templates in the application.
+module ApplicationHelper
+
+ 
+  def sortable(column, title)
+		title ||=coulmn.titleize
+		sort_dir = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
+		#sort_dir = params[:direction] == 'asc' ? 'desc' : 'asc'
+		link_to title, {:sort => column, :direction => sort_dir}
+	end
+
+end

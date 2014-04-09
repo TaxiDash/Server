@@ -80,7 +80,7 @@ class Driver < ActiveRecord::Base
     def self.import(file)
           CSV.foreach(file.path, headers: true) do |row|
                   Driver.create! row.to_hash
-                    end
+		  end
     end
 
 	# search drivers in the table
@@ -97,5 +97,5 @@ class Driver < ActiveRecord::Base
 		
 	   	where("last_name like ? or first_name like ? or middle_name like ? or type_id like ? or total_ratings like ? or average_rating like ? or company_id like ? or permit_expiration_date like ? or valid like ? or beacon_id like ? or permit_number like ?", p, p, p, p, p, p, c, p, v, p, p)
 	end
-
+	
 end

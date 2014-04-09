@@ -1,18 +1,16 @@
-    <div id="navbar_sidebar" class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item</a></li>
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-            <li><a href="">More navigation</a></li>
-          </ul>
-        </div>
 
+<div id="navbar_sidebar" class="container-fluid">
+      <ul class="nav nav-sidebar">
+        <% if current_user.try(:admin?) %>
+            <li class= <%= controller.controller_path == 'users' ? 'active' : '' %> ><%= link_to "Users", users_path %></li>
+        <% end %>
+        <li class= <%= controller.controller_path == 'drivers' ? 'active' : '' %> ><%= link_to "Drivers", drivers_path %></li>
+        <li class= <%= controller.controller_path == 'ratings' ? 'active' : '' %> ><%= link_to "Ratings", ratings_path %></li>    
+        <li class= <%= controller.controller_path == 'riders' ? 'active' : '' %> ><%= link_to "Riders", riders_path %></li>    
+        <li class= <%= controller.controller_path == 'companies' ? 'active' : '' %> ><%= link_to "Companies", companies_path %></li>    
+        <li class= <%= controller.controller_path == 'documents' ? 'active' : '' %> ><%= link_to "Documents", documents_path %></li>    
+        <% if current_user.try(:admin?) %>
+            <li><%= link_to "Import/Export", import_export_path %></li>
+        <% end %>
+      </ul>
+</div>

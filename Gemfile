@@ -6,7 +6,16 @@ group :development do
     gem 'sqlite3'
 end
 
+#Unicorn Backend
+gem 'unicorn'
+
+#Authentication and Access Control
 gem 'devise'
+gem 'cancan'
+
+# Image Attaching/Displaying
+gem 'paperclip', "~> 4.1"
+
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'

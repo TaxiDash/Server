@@ -2,7 +2,12 @@
 
 <p>
   <strong>Driver:</strong>
-  <%= @rating.driver_id %>
+  <%= @rating.driver.last_name << ', ' <<  @rating.driver.first_name %>
+</p>
+
+<p>
+  <strong>Rated by:</strong>
+  <%= @rating.rider_id ? @rating.rider.uuid : "N/A" %>
 </p>
 
 <p>

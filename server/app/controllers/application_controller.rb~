@@ -1,0 +1,28 @@
+# Filters added to this controller apply to all controllers in the application.
+# Likewise, all the methods added will be available for all controllers.
+
+class ApplicationController < ActionController::Base
+  helper :all # include all helpers, all the time
+  protect_from_forgery # See ActionController::RequestForgeryProtection for details
+
+  # Scrub sensitive parameters from your log
+  # filter_parameter_logging :password
+  
+  
+  helper_method :sort_column, :sort_direction 
+
+ 	def index
+ 		@drivers = Driver.all(:order => sort_column + " " + sort_direction)
+ 	end
+
+
+  private
+  	def sort_column
+		Driver.column_names.include?(params[:sort]) ? params[:sort] : "name"
+	end
+	
+	def sort_direction
+		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+	end
+
+end
