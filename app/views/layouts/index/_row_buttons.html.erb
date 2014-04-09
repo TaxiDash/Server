@@ -1,8 +1,15 @@
 <span class="btn-toolbar pull-right">
     <div class="btn-group">
-    <%= button_to({controller: controller.controller_path, id: item, action: 'show'}, 
-        method: :get, title: "Show", role: "button", class: "btn btn-xs btn-nav") do %>
-        <span class="glyphicon glyphicon-eye-open"></span>
+    <% if controller.controller_path == 'drivers' %>
+        <%= button_to({controller: "documents", driver_id: item, action: 'new'}, 
+            method: :get, title: "Attach Doc", role: "button", class: "btn btn-xs btn-nav") do %>
+            <span class="glyphicon glyphicon-paperclip"></span>
+        <% end %>
+    <% else %>
+        <%= button_to({controller: controller.controller_path, id: item, action: 'show'}, 
+            method: :get, title: "Show", role: "button", class: "btn btn-xs btn-nav") do %>
+            <span class="glyphicon glyphicon-eye-open"></span>
+        <% end %>
     <% end %>
     </div>
     <div class="btn-group">
