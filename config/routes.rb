@@ -50,6 +50,16 @@ TaxiRatingServer::Application.routes.draw do
   get 'riders_download' => 'riders#download', :as => 'download_riders'
   post 'riders_import' => 'riders#import', :as => 'import_riders'
 
+  #Manual
+  get "manual/overview"
+  get "manual/users"
+  get "manual/companies"
+  get "manual/drivers"
+  get "manual/documents"
+  get "manual/ratings"
+  get "manual/riders"
+  get "manual/miscellaneous"
+  get "manual/common_issues"
   #get 'users/new/' => 'users/sign_up'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
