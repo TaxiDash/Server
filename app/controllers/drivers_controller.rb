@@ -22,8 +22,6 @@ class DriversController < ApplicationController
 
   # Import CSV
   def import
-puts "IMPORTING"
-puts params
       Driver.import(params[:file])
       redirect_to root_url, notice: "Drivers imported."
   end

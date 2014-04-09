@@ -1,6 +1,10 @@
-<h1>Editing company</h1>
+<% provide(:title, 'Edit Company') %>
+<%= content_for :heading do %>
+    <%= render 'layouts/buttons/back_button' %>
+    <%= link_to(show_company_path(@company), :class => "btn btn-lg btn-link pull-right", title: "Edit", method: :get) do %>            
+        <span class="glyphicon glyphicon-eye-open"></span> Show
+    <% end %>
+    <%= @company.name %> 
+<% end %>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @company %> |
-<%= link_to 'Back', companies_path %>

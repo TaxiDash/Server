@@ -11,27 +11,28 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :driver_id %><br>
-    <%= f.number_field :driver_id %>
+  <div class="form-horizontal">
+    <div class="form-group">
+      <%= f.label :driver_id, :class => "col-sm-3 control-label" %>
+      <div class="col-sm-5"><%= f.number_field :driver_id, :class => "form-control" %></div>
+    </div>
+    <div class="form-group">
+      <%= f.label :rider_id, :class => "col-sm-3 control-label" %>
+      <div class="col-sm-5"><%= f.text_field :rider_id%></div>
+    </div>
+    <div class="form-group">
+      <%= f.label :rating, :class => "col-sm-3 control-label" %>
+      <div class="col-sm-5"><%= f.number_field :rating%></div>
+    </div>
+    <div class="form-group">
+      <%= f.label :comments, :class => "col-sm-3 control-label" %>
+      <div class="col-sm-5"><%= f.text_field :comments%></div>
+    </div>
+
+  <%= f.hidden_field :timestamp %>
+  <div class="col-sm-offset-3 col-sm-7">
+      <%= f.submit "Submit", :class=>"btn btn-primary" %>
   </div>
-  <div class="field">
-    <%= f.label "Rider uuid:" %><br>
-    <%= f.text_field :rider_id %>
   </div>
-  <div class="field">
-    <%= f.label :rating %><br>
-    <%= f.number_field :rating %>
-  </div>
-  <div class="field">
-    <%= f.label :comments %><br>
-    <%= f.text_field :comments %>
-  </div>
-  <div class="field">
-    <%= f.label :timestamp %><br>
-    <%= f.datetime_select :timestamp %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
 <% end %>

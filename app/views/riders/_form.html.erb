@@ -11,11 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :uuid %><br>
-    <%= f.text_field :uuid %>
+  <div class="form-horizontal">
+    <div class="form-group">
+      <%= f.label :uuid, :class => "col-sm-3 control-label" %>
+      <div class="col-sm-5"><%= f.text_field :uuid, :class => "form-control" %></div>
+    </div>
+
+  <div class="col-sm-offset-3 col-sm-7">
+      <%= f.submit "Submit", :class=>"btn btn-primary" %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
   </div>
+
 <% end %>

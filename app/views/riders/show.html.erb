@@ -1,9 +1,18 @@
+<% provide(:title, 'Riders') %>
+<%= content_for :heading do %>
+    <%= render 'layouts/buttons/back_button' %>
+    <%= link_to(edit_rider_path(@rider), :class => "btn btn-lg btn-link pull-right", title: "Edit", method: :get) do %>            
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+    <% end %>
+    <%= "Rider: " << @rider.uuid %> 
+<% end %>
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Uuid:</strong>
+  <strong>UUID:</strong>
   <%= @rider.uuid %>
 </p>
-
-<%= link_to 'Edit', edit_rider_path(@rider) %> |
-<%= link_to 'Back', riders_path %>
+<p>
+  <strong>Rating Count:</strong>
+  <%= @rider.ratings.length %>
+</p>

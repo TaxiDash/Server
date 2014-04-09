@@ -1,6 +1,6 @@
 <% provide(:title, 'Documents') %>
 <%= content_for :heading do %>
-    <%= render 'layouts/back_button' %>
+    <%= render 'layouts/buttons/back_button' %>
     <%= link_to(edit_document_path(@document), :class => "btn btn-lg btn-link pull-right", title: "Edit", method: :get) do %>            
         <span class="glyphicon glyphicon-pencil"></span> Edit
     <% end %>

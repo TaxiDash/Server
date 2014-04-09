@@ -1,6 +1,10 @@
-<h1>Editing document</h1>
+<% provide(:title, 'Edit Document') %>
+<%= content_for :heading do %>
+    <%= render 'layouts/buttons/back_button' %>
+    <%= link_to(show_document_path(@document), :class => "btn btn-lg btn-link pull-right", title: "Show", method: :get) do %>            
+        <span class="glyphicon glyphicon-eye-open"></span> Show
+    <% end %>
+    <%= @document.title %> 
+<% end %>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @document %> |
-<%= link_to 'Back', documents_path %>

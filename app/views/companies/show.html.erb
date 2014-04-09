@@ -1,4 +1,12 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, 'Companies') %>
+<%= content_for :heading do %>
+    <%= render 'layouts/buttons/back_button' %>
+    <%= link_to(edit_company_path(@company), :class => "btn btn-lg btn-link pull-right", title: "Edit", method: :get) do %>            
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+    <% end %>
+    <%= @company.name %> 
+<% end %>
+ <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Name:</strong>
@@ -9,6 +17,11 @@
   <strong>Logo:</strong>
   <%= image_tag @company.logo %>
 </p>
-
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+<p>
+  <strong>Registered Since:</strong>
+  <%= @company.created_at %>
+</p>
+<p>
+  <strong>Driver Count:</strong>
+  <%= @company.drivers.length %>
+</p>
