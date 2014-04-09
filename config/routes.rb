@@ -51,7 +51,7 @@ TaxiRatingServer::Application.routes.draw do
   post 'riders_import' => 'riders#import', :as => 'import_riders'
 
   #Manual
-  get "manual/overview"
+  get "manual/overview", :as => "manual"
   get "manual/users"
   get "manual/companies"
   get "manual/drivers"
