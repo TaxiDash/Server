@@ -1,25 +1,15 @@
 <% provide(:title, 'Companies') %>
 <% provide(:heading, 'Company Dashboard') %>
     
-    <p><div class="row">
-    <div class="col-md-10 col-sm-10">
-        <div class="form" role="search">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-            </div><!--input-group -->
-        </div>
-    </div>
-    <div class="col-md-2 col-sm-2">
-            <%= button_to(new_company_path, :class => "btn btn-default", :method => :get) do %>            
-                <span class="glyphicon glyphicon-plus"></span> Add Company
-            <% end %>
-    </div>
-    </div></p>
+<div class="row">
+      <div class="col-md-9 col-sm-9 col-xs-9 pull-left">
+        <%= render partial: 'layouts/index/search' %>
+      </div>
+      <div class="col-md-3 col-sm-3 col-xs-3">
+        <%= render partial: 'layouts/index/add_button', locals: {name: "Company"} %>
+      </div> 
+</div>
+    
 
     <div class="table-responsive">
     <table class="table table-striped table-hover">
@@ -40,25 +30,7 @@
           <tr>
             <td><%= company.name %></td>
             <td><%= company.drivers.length %></td>
-            <td><div class="btn-group">
-                    <div class="btn-group">
-                        <%= button_to(show_company_path(company), :class => "btn btn-mini", title: "View", method: :get) do %>
-                          <span class="glyphicon glyphicon-eye-open"></span>
-                        <% end %>
-                    </div>
-                    <div class="btn-group">
-                        <%= button_to(edit_company_path(company), :class => "btn btn-mini", title: "Edit", method: :get) do %>
-                          <span class="glyphicon glyphicon-pencil"></span>
-                        <% end %>
-                    </div>
-                    <div class="btn-group">
-                        <%= button_to(show_company_path(company), :class => "btn btn-mini", title: "Destroy", method: :delete, 
-                            data: { confirm: 'Are you sure you want to delete this company?' } ) do %>
-                          <span class="glyphicon glyphicon-trash"></span>
-                        <% end %>
-                    </div>
-                </div>
-            </td>
+            <td><%= render partial: 'layouts/index/row_buttons', locals: {item: company} %></td>
           </tr>
         <% end %>
       </tbody>
