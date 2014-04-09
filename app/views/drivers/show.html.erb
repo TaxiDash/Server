@@ -16,14 +16,18 @@
 		            <span class="glyphicon glyphicon-pencil"></span> Edit
 		        <% end %>
 			</div>
+			<div class="btn" class="col-md-2 col-sm-2">
+		        <%= button_to(attach_doc_path(@driver), :class => "btn btn-default", role: "button", title: "Attach Document", method: :get) do %>            
+		            <span class="glyphicon glyphicon-paperclip"></span> Attach Doc
+		        <% end %>
+			</div>
     	</span>
     </h1>
     
 	<div class="row">
 	  <div class="col-sm-6 col-md-4">
 		<div class="thumbnail">
-		  <img data-src="holder.js/300x200" alt=> 
-		  	<span class="glyphicon glyphicon-picture"></span>
+            <%= image_tag @driver.avatar.url %>
 		</div>
 	  </div>
 	</div>
@@ -51,12 +55,12 @@
 				</tr> -->
 
 				<tr>
-				  	<th>Dob:</th>
-				  	<td><var><%= @driver.dob %></var></td>
+				  	<th>Date of Birth:</th>
+				  	<td><var><%= @driver.date_of_birth %></var></td>
 				</tr>
 
 				<tr>
-				  	<th>Type Id:</th>
+				  	<th>Type:</th>
 				  	<td><var><%= @driver.type_id %></var></td>
 				</tr>
 
@@ -107,7 +111,7 @@
 
 				<tr>
 				  	<th>Phone number:</th>
-				  	<td><var>(<%= @driver.phone_number/10000000 %>) <%= (@driver.phone_number/10000)%1000 %>-<%= @driver.phone_number%10000 %> </var></td>
+				  	<td><var>(<%= @driver.phone_number[0, 3] %>) <%= @driver.phone_number[3, 3] %>-<%= @driver.phone_number[6, 10] %> </var></td>
 				</tr>
 
 				<tr>
@@ -132,12 +136,12 @@
 
 				<tr>
 				  	<th>Owner:</th>
-				  	<td><var><%= @driver.owner %></var></td>
+				  	<td><var><%= @driver.vehicle_owner %></var></td>
 				</tr>
 
 				<tr>
 				  	<th>Company name:</th>
-				  	<td><var><%= @driver.company_name %></var></td>
+				  	<td><var><%= Company.select('name').all.map(&:name)[@driver.company_id] %></var></td>
 				</tr>
 
 				<tr>

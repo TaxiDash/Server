@@ -1,90 +1,99 @@
 <% provide(:title, 'Drivers') %>
-
-<div class="col-sm-11 col-md-11 main">
-    <h1 class="page-header">Driver Dashboard</h1>
+<% provide(:heading, 'Driver Dashboard') %>
+    
     <p><div class="row">
     <div class="col-md-10 col-sm-10">
-        <form class="form" role="search">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-            </div><!--input-group -->
-        </form>
+		<%= form_tag(drivers_path, method: :get, :class => "input-group") do %>
+			<%= text_field_tag :search, params[:search], :class => "form-control", placeholder: "Search..." %>
+			<span class="input-group-btn">
+				<%= button_to(drivers_path, :class => "btn btn-defualt", role: "button", title: "Search", :method => :search) do %>
+				    <span type="submit"class="glyphicon glyphicon-search"></span>
+			  	<% end %>
+		  	</span>
+		<% end %>
     </div>
+    
     <div class="col-md-2 col-sm-2">
-            <%= button_to(new_driver_path, :class => "btn btn-default", role: "button", title: "New Driver", method: :get) do %>            
+            <%= button_to(new_driver_path, :class => "btn btn-default", :method => :get) do %>            
                 <span class="glyphicon glyphicon-plus"></span> Add Driver
             <% end %>
     </div>
     </div></p>
-    <!--          <h2 class="sub-header">Section title</h2> -->
+
     <div class="table-responsive">
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th>Name (Last, First Middle)</th>
-          <th>Company Name</th>
-          <th>Permit Expiration Date</th>
-          <th>Permit #</th>
-          <th></th>
-    <!--  <th>Dob</th>
-          <th>Type Id</th>
-          <th>Address</th>
-          <th>City</th>
-          <th>State</th>
-          <th>Zipcode</th>
-          <th>Race</th>
-          <th>Sex</th>
-          <th>Height</th>
-          <th>Weight</th> 
-          <th>License</th>
-          <th>Phone number</th>
-          <th>Training completion date</th>
-          <th>Status</th>
-          <th>Owner</th>
-          <th>Physical expiration date</th>
-          <th>Valid</th>
-          <th>Average rating</th>
-          <th></th>
-          <th></th>
-          <th></th> -->
+          <th>
+          	<%= sortable "last_name", "Name (Last, First Middle)" %>
+          	<% if sort_column == "last_name" %>
+          		<% if sort_direction == "asc" %>
+          			<span class="glyphicon glyphicon-chevron-up"></span>
+          		<% else %>
+          			<span class="glyphicon glyphicon-chevron-down"></span>
+          		<% end %>
+          	<% end %>
+          </th>
+		  <th>
+		  	<%= sortable "company_id", "Company Name" %>
+		  	<% if sort_column == "company_id" %>
+          		<% if sort_direction == "asc" %>
+          			<span class="glyphicon glyphicon-chevron-up"></span>
+          		<% else %>
+          			<span class="glyphicon glyphicon-chevron-down"></span>
+          		<% end %>
+          	<% end %>
+		  </th>
+		  <th>
+		  	<%= sortable "permit_expiration_date", "Permit Expiration Date" %>
+		  	<% if sort_column == "permit_expiration_date" %>
+          		<% if sort_direction == "asc" %>
+          			<span class="glyphicon glyphicon-chevron-up"></span>
+          		<% else %>
+          			<span class="glyphicon glyphicon-chevron-down"></span>
+          		<% end %>
+          	<% end %>
+		  </th>
+		  <th>
+		  	<%= sortable "permit_number", "Permit #" %>
+		  	<% if sort_column == "permit_number" %>
+          		<% if sort_direction == "asc" %>
+          			<span class="glyphicon glyphicon-chevron-up"></span>
+          		<% else %>
+          			<span class="glyphicon glyphicon-chevron-down"></span>
+          		<% end %>
+          	<% end %>
+		  </th>
+		  <th></th>
         </tr>
       </thead>
 
       <tbody>
         <% @drivers.each do |driver| %>
           <tr>
-            <%= link_to '', driver %> <!--click to show Driver Profile-->
             <td><%= driver.last_name %>, <%= driver.first_name %> <%= driver.middle_name %></td>
-            <td><%= driver.company_name %></td>
+            <td><%= Company.select('name').all.map(&:name)[driver.company_id] %></td>
             <td><%= driver.permit_expiration_date %></td>
             <td><%= driver.permit_number %></td>
-    <!--    <td><%= driver.dob %></td>
-            <td><%= driver.type_id %></td>
-            <td><%= driver.address %></td>
-            <td><%= driver.city %></td>
-            <td><%= driver.state %></td>
-            <td><%= driver.zipcode %></td>
-            <td><%= driver.race %></td>
-            <td><%= driver.sex %></td>
-            <td><%= driver.height %></td>
-            <td><%= driver.weight %></td>
-            <td><%= driver.license %></td>
-            <td><%= driver.phone_number %></td>
-            <td><%= driver.training_completion_date %></td>
-            <td><%= driver.status %></td>
-            <td><%= driver.owner %></td>
-            <td><%= driver.physical_expiration_date %></td>
-            <td><%= driver.valid %></td>
-            <td><%= driver.average_rating %></td>-->
-            <td><%= link_to '', edit_driver_path(driver) %>    
-                <%= link_to 'Destroy', driver, method: :delete, 
-                          data: { confirm: 'Are you sure you want to delete this driver data?' } %>
-                </td>
+            <td><div class="btn-group">
+                    <div class="btn-group">
+                        <%= button_to(show_driver_path(driver), :class => "btn btn-mini", title: "View", method: :get) do %>
+                          <span class="glyphicon glyphicon-eye-open"></span>
+                        <% end %>
+                    </div>
+                    <div class="btn-group">
+                        <%= button_to(edit_driver_path(driver), :class => "btn btn-mini", title: "Edit", method: :get) do %>
+                          <span class="glyphicon glyphicon-pencil"></span>
+                        <% end %>
+                    </div>
+                    <div class="btn-group">
+                        <%= button_to(show_driver_path(driver), :class => "btn btn-mini", title: "Destroy", method: :delete, 
+                            data: { confirm: 'Are you sure you want to delete this driver?' } ) do %>
+                          <span class="glyphicon glyphicon-trash"></span>
+                        <% end %>
+                    </div>
+                </div>
+            </td>
           </tr>
         <% end %>
       </tbody>
@@ -92,5 +101,3 @@
     </div>
     <br>
 
-
-</div>
