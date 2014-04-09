@@ -8,7 +8,20 @@ class Ability
     if user.admin
         can :manage, :all
     else
-        can :manage, Driver
+        can :read, Driver
+        can :update, Driver
+        can :create, Driver
+        can :destroy, Driver
+
+        can :read, Company
+        can :update, Company
+        can :create, Company
+        can :destroy, Company
+
+        can :read, Document
+        can :update, Document
+        can :create, Document
+        can :destroy, Document
     end
       
     # The first argument to `can` is the action you are giving the user 

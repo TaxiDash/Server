@@ -4,7 +4,8 @@ class CreateDrivers < ActiveRecord::Migration
       t.string :first_name
       t.string :middle_name
       t.string :last_name
-      t.date :dob
+      t.attachment :avatar
+      t.date :date_of_birth
       t.string :type_id
       t.string :address
       t.string :city, :default => "Nashville"
@@ -20,8 +21,9 @@ class CreateDrivers < ActiveRecord::Migration
       t.date :permit_expiration_date
       t.integer :permit_number
       t.string :status
-      t.string :owner
-      t.string :company_name
+      t.string :vehicle_owner
+      t.integer :vehicle_number
+      t.integer :company_id
       t.date :physical_expiration_date
       t.boolean :valid, :default => true
       t.string :beacon_id

@@ -13,6 +13,21 @@ class DriversController < ApplicationController
   def show
   end
 
+  # Download CSV
+  def download
+      @drivers = Driver.all
+      puts "Sending data as csv..."
+      send_data @drivers.as_csv, :filename => "drivers.csv"
+  end
+
+  # Import CSV
+  def import
+puts "IMPORTING"
+puts params
+      Driver.import(params[:file])
+      redirect_to root_url, notice: "Drivers imported."
+  end
+
   # GET /drivers/new
   def new
     @driver = Driver.new
@@ -52,14 +67,13 @@ class DriversController < ApplicationController
     end
   end
 
-  # GET /mobile/image/:beacon_id
+  # GET /mobile/images/drivers/:beacon_id
   def get_image
     @driver = Driver.where(:beacon_id => params[:beacon_id]).first
     if !@driver.nil?
         puts "Getting the image for " << @driver.first_name << " " << @driver.last_name
         File.open(@driver.avatar.path, 'rb') do |f|
           send_data f.read, :type => @driver.avatar.content_type, :filename => @driver.last_name, :disposition => "inline"
-        #send_data open(@driver.avatar.path, 'rb') { |f| f.read }, :type => :@driver.avatar_content_type
         end
     end
   end
@@ -87,7 +101,7 @@ class DriversController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def driver_params
-      params.require(:driver).permit(:first_name, :middle_name, :last_name, :avatar, :dob, :type_id, :address, :city, :state, :zipcode, :race, :sex, :height, :weight, :license, :phone_number, :training_completion_date, :permit_expiration_date, :permit_number, :status, :owner, :company_name, :physical_expiration_date, :valid, :beacon_id, :average_rating, :total_ratings)
+      params.require(:driver).permit(:first_name, :middle_name, :last_name, :avatar, :date_of_birth, :type_id, :address, :city, :state, :zipcode, :race, :sex, :height, :weight, :license, :phone_number, :training_completion_date, :permit_expiration_date, :permit_number, :status, :vehicle_owner, :company_id, :physical_expiration_date, :valid, :beacon_id, :average_rating, :total_ratings)
     end
        
     def sort_column
