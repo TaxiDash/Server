@@ -98,7 +98,7 @@
 
 	<tr>
 	  	<th>Company name:</th>
-	  	<td><var><%= @driver.company_id %></var></td>
+	  	<td><var><%= @driver.company.nil? ? "NONE" : @driver.company.name %></var></td>
 	</tr>
 
 	<tr>
