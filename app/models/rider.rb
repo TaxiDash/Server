@@ -1,5 +1,6 @@
 class Rider < ActiveRecord::Base
   has_many :ratings
+  has_many :rides
 
   # Export as CSV 
   #
@@ -12,10 +13,10 @@ class Rider < ActiveRecord::Base
     end
   end
 
-    def self.import(file)
-          CSV.foreach(file.path, headers: true) do |row|
-                  Rider.create! row.to_hash
-          end
-    end
+  def self.import(file)
+        CSV.foreach(file.path, headers: true) do |row|
+          self.create! row.to_hash
+        end
+  end
 
 end

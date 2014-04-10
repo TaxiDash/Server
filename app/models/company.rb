@@ -5,7 +5,7 @@ class Company < ActiveRecord::Base
         :url => "/images/:class/:id/:basename_:style.:extension",
         :default_style => :preview,
         :styles => {
-            :thumb    => ['100x100^',  :jpg, :quality => 70],
+            :thumb    => ['50x50^',  :jpg, :quality => 70],
             :preview  => ['300x300^',  :jpg, :quality => 70],
             :large    => ['600>',      :jpg, :quality => 70]
         }

@@ -4,6 +4,7 @@
     <%= link_to(edit_company_path(@company), :class => "btn btn-lg btn-link pull-right", title: "Edit", method: :get) do %>            
         <span class="glyphicon glyphicon-pencil"></span> Edit
     <% end %>
+  <%= image_tag @company.logo.url(:thumb) %>
     <%= @company.name %> 
 <% end %>
  <p id="notice"><%= notice %></p>
@@ -13,10 +14,6 @@
   <%= @company.name %>
 </p>
 
-<p>
-  <strong>Logo:</strong>
-  <%= image_tag @company.logo %>
-</p>
 <p>
   <strong>Registered Since:</strong>
   <%= @company.created_at %>

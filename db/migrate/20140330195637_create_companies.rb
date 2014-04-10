@@ -3,6 +3,8 @@ class CreateCompanies < ActiveRecord::Migration
     create_table :companies do |t|
       t.string :name
       t.attachment :logo
+      t.decimal :average_rating
+      t.integer :total_ratings
 
       t.timestamps
     end
