@@ -62,6 +62,12 @@ class RatingsController < ApplicationController
       @driver.total_ratings +=  1
       @driver.save
 
+      # Adjust the given company's meta data
+      @company = @driver.company
+      @company.average_rating = (@company.average_rating * @company.total_ratings + @rating.rating)/(@company.total_ratings + 1)
+      @company.total_ratings +=  1
+      @company.save
+
       respond_to do |format|
         if @rating.save
           format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
