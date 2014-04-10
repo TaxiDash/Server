@@ -1,5 +1,6 @@
 class RidesController < ApplicationController
   before_action :set_ride, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /rides
   # GET /rides.json
@@ -71,4 +72,13 @@ class RidesController < ApplicationController
     def ride_params
       params.require(:ride).permit(:driver_id, :rider_id, :start, :end, :estimated_fare, :actual_fare)
     end
+
+    def sort_column
+   	  Ride.column_names.include?(params[:sort]) ? params[:sort] : "driver.first_name"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
+	
 end

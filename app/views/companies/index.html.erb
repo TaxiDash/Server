@@ -1,6 +1,7 @@
 <% @column_titles = [ 
     {:sort => "name", :title=>"Name"},
-    {:sort => "drivers.length", :title => "Number of Drivers"}] %>
+    {:sort => "drivers.length", :title => "Number of Drivers"},
+    {:sort => "average_rating", :title => "Average Driver Rating"}] %>
     
 <%= render partial: "layouts/index", locals: {type: "Company", items: @companies, titles: @column_titles} %>
 

@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20140409230520) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.decimal  "average_rating",    default: 0.0
+    t.integer  "total_ratings",     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
