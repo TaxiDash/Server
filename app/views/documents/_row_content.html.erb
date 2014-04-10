@@ -1,0 +1,9 @@
+<td class="table-link" onclick="<%= link %>">
+    <% if document.driver.nil? %>
+      None 
+    <% else %>
+      <%= document.driver.last_name %>, <%= document.driver.first_name %> <%= document.driver.middle_name %>
+    <% end %>
+</td>
+<td class="table-link" onclick="<%= link %>"><%= document.title %></td>
+

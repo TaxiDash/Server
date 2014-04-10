@@ -1,0 +1,23 @@
+<%= render 'drivers/header' %>
+    
+<div class="container-fluid">
+<p><div class="row">
+  <table class="table table-striped table-hover col-md-12 col-sm-12 col-xs-12">
+    <thead>
+        <%= render partial: 'layouts/index/thead', locals: {titles: [
+          {:sort => "rating", :title => "Rating"},
+          {:sort => "comments", :title => "Comments"},
+          {:sort => "timestamp", :title => "Timestamp"} ]} %>
+    </thead>
+    <tbody>
+        <% @driver.ratings.each do |r| %>
+            <% link = "window.location.href = '" << url_for(controller: controller.controller_path, id: r, action: 'show') << "'" %>
+            <td class="table-link" onclick="<%= link %>"><%= r.rating %></td>
+            <td class="table-link" onclick="<%= link %>"><%= r.comments %></td>
+            <td class="table-link" onclick="<%= link %>"><%= r.timestamp %></td>
+            <td><%= render partial: 'layouts/index/row_buttons', locals: {item: r} %></td>
+        <% end %>
+    </tbody>
+  </table>
+</div></p>
+</div>

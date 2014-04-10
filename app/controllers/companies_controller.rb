@@ -1,10 +1,11 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
-
+  helper_method :sort_column, :sort_direction
+  
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.all
+    @companies = params[:sort] == nil ? Company.all : Company.order(sort_column + " " + sort_direction)
   end
 
   # GET /companies/1
@@ -95,4 +96,12 @@ class CompaniesController < ApplicationController
     def company_params
       params.require(:company).permit(:name, :logo)
     end
+    
+    def sort_column
+    	Company.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+
+	def sort_direction
+		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+	end
 end

@@ -1,0 +1,4 @@
+<td class="table-link" onclick="<%= link %>"><%= row.last_name %> </td>
+<td class="table-link" onclick="<%= link %>"><%= row.first_name %> </td>
+<td class="table-link" onclick="<%= link %>"><%= row.username %> <%= row.admin ? "(ADMIN)" : ""%></td>
+<td class="table-link" onclick="<%= link %>"><%= row.last_sign_in_at.nil? ? "N/A" : row.last_sign_in_at.in_time_zone("America/Chicago") %></td>

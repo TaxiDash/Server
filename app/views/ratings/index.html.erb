@@ -4,9 +4,8 @@
     {:sort => "rating", :title => "Rating"},
     {:sort => "comments", :title => "Comments"},
     {:sort => "timestamp", :title => "Timestamp"} ] %>
-            
 
 <%= render partial: "layouts/index", locals: {type: "Rating", items: @ratings, titles: @column_titles} %>
  
-<!-- To specify how each cell is populated, modify layouts/index/_row.html.erb -->
+<!-- To specify how each cell is populated, modify _row_content.html.erb -->
 

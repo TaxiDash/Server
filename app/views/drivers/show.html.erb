@@ -1,10 +1,4 @@
-<% provide(:title, 'Drivers') %>
-
-<%= content_for :heading do %>
-    <%= render 'layouts/buttons/back_button' %>
-    <%= render partial: 'layouts/buttons/edit_button', locals: {item: @driver} %>
-    <%= @driver.first_name %> <%= @driver.middle_name %> <%= @driver.last_name %>
-<% end %>
+<%= render 'drivers/header' %>
 
 <div class="row">
   <div class="col-sm-6 col-md-4">
@@ -134,8 +128,4 @@
 
 </tbody>
 </table>
-		<div class="btn" class="col-md-2 col-sm-2">
-	        <%= button_to(attach_doc_path(@driver), :class => "btn btn-default", role: "button", title: "Attach Document", method: :get) do %>            
-	            <span class="glyphicon glyphicon-paperclip"></span> Attach Doc
-	        <% end %>
-		</div>
+		
