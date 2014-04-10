@@ -53,7 +53,13 @@ class DriversController < ApplicationController
   # POST /drivers
   # POST /drivers.json
   def create
+
     @driver = Driver.new(driver_params)
+
+    # Get/Create a rider by the uuid (sent under "rider_id")
+    # This works only if the uuid is strictly numeric
+    @company = Company.where(:name => @driver.company_id).first
+    @driver.company_id = @company.id
 
     respond_to do |format|
       if @driver.save
