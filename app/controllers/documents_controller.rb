@@ -16,7 +16,7 @@ class DocumentsController < ApplicationController
   def view
     @document = Document.find(params[:id])
     send_file(@document.doc.path, :type =>
-          'application/pdf', :disposition => 'inline')
+          @document.doc_content_type, :disposition => 'inline')
   end
 
   # Download CSV
