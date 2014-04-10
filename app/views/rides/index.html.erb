@@ -1,37 +1,11 @@
-<h1>Listing rides</h1>
+<% @column_titles = [ 
+    {:sort => "driver.name", :title=>"Driver Name"},
+    {:sort => "rider.uuid", :title=>"Rider ID"},
+    {:sort => "estimated_fare", :title=>"Estimated Fare"},
+    {:sort => "actual_fare", :title=>"Actual Fare"}] %>
+    
+<%= render partial: "layouts/index", locals: {type: "Ride", items: @rides, titles: @column_titles} %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Driver</th>
-      <th>Rider</th>
-      <th>Start</th>
-      <th>End</th>
-      <th>Estimated fare</th>
-      <th>Actual fare</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<!-- to change cells for each row, modify riders/_row_content.html.erb -->
 
-  <tbody>
-    <% @rides.each do |ride| %>
-      <tr>
-        <td><%= ride.driver_id %></td>
-        <td><%= ride.rider_id %></td>
-        <td><%= ride.start %></td>
-        <td><%= ride.end %></td>
-        <td><%= ride.estimated_fare %></td>
-        <td><%= ride.actual_fare %></td>
-        <td><%= link_to 'Show', ride %></td>
-        <td><%= link_to 'Edit', edit_ride_path(ride) %></td>
-        <td><%= link_to 'Destroy', ride, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Ride', new_ride_path %>

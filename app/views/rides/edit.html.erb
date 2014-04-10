@@ -1,6 +1,10 @@
-<h1>Editing ride</h1>
+<% provide(:title, 'Edit Ride') %>
+<%= content_for :heading do %>
+    <%= render 'layouts/buttons/back_button' %>
+    <%= link_to(show_ride_path(@ride), :class => "btn btn-lg btn-link pull-right", title: "Show", method: :get) do %>            
+        <span class="glyphicon glyphicon-eye-open"></span> Show
+    <% end %>
+    <%= "Ride with " << @ride.driver.first_name << " " << @ride.driver.last_name %> 
+<% end %>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @ride %> |
-<%= link_to 'Back', rides_path %>

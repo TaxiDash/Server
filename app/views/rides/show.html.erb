@@ -1,34 +1,38 @@
+<% provide(:title, 'Rides') %>
+<%= content_for :heading do %>
+    <%= render 'layouts/buttons/back_button' %>
+    <%= link_to(edit_ride_path(@ride), :class => "btn btn-lg btn-link pull-right", title: "Edit", method: :get) do %>            
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+    <% end %>
+    <%= "Ride: " << @ride.id %> 
+<% end %>
 <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Driver:</strong>
-  <%= @ride.driver_id %>
+  <%= @ride.driver.first_name %> <%= @ride.driver.last_name %>
 </p>
-
 <p>
-  <strong>Rider:</strong>
-  <%= @ride.rider_id %>
+  <strong>Rider UUID:</strong>
+  <%= @ride.rider.uuid %>
 </p>
-
 <p>
   <strong>Start:</strong>
   <%= @ride.start %>
 </p>
-
 <p>
   <strong>End:</strong>
   <%= @ride.end %>
 </p>
-
 <p>
-  <strong>Estimated fare:</strong>
-  <%= @ride.estimated_fare %>
+  <strong>Estimated Fare:</strong>
+  $<%= sprintf('%.2f', @ride.estimated_fare) %>
 </p>
-
 <p>
-  <strong>Actual fare:</strong>
-  <%= @ride.actual_fare %>
+  <strong>Actual Fare:</strong>
+  $<%= sprintf('%.2f', @ride.actual_fare) %>
 </p>
-
-<%= link_to 'Edit', edit_ride_path(@ride) %> |
-<%= link_to 'Back', rides_path %>
+<p>
+  <strong>Charge Ratio:</strong>
+  <%= (@ride.actual_fare/@ride.estimated_fare).round(2) %>
+</p>
