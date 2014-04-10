@@ -13,7 +13,9 @@ TaxiRatingServer::Application.routes.draw do
   get 'mobile/:beacon_id' => 'drivers#show'
   get 'mobile/images/drivers/:beacon_id' => 'drivers#get_image'
   get 'drivers/:id' => 'drivers#show', :as => 'show_driver'
-  get 'drivers/docs/new/:driver_id' => 'documents#new', :as => 'attach_doc'
+  get 'drivers/ratings/:id' => 'drivers#ratings', :as => 'show_driver_ratings'
+  get 'drivers/documents/:id' => 'drivers#documents', :as => 'show_driver_documents'
+  get 'drivers/documents/new/:driver_id' => 'documents#new', :as => 'attach_doc'
   get 'drivers_download' => 'drivers#download', :as => 'download_drivers'
   post 'drivers_import' => 'drivers#import', :as => 'import_drivers'
 
@@ -51,7 +53,7 @@ TaxiRatingServer::Application.routes.draw do
   post 'riders_import' => 'riders#import', :as => 'import_riders'
 
   #Manual
-  get "manual/overview", :as => 'manual'
+  get "manual/overview", :as => "manual"
   get "manual/users"
   get "manual/companies"
   get "manual/drivers"

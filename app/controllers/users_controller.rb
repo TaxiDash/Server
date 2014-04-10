@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
+    helper_method :sort_column, :sort_direction
     load_and_authorize_resource
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = params[:sort] == nil ? User.all : User.order(sort_column + " " + sort_direction)
   end
 
   # GET /users/1
@@ -110,5 +111,13 @@ class UsersController < ApplicationController
   def user_params
       puts "Getting params -------------------------------------------------------------------------"
       params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, :admin)
+  end
+  
+  def sort_column
+    User.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+
+  def sort_direction
+	%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

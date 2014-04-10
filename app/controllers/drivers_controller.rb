@@ -12,7 +12,18 @@ class DriversController < ApplicationController
   # GET /drivers/1.json
   def show
   end
-
+  
+  # GET /drivers/ratings/1
+  def ratings
+    @driver = Driver.find(params[:id])
+  end
+  
+  # GET /drivers/docs/1
+  def documents
+    @driver = Driver.find(params[:id])
+  end
+  
+  
   # Download CSV
   def download
       @drivers = Driver.all

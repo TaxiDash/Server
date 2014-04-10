@@ -1,25 +1,17 @@
-<% items.each do |row| %>
-    <tr>
-        <% if controller.controller_path == 'drivers' %>
-            <% link = "window.location.href = '" << url_for(controller: controller.controller_path, id: row, action: 'show') << "'" %>
-            <td class="table-link" onclick="<%= link %>">
-                <%= row.last_name << ", " << row.first_name << " " << row.middle_name %></td>
-            <td class="table-link" onclick="<%= link %>">
-                <%= row.company_id %></td>
-            <td class="table-link" onclick="<%= link %>">
-                <%= row.permit_expiration_date %></td>
-            <td class="table-link" onclick="<%= link %>">
-                <%= row.permit_number %></td>
-                </div>
-        <% elsif controller.controller_path == 'users' %>
-            <td></td>
-        <% elsif controller.controller_path == 'ratings' %>
-            <td><%= row.driver.last_name << ", " << row.driver.first_name %></td>
-            <td><%= row.driver.company_id %></td>
-            <td><%= row.rating %></td>
-            <td><%= row.comments %></td>
-            <td><%= row.timestamp %></td>
-        <% end %>
-        <td><%= render partial: 'layouts/index/row_buttons', locals: {item: row} %></td>
-    </tr>
+<% if controller.controller_path == 'users' %>
+    <% items.each do |row| %>
+      <% link = "window.location.href = '" << url_for(controller: controller.controller_path, id: row, action: 'show') << "'" %>
+      <tr><%= render partial: "#{controller.controller_path}/row_content", locals: {row: row, link: link} %>
+      <td><%= link_to '', edit_other_user_path(row.id) %>
+            <%= render partial: 'layouts/index/row_buttons', locals: {item: row} %></td></tr>
+    <% end %>
+<% else %>
+    <% items.each do |row| %>
+      <% link = "window.location.href = '" << url_for(controller: controller.controller_path, id: row, action: 'show') << "'" %>
+      <tr><%= render partial: "#{controller.controller_path}/row_content", locals: {row: row, link: link} %>
+      <td><%= render partial: 'layouts/index/row_buttons', locals: {item: row} %></td></tr>
+    <% end %>
 <% end %>
+
+
+
