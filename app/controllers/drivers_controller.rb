@@ -5,7 +5,11 @@ class DriversController < ApplicationController
   # GET /drivers
   # GET /drivers.json
   def index
-    @drivers = params[:sort] == nil ? Driver.all : Driver.order(sort_column + " " + sort_direction)
+  	if params[:search]
+  		@drivers = Driver.search(params[:search]).order("last_name asc")
+  	else
+	    	@drivers = params[:sort] == nil ? Driver.all : Driver.order(sort_column + " " + sort_direction)
+	end
   end
 
   # GET /drivers/1
@@ -97,6 +101,10 @@ class DriversController < ApplicationController
     end
   end
 
+  def search
+  	@drivers = Driver.search(params[:search])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_driver
@@ -117,8 +125,8 @@ class DriversController < ApplicationController
     	Driver.column_names.include?(params[:sort]) ? params[:sort] : "name"
     end
 
-	def sort_direction
-		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-	end
+    def sort_direction
+	%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
 	
 end
