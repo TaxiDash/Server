@@ -1,4 +1,5 @@
 <% @column_titles = [ {:sort => "driver", :title=>"Driver"}, {:sort => "title", :title => "Title"} ] %>
+
 <%= render partial: "layouts/index", locals: {type: "Document", items: @documents, titles: @column_titles} %>
  
 <!-- To specify how row cells are populated, modify documents/_row_content.html.erb -->
