@@ -13,12 +13,19 @@
   <strong>Name:</strong>
   <%= @company.name %>
 </p>
-
-<p>
-  <strong>Registered Since:</strong>
-  <%= @company.created_at %>
-</p>
 <p>
   <strong>Driver Count:</strong>
   <%= @company.drivers.length %>
+</p>
+<p>
+  <strong>Average Driver Rating:</strong>
+  <%= @company.average_rating %>
+</p>
+<p>
+  <strong>Total Ratings:</strong>
+  <%= @company.total_ratings %>
+</p>
+<p>
+  <strong>Registered Since:</strong>
+  <%= @company.created_at %>
 </p>
