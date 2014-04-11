@@ -1,3 +1,12 @@
+<% provide(:title, 'Rating') %>
+<%= content_for :heading do %>
+    <%= render 'layouts/buttons/back_button' %>
+    <%= link_to(edit_rating_path(@rating), :class => "btn btn-lg btn-link pull-right", title: "Edit", method: :get) do %>            
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+    <% end %>
+    Rating of <%= @rating.driver.last_name << ', ' <<  @rating.driver.first_name %>
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -24,6 +33,3 @@
   <strong>Timestamp:</strong>
   <%= @rating.timestamp %>
 </p>
-
-<%= link_to 'Edit', edit_rating_path(@rating) %> |
-<%= link_to 'Back', ratings_path %>
