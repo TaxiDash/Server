@@ -1,0 +1,24 @@
+<% provide(:title, 'QuickStart!') %>
+ 
+<%= content_for :heading do %>
+    <%= link_to(man_add_driver_path, :class => "btn btn-lg btn-link pull-right", title: "Next", method: :get) do %>            
+        <span class="glyphicon glyphicon-chevron-right"></span> Next
+    <% end %>
+    <%= link_to(manual_path, :class => "btn btn-lg btn-link pull-right", title: "Prev", method: :get) do %>            
+        <span class="glyphicon glyphicon-chevron-left"></span> Prev
+    <% end %>
+    <strong>Step 1:</strong> Add a Company
+<% end %>
+
+<h2>Create a Company</h2>
+
+<ol>
+    <li>Click <em>Companies</em> on the left sidebar.</li>
+    <li>Click the <em>Add Company</em> button on the top right.</li>
+    <li>Enter the company name.</li>
+    <li>Click <em>Choose File</em> and find the desired company logo.</li>
+    <li>Click <em>Submit</em> and the company will be created!</li>
+</ol>
+
+<%= image_tag 'step1.png', size:"800x300", :class => "row center-block"%></br>
+

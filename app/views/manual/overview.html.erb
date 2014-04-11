@@ -7,12 +7,19 @@
 
 <p>Hello and welcome to the manual for <em><strong>TAXIDASH</strong></em>! <em><strong>TAXIDASH</strong></em> is a online tool for maintaining taxi driver permits and provides quality assurance support through a driver rating system on the smartphone.
 
-Learning how to use this tool? Click on any of the icons on the left to get details about each object type in <em><strong>TAXIDASH</strong></em>. For troubleshooting, please check out the <em>Common Issues</em> in the left pane.
+Learning how to use this tool? Click on any of the icons on the left to get details about each object type in <em><strong>TAXIDASH</strong></em>. For troubleshooting, please check out the <em>Common Issues</em>.
 </p>
 
-<%= image_tag 'TaxiDash.png', size:"1200x500" %>
+<%= link_to(man_add_company_path, :class => "btn btn-lg btn-link btn-block", title: "Get Started!", method: :get) do %>            
+    <span class="glyphicon glyphicon-pencil"></span> QuickStart Guide
+<% end %>
 
-<h3>Summary of Object types in <em><strong>TAXIDASH</strong></em>:</h3>
+<%= link_to(man_faq_path, :class => "btn btn-lg btn-link btn-block", title: "???", method: :get) do %>            
+    <span class="glyphicon glyphicon-question-sign"></span> Frequently Asked Questions
+<% end %>
+
+<!--
+<h3>Type Overview in <em><strong>TAXIDASH</strong></em>:</h3>
 <h4>Companies</h4>
 Before we start creating any drivers, a company must be created to assign the driver to. A company contains a name, logo and associated drivers. 
 
@@ -27,3 +34,4 @@ Ratings are created by riders following their cab experience and provide quality
 
 <h4>Riders</h4>
 Riders refers to the people riding in the taxi's. <em><strong>TAXIDASH</strong></em> stores a unique identifier to prevent any spamming of fraudulent ratings of taxi drivers. 
+-->

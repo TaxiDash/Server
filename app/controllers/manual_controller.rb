@@ -2,6 +2,21 @@ class ManualController < ApplicationController
   def overview
   end
 
+  def add_company
+  end
+
+  def add_driver
+  end
+
+  def rate
+  end
+
+  def check_rating
+  end
+
+  def get_stats
+  end
+
   def users
   end
 

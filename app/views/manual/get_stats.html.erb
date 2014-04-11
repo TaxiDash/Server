@@ -1,0 +1,28 @@
+<% provide(:title, 'QuickStart!') %>
+
+<%= content_for :heading do %>
+    <%= link_to(manual_path, :class => "btn btn-lg btn-link pull-right", title: "Next", method: :get) do %>            
+        <span class="glyphicon glyphicon-chevron-right"></span> Next
+    <% end %>
+    <%= link_to(man_check_rating_path, :class => "btn btn-lg btn-link pull-right", title: "Prev", method: :get) do %>            
+        <span class="glyphicon glyphicon-chevron-left"></span> Prev
+    <% end %>
+    <strong>Step 5:</strong> Get Cool Stats!
+<% end %>
+
+<h3>Get All Ratings</h3>
+<ol>
+    <li>Click on the <em>Ratings</em> tab to view all ratings that have been created!</li>
+</ol>
+<h3>Get Ratings By Driver</h3>
+<ol>
+    <li>Click on a driver in the <em>Drivers</em> tab.</li>
+    <li>Click on the driver's <em>Ratings</em> tab to get all ratings for the given driver!</li>
+</ol>
+
+<h3>Get Ratings Of Company</h3>
+<ol>
+    <li>Click on a company in the <em>Companies</em> tab.</li>
+</ol>
+
+<%= image_tag 'step5.png', size:"800x300", :class => "row center-block" %></br>

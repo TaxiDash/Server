@@ -1,0 +1,25 @@
+<% provide(:title, 'QuickStart!') %>
+
+<%= content_for :heading do %>
+    <%= link_to(man_rate_path, :class => "btn btn-lg btn-link pull-right", title: "Next", method: :get) do %>            
+        <span class="glyphicon glyphicon-chevron-right"></span> Next
+    <% end %>
+    <%= link_to(man_add_company_path, :class => "btn btn-lg btn-link pull-right", title: "Prev", method: :get) do %>            
+        <span class="glyphicon glyphicon-chevron-left"></span> Prev
+    <% end %>
+    <strong>Step 2:</strong> Add a Driver
+<% end %>
+
+<h1>Create a Driver</h1>
+
+<ol>
+    <li>Click <em>Driver</em> on the left sidebar.</li>
+    <li>Click the <em>Add Driver</em> button on the top right.</li>
+    <li>Click the <em>Bio</em> tab.</li>
+    <li>Enter the necessary driver fields.</li>
+    <li>If the driver needs any necessary paperwork attached, click <em>Attach Doc</em> in the top right.</li>
+    <li>Click <em>Submit</em> and the driver will be created!</li>
+</ol>
+
+
+<%= image_tag 'step2.png', size:"800x300", :class => "row center-block" %></br>

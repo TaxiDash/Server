@@ -1,0 +1,21 @@
+<% provide(:title, 'QuickStart!') %>
+
+<%= content_for :heading do %>
+    <%= link_to(man_check_rating_path, :class => "btn btn-lg btn-link pull-right", title: "Next", method: :get) do %>            
+        <span class="glyphicon glyphicon-chevron-right"></span> Next
+    <% end %>
+    <%= link_to(man_add_driver_path, :class => "btn btn-lg btn-link pull-right", title: "Prev", method: :get) do %>            
+        <span class="glyphicon glyphicon-chevron-left"></span> Prev
+    <% end %>
+    <strong>Step 3:</strong> Rate!
+<% end %>
+
+<h1>Rate!</h1>
+
+<ol>
+    <li>Users of the smartphone app can rate their drivers following a trip.</li>
+    <li>The rating will be automatically stored with the corresponding driver!</li>
+</ol>
+
+
+<%= image_tag 'step3.png', size:"800x300", :class => "row center-block" %></br>

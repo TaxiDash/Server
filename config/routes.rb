@@ -57,6 +57,11 @@ TaxiRatingServer::Application.routes.draw do
 
   #Manual
   get "manual/overview", :as => "manual"
+  get "manual/add_company", :as => "man_add_company"
+  get "manual/add_driver", :as => "man_add_driver"
+  get "manual/rate", :as => "man_rate"
+  get "manual/check_rating", :as => "man_check_rating"
+  get "manual/get_stats", :as => "man_get_stats"
   get "manual/users"
   get "manual/companies"
   get "manual/drivers"
@@ -64,7 +69,7 @@ TaxiRatingServer::Application.routes.draw do
   get "manual/ratings"
   get "manual/riders"
   get "manual/miscellaneous"
-  get "manual/common_issues"
+  get "manual/faq", :as => "man_faq"
   #get 'users/new/' => 'users/sign_up'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
