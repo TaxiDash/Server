@@ -96,8 +96,10 @@ ActiveRecord::Schema.define(version: 20140409230520) do
   create_table "rides", force: true do |t|
     t.integer  "driver_id"
     t.integer  "rider_id"
-    t.float    "start",          limit: 53
-    t.float    "end",            limit: 53
+    t.float    "start_latitude",  limit: 53
+    t.float    "start_longitude", limit: 53
+    t.float    "end_latitude",    limit: 53
+    t.float    "end_longitude",   limit: 53
     t.decimal  "estimated_fare"
     t.decimal  "actual_fare"
     t.datetime "created_at"
