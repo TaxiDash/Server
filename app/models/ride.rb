@@ -16,7 +16,7 @@ class Ride < ActiveRecord::Base
 
     def self.import(file)
           CSV.foreach(file.path, headers: true) do |row|
-                  Rating.create! row.to_hash
+                  Ride.create! row.to_hash
           end
     end
 end
