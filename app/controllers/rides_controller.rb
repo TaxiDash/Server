@@ -13,6 +13,19 @@ class RidesController < ApplicationController
   def show
   end
 
+  # Download CSV
+  def download
+      @rides = Ride.all
+      puts "Sending data as csv..."
+      send_data @rides.as_csv, :filename => "rides.csv"
+  end
+
+  # Import CSV
+  def import
+      Ride.import(params[:file])
+      redirect_to root_url, notice: "Rides imported."
+  end
+
   # GET /rides/new
   def new
     @ride = Ride.new

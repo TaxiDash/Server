@@ -15,7 +15,7 @@ class RatingsController < ApplicationController
 
   # Download CSV
   def download
-      @ratings = Document.all
+      @ratings = Rating.all
       puts "Sending data as csv..."
       send_data @ratings.as_csv, :filename => "ratings.csv"
   end
