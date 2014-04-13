@@ -1,6 +1,7 @@
 class Rating < ActiveRecord::Base
     belongs_to :driver
     belongs_to :rider
+    belongs_to :ride
     validates :rating, format: { with: /[12345]/, 
                                  message: 'Must be integer 1-5' }
     COMMENT_FORMAT = /[a-zA-Z. !?\d,#$'"()]*/

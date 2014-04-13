@@ -27,6 +27,17 @@ class RidesController < ApplicationController
   def create
     @ride = Ride.new(ride_params)
 
+    # Get/Create a rider by the uuid (sent under "rider_id")
+    # This works only if the uuid is strictly numeric
+    @rider = Rider.where(:uuid => @ride.rider_id).first
+
+    if @rider.nil?
+      @rider = Rider.new(:uuid => @ride.rider_id)
+      @rider.save
+    end
+
+    @ride.rider_id = @rider.id
+
     respond_to do |format|
       if @ride.save
         format.html { redirect_to @ride, notice: 'Ride was successfully created.' }
@@ -70,7 +81,7 @@ class RidesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ride_params
-      params.require(:ride).permit(:driver_id, :rider_id, :start, :end, :estimated_fare, :actual_fare)
+      params.require(:ride).permit(:driver_id, :rider_id, :start_latitude, :start_longitude, :end_latitude, :end_longitude, :estimated_fare, :actual_fare)
     end
 
     def sort_column
