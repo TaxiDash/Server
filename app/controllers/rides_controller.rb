@@ -94,7 +94,7 @@ class RidesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ride_params
-      params.require(:ride).permit(:driver_id, :rider_id, :start_latitude, :start_longitude, :end_latitude, :end_longitude, :estimated_fare, :actual_fare)
+      params.require(:ride).permit(:driver_id, :rating_id, :rider_id, :start_latitude, :start_longitude, :end_latitude, :end_longitude, :estimated_fare, :actual_fare)
     end
 
     def sort_column
