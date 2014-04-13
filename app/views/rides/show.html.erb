@@ -18,11 +18,11 @@
 </p>
 <p>
   <strong>Start:</strong>
-  <%= @ride.start %>
+  <%= start = @ride.start_latitude.to_s << ',' << @ride.start_longitude.to_s %>
 </p>
 <p>
   <strong>End:</strong>
-  <%= @ride.end %>
+  <%= endpoint = @ride.end_latitude.to_s << ',' << @ride.end_longitude.to_s%>
 </p>
 <p>
   <strong>Estimated Fare:</strong>
@@ -36,3 +36,7 @@
   <strong>Charge Ratio:</strong>
   <%= (@ride.actual_fare/@ride.estimated_fare).round(2) %>
 </p>
+<%= button_to('https://www.google.com/maps/dir/' << start << '/' << endpoint,
+    :class => "btn btn-lg btn-link btn-block", title: "View", method: :get) do %>            
+    <span class="glyphicon glyphicon-eye"></span> View Ride on Map
+<% end %>
