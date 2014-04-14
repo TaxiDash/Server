@@ -1,10 +1,15 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
-
+  helper_method :sort_column, :sort_direction
+  
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.all
+    if params[:search]
+  		@documents = Document.search(params[:search]).order("driver_id asc")
+  	else
+	    @documents = params[:sort] == nil ? Document.all : Document.order(sort_column + " " + sort_direction)
+	end
   end
 
   # GET /documents/1
@@ -76,6 +81,10 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def search
+  	@users = Document.search(params[:search])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_document
@@ -85,5 +94,13 @@ class DocumentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
       params.require(:document).permit(:driver_id, :doc, :title, :description)
+    end
+    
+    def sort_column
+    	Document.column_names.include?(params[:sort]) ? params[:sort] : "driver_id"
+    end
+
+    def sort_direction
+		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

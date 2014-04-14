@@ -18,4 +18,11 @@ class Rider < ActiveRecord::Base
           end
     end
 
+	def self.search(query)
+		query = query.downcase
+		p = "%#{query}%"
+		where("uuid like ?", p)
+	end
+
+
 end

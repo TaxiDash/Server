@@ -1,10 +1,15 @@
 class RidersController < ApplicationController
   before_action :set_rider, only: [:show, :edit, :update, :destroy]
-
+  helper_method :sort_column, :sort_direction
+  
   # GET /riders
   # GET /riders.json
   def index
-    @riders = Rider.all
+    if params[:search]
+  		@riders = Rider.search(params[:search]).order("uuid asc")
+  	else
+	    @riders = params[:sort] == nil ? Rider.all : Rider.order(sort_column + " " + sort_direction)
+	end
   end
 
   # GET /riders/1
@@ -74,6 +79,10 @@ class RidersController < ApplicationController
     end
   end
 
+  def search
+  	@riders = Rider.search(params[:search])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rider
@@ -84,4 +93,13 @@ class RidersController < ApplicationController
     def rider_params
       params.require(:rider).permit(:uuid)
     end
+    
+    def sort_column
+    	Rider.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+
+    def sort_direction
+		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
+	
 end

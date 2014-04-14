@@ -3,16 +3,14 @@
     
     <p><div class="row">
     <div class="col-md-10 col-sm-10">
-        <div class="form" role="search">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-            </div><!--input-group -->
-        </div>
+		<%= form_tag(documents_path, method: :get, :class => "input-group") do %>
+			<%= text_field_tag :search, params[:search], :class => "form-control", placeholder: "Search..." %>
+			<span class="input-group-btn">
+				<%= button_to(documents_path, :class => "btn btn-defualt", role: "button", title: "Search", :method => :search) do %>
+				    <span type="submit"class="glyphicon glyphicon-search"></span>
+			  	<% end %>
+		  	</span>
+		<% end %>
     </div>
     <div class="col-md-2 col-sm-2">
             <%= button_to(new_document_path, :class => "btn btn-default", :method => :get) do %>            
@@ -26,10 +24,24 @@
       <thead>
         <tr>
           <th>
-            Driver
+            <%= sortable "driver_id", "Driver" %>
+          	<% if sort_column == "driver_id" %>
+          		<% if sort_direction == "asc" %>
+          			<span class="glyphicon glyphicon-chevron-up"></span>
+          		<% else %>
+          			<span class="glyphicon glyphicon-chevron-down"></span>
+          		<% end %>
+          	<% end %>
 		  </th>
 		  <th>
-          	Title
+		    <%= sortable "title", "Title" %>
+          	<% if sort_column == "title" %>
+          		<% if sort_direction == "asc" %>
+          			<span class="glyphicon glyphicon-chevron-up"></span>
+          		<% else %>
+          			<span class="glyphicon glyphicon-chevron-down"></span>
+          		<% end %>
+          	<% end %>
           </th>
 		  <th></th>
         </tr>
