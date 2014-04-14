@@ -8,7 +8,7 @@ class DriversController < ApplicationController
   	if params[:search]
   		@drivers = Driver.search(params[:search]).order("last_name asc")
   	else
-	    	@drivers = params[:sort] == nil ? Driver.all : Driver.order(sort_column + " " + sort_direction)
+	    @drivers = params[:sort] == nil ? Driver.all : Driver.order(sort_column + " " + sort_direction)
 	end
   end
 

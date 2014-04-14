@@ -85,17 +85,19 @@ class Driver < ActiveRecord::Base
 
 	# search drivers in the table
 	def self.search(query)
+		query = query.downcase
 		p = "%#{query}%"
 		c = p
 		v = p
 		a = Company.select('name').all.map(&:name)
-		
-		(a.include?(query)) ? c = a.find_index { |x| x == (query) } : c = p
+		a.map!{|s| s.downcase}
+				
+		(a.include?(query)) ? c = 1 + a.find_index { |x| x == (query) } : c = c
 		
 		query == "valid" ? v = (query == "valid") : v = v
 		query == "invalid" ? v = (query == "valid") : v = v
 		
-	   	where("last_name like ? or first_name like ? or middle_name like ? or type_id like ? or total_ratings like ? or average_rating like ? or company_id like ? or permit_expiration_date like ? or valid like ? or beacon_id like ? or permit_number like ?", p, p, p, p, p, p, c, p, v, p, p)
+	   	where("last_name like ? or first_name like ? or middle_name like ? or type_id like ?or company_id like ? or permit_expiration_date like ? or valid like ? or beacon_id like ? or permit_number like ?", p, p, p, p, c, p, v, p, p)
 	end
 	
 end

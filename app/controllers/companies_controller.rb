@@ -5,7 +5,11 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
-    @companies = params[:sort] == nil ? Company.all : Company.order(sort_column + " " + sort_direction)
+  	if params[:search]
+  		@companies = Company.search(params[:search]).order("name asc")
+  	else
+	    @companies = params[:sort] == nil ? Company.all : Company.order(sort_column + " " + sort_direction)
+	end
   end
 
   # GET /companies/1
@@ -84,6 +88,10 @@ class CompaniesController < ApplicationController
       format.html { redirect_to companies_url }
       format.json { head :no_content }
     end
+  end
+
+  def search
+  	@companies = Company.search(params[:search])
   end
 
   private
