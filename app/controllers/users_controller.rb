@@ -104,6 +104,10 @@ class UsersController < ApplicationController
       end
   end
 
+  def search
+  	@users = User.search(params[:search])
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user

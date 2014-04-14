@@ -3,16 +3,14 @@
     
     <p><div class="row">
     <div class="col-md-10 col-sm-10">
-        <div class="form" role="search">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-            </div><!--input-group -->
-        </div>
+		<%= form_tag(companies_path, method: :get, :class => "input-group") do %>
+			<%= text_field_tag :search, params[:search], :class => "form-control", placeholder: "Search..." %>
+			<span class="input-group-btn">
+				<%= button_to(companies_path, :class => "btn btn-defualt", role: "button", title: "Search", :method => :search) do %>
+				    <span type="submit"class="glyphicon glyphicon-search"></span>
+			  	<% end %>
+		  	</span>
+		<% end %>
     </div>
     <div class="col-md-2 col-sm-2">
             <%= button_to(new_company_path, :class => "btn btn-default", :method => :get) do %>            

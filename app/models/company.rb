@@ -32,4 +32,11 @@ class Company < ActiveRecord::Base
                     end
     end
 
+	# search companies in the table
+	def self.search(query)
+		query = query.downcase
+		p = "%#{query}%"
+		where("name like ? or id like ?", p, p)
+	end
+
 end
