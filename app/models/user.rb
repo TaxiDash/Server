@@ -21,11 +21,11 @@ class User < ActiveRecord::Base
           end
     end
 
-	# search drivers in the table
+	# search users in the table
 	def self.search(query)
 		query = query.downcase
 		p = "%#{query}%"
-		where("last_name like ? or first_name like ? or username like ? or email like ?", p, p, p, p)
+		where("last_name like ? or first_name like ? or username like ? or email like ? or last_sign_in_at like ?", p, p, p, p, p)
 	end
 	
 

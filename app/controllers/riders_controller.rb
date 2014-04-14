@@ -5,7 +5,11 @@ class RidersController < ApplicationController
   # GET /riders
   # GET /riders.json
   def index
-    @riders = params[:sort] == nil ? Rider.all : Rider.order(sort_column + " " + sort_direction)
+    if params[:search]
+  		@riders = Rider.search(params[:search]).order("uuid asc")
+  	else
+	    @riders = params[:sort] == nil ? Rider.all : Rider.order(sort_column + " " + sort_direction)
+	end
   end
 
   # GET /riders/1
@@ -73,6 +77,10 @@ class RidersController < ApplicationController
       format.html { redirect_to riders_url }
       format.json { head :no_content }
     end
+  end
+
+  def search
+  	@riders = Rider.search(params[:search])
   end
 
   private

@@ -8,7 +8,7 @@ class CompaniesController < ApplicationController
   	if params[:search]
   		@companies = Company.search(params[:search]).order("name asc")
   	else
-	    @companies = params[:sort] == nil ? Company.all : Company.order(sort_column + " " + sort_direction)
+	    @companies = Company.all.order("name asc")
 	end
   end
 
