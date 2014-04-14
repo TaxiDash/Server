@@ -1,11 +1,11 @@
 <div class="form" role="search">
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search...">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </span>
-    </div>
+    <%= form_tag({:controller => controller.controller_path}, method: :get, :class => "input-group") do %>
+        <%= text_field_tag :search, params[:search], :class => "form-control", placeholder: "Search..." %>
+    <span class="input-group-btn">
+        <%= button_to({:controller => controller.controller_path}, :class => "btn btn-default", role: "button", title: "Search", :method => :search) do %>
+            <span type="submit"class="glyphicon glyphicon-search"></span>
+    <% end %>
+    </span>
+<% end %>
 </div>
 
