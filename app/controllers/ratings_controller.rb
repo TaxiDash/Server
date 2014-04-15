@@ -119,7 +119,7 @@ class RatingsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def rating_params
-    params.require(:rating).permit(:driver_id, :rider_id, :rating, :comments, :timestamp)
+    params.require(:rating).permit(:driver_id, :rider_id, :ride_id, :rating, :comments, :timestamp)
   end
 
   def sort_column

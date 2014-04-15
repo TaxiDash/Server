@@ -1,5 +1,6 @@
 <% @column_titles = [ 
     {:sort => "uuid", :title=>"Name"},
+    {:sort => "rides.length", :title => "Total Rides"},
     {:sort => "ratings.length", :title => "Total Ratings"}] %>
     
 <%= render partial: "layouts/index", locals: {type: "Rider", items: @riders, titles: @column_titles} %>
