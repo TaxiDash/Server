@@ -9,7 +9,7 @@
     </thead>
     <tbody>
         <% @driver.ratings.each do |r| %>
-            <% link = "window.location.href = '" << url_for(controller: controller.controller_path, id: r, action: 'show') << "'" %>
+            <% link = "window.location.href = '" << show_rating_path(r) << "'" %>
             <td class="table-link" onclick="<%= link %>"><%= r.rating %></td>
             <td class="table-link" onclick="<%= link %>"><%= r.comments %></td>
             <td class="table-link" onclick="<%= link %>"><%= r.timestamp %></td>
