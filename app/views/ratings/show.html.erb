@@ -30,6 +30,6 @@
 </p>
 
 <p>
-  <strong><%= @rating.ride_id.nil? ? "No Associated Ride" : link_to(show_ride_path(@rating.ride_id), "View Ride") %></strong>
+  <strong><%= @rating.ride_id.nil? ? "No Associated Ride" : link_to("View Ride", show_ride_path(@rating.ride_id)) %></strong>
 </p>
 
