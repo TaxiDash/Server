@@ -3,7 +3,7 @@ class CreateRatings < ActiveRecord::Migration
     create_table :ratings do |t|
       t.integer :driver_id
       t.string :rider_id
-      t.string :ride_id
+      t.integer :ride_id
       t.integer :rating
       t.string :comments
       t.timestamp :timestamp
