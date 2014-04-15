@@ -1,0 +1,62 @@
+<div class= "container-fluid">
+  <div class="row">
+    
+    <div class="col-sm-7 col-md-5">
+        <div class="thumbnail"><%= image_tag @driver.avatar.url, :class=>"img-rounded" %></div>
+    </div>
+	  
+
+    
+    <div class="col-sm-5 col-md-7">
+      <table class="table table-show table-hover">
+        <tbody>
+	        <tr><th>Date of Birth:</th><td><var><%= @driver.date_of_birth %></var></td></tr>
+          <tr><th>Type:</th><td><var><%= @driver.type_id %></var></td></tr>
+	        <tr><th>Address:</th><td><var><%= @driver.address %></var></td></tr>
+          <tr><th>City:</th><td><var><%= @driver.city %></var></td></tr>
+          <tr><th>State:</th><td><var><%= @driver.state %></var></td></tr>
+          <tr><th>Zipcode:</th><td><var><%= @driver.zipcode %></var></td></tr>
+	        <tr><th>Race:</th><td><var><%= @driver.race %></var></td></tr>
+	        <tr><th>Sex:</th><td><var><%= @driver.sex %></var></td></tr>
+          <tr><th>Height:</th><td><var><%= @driver.height %></var></td></tr>
+	        <tr><th>Weight:</th><td><var><%= @driver.weight %></var></td></tr>
+	        <tr><th>License:</th><td><var><%= @driver.license %></var></td></tr>
+	        
+	        <tr>
+	          <th>Phone number:</th>
+	          <td><var>(<%= @driver.phone_number[0, 3] %>) <%= @driver.phone_number[3, 3] %>-<%= @driver.phone_number[6, 10] %> </var></td>
+	        </tr>
+	        
+	        <tr>
+	          	<th>Training completion date: &nbsp </th>
+	          	<td><var><%= @driver.training_completion_date %></var></td>
+	        </tr>
+	        
+	        <tr>
+	          	<th>Permit expiration date:</th>
+	          	<td><var><%= @driver.permit_expiration_date %></var></td>
+	        </tr>
+	        
+	        <tr><th>Permit number:</th><td><var><%= @driver.permit_number %></var></td></tr>
+	        <tr><th>Status:</th><td><var><%= @driver.status %></var></td></tr>
+	        <tr><th>Owner:</th><td><var><%= @driver.vehicle_owner %></var></td></tr>
+	        
+	        <tr>
+	          	<th>Company name:</th>
+	          	<td><var><%= @driver.company.nil? ? "NONE" : @driver.company.name %></var></td>
+	        </tr>
+	        
+	        <tr>
+	          	<th>Physical expiration date:</th>
+	          	<td><var><%= @driver.physical_expiration_date %></var></td>
+	        </tr>
+	        
+          <tr><th>Valid:</th><td><var><%= @driver.valid %></var></td></tr>
+	        <tr><th>Beacon Id:</th><td><var><%= @driver.beacon_id %></var></td></tr>
+	        <tr><th>Average rating:</th><td><var><%= @driver.average_rating %></var></td></tr>
+	        <tr><th>Total ratings:</th><td><var><%= @driver.total_ratings %></var></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

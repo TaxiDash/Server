@@ -32,6 +32,3 @@
     cursor: pointer;
 }
 
-.btn-nav {
-  .button-variant(@btn-default-color; transparent; transparent;);
-}

@@ -1,6 +1,9 @@
 class StaticPagesController < ApplicationController
 
   def overview
+    @drivers = Driver.all
+    @companies = Company.all
+    
     #TODO Set highest rated drivers
         # Week 
         # Month
@@ -15,4 +18,5 @@ class StaticPagesController < ApplicationController
     authorize! :import_export, Company
     authorize! :import_export, Rider
   end
+  
 end
