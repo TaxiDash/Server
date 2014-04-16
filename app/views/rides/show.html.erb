@@ -17,6 +17,11 @@
   <%= @ride.rider.uuid %>
 </p>
 <p>
+  <strong>Rating:</strong>
+  <%= @ride.rating.nil? ? "None Provided" : link_to(@ride.rating.rating, show_rating_path(@ride.rating_id)) %>
+</p>
+<!--
+<p>
   <strong>Start:</strong>
   <%= start = @ride.start_latitude.to_s << ',' << @ride.start_longitude.to_s %>
 </p>
@@ -24,6 +29,7 @@
   <strong>End:</strong>
   <%= endpoint = @ride.end_latitude.to_s << ',' << @ride.end_longitude.to_s%>
 </p>
+-->
 <p>
   <strong>Estimated Fare:</strong>
   $<%= sprintf('%.2f', @ride.estimated_fare) %>
@@ -38,5 +44,5 @@
 </p>
 <%= button_to('https://www.google.com/maps/dir/' << start << '/' << endpoint,
     :class => "btn btn-lg btn-link btn-block", title: "View", method: :get) do %>            
-    <span class="glyphicon glyphicon-eye"></span> View Ride on Map
+    <span class="glyphicon glyphicon-eye"></span>View Ride on Map
 <% end %>

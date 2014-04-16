@@ -1,0 +1,16 @@
+<% link = "window.location.href = '" << show_company_path(company) << "'" %>
+<tr class="table-link" onclick="  <%= link %>" >
+  <th>#<%= number %></th>
+  <td>
+    <li class="media">
+      <div class="pull-left">
+        <%= image_tag company.logo.url(:thumb), :alt => company.name, :class=>"media-object img-rounded"%>
+        <!-- make this image 64xsomething -->
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading"><%= company.name %></h4>
+        <em>Average rating of (<%= company.average_rating %>)</em>
+      </div>
+    </li>
+  </td>
+</tr>

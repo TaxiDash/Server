@@ -12,13 +12,15 @@
 
     <div class="navbar-collapse collapse"> 
       <ul class="nav navbar-nav">
-        <li><%= link_to "Home", overview_path %></li>
-        <li><%= link_to "About", about_path %></li>
-        <li><%= link_to "Help", manual_path %></li>
+        <li class= <%= controller.controller_path == 'static_pages' && controller.action_name == 'overview' ? 'active' : '' %> >
+            <%= link_to "Home", overview_path %></li>
+        <li class= <%= controller.controller_path == 'static_pages' && controller.action_name == 'about' ? 'active' : '' %> >
+            <%= link_to "About", about_path %></li>
+        <li class= <%= controller.controller_path == 'manual' ? 'active' : '' %> ><%= link_to "Help", manual_path %></li>
       </ul> 
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <li><%= link_to "Welcome, #{current_user.username}!", '#' %></li>
+          <p class="navbar-text">Welcome, <%= current_user.username %>!</p>
         <% end %>
         <li><%= render 'layouts/user_widget' %></li>
       </ul>

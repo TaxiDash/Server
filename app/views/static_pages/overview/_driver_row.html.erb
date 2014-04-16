@@ -1,0 +1,18 @@
+<% link = "window.location.href = '" << show_driver_path(driver) << "'" %>
+<tr class="table-link" onclick="  <%= link %>" >
+  <th>#<%= number %></th>
+  <td>
+    <li class="media">
+      <div class="pull-left">
+        <%= image_tag driver.avatar.url(:thumb), :class=>"media-object img-rounded"%>
+        <!-- make this image 64x64 -->
+      </div>
+      
+      <div class="media-body">
+        <h4 class="media-heading"><%= driver.first_name %> <%= driver.last_name %></h4>
+        <p><em>Average rating of <%= driver.average_rating %></em></p>
+      </div>
+      
+    </li>
+  </td>
+</tr>
