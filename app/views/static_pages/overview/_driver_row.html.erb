@@ -10,7 +10,7 @@
       
       <div class="media-body">
         <h4 class="media-heading"><%= driver.first_name %> <%= driver.last_name %></h4>
-        <p><em>Average rating of <%= driver.average_rating %></em></p>
+        <p><em>Average rating of <%= sprintf('%.1f', driver.average_rating) %></em></p>
       </div>
       
     </li>

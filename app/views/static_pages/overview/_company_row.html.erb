@@ -9,7 +9,7 @@
       </div>
       <div class="media-body">
         <h4 class="media-heading"><%= company.name %></h4>
-        <em>Average rating of (<%= company.average_rating %>)</em>
+        <em>Average rating of (<%= sprintf('%.1f', company.average_rating) %>)</em>
       </div>
     </li>
   </td>
