@@ -1,6 +1,15 @@
 <% provide(:title, 'Home') %>
 <% provide(:heading, 'Overview') %> 
 
+<%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
+
+<h3><center>Historical Company Ratings</center></h3>
+<div id="Demo_Chart">
+</div>
+<script>
+new Chartkick.LineChart("Demo_Chart", [{"name":"Green Cab","data":{"2013-02-10 00:00:00 -0800":3,"2013-02-17 00:00:00 -0800":3,"2013-02-24 00:00:00 -0800":3,"2013-03-03 00:00:00 -0800":1,"2013-03-10 00:00:00 -0800":4,"2013-03-17 00:00:00 -0700":3,"2013-03-24 00:00:00 -0700":2,"2013-03-31 00:00:00 -0700":3}},{"name":"Allied Cab","data":{"2013-02-10 00:00:00 -0800":0,"2013-02-17 00:00:00 -0800":0,"2013-02-24 00:00:00 -0800":0,"2013-03-03 00:00:00 -0800":0,"2013-03-10 00:00:00 -0800":2,"2013-03-17 00:00:00 -0700":1,"2013-03-24 00:00:00 -0700":0,"2013-03-31 00:00:00 -0700":0}},{"name":"Checker Cab","data":{"2013-02-10 00:00:00 -0800":0,"2013-02-17 00:00:00 -0800":1,"2013-02-24 00:00:00 -0800":0,"2013-03-03 00:00:00 -0800":0,"2013-03-10 00:00:00 -0800":0,"2013-03-17 00:00:00 -0700":1,"2013-03-24 00:00:00 -0700":0,"2013-03-31 00:00:00 -0700":1}},{"name":"Music City Cab","data":{"2013-02-10 00:00:00 -0800":5,"2013-02-17 00:00:00 -0800":3,"2013-02-24 00:00:00 -0800":2,"2013-03-03 00:00:00 -0800":0,"2013-03-10 00:00:00 -0800":0,"2013-03-17 00:00:00 -0700":1,"2013-03-24 00:00:00 -0700":1,"2013-03-31 00:00:00 -0700":0}},{"name":"Yellow Cab","data":{"2013-02-10 00:00:00 -0800":3,"2013-02-17 00:00:00 -0800":2,"2013-02-24 00:00:00 -0800":1,"2013-03-03 00:00:00 -0800":0,"2013-03-10 00:00:00 -0800":2,"2013-03-17 00:00:00 -0700":2,"2013-03-24 00:00:00 -0700":3,"2013-03-31 00:00:00 -0700":0}}], {});
+</script>
+</br>
 <div class="container-fluid">
 <div class="row">
   <div class="col-sm-6 col-md-6">
@@ -59,7 +68,7 @@
   
   <table class="table-rankings table-hover">
       <% @drivers.each do |driver| %>
-        <%= render partial: 'static_pages/overview/driver_row', locals: {number: "1", driver: driver} %>
+        <%= render partial: 'static_pages/overview/driver_row', locals: {number: driver.id, driver: driver} %>
       <% end %>
     </table>
     <div class="panel-footer">
@@ -123,7 +132,7 @@
   
   <table class="table-rankings table-hover">
       <% @companies.each do |company| %>
-        <%= render partial: 'static_pages/overview/company_row', locals: {number: "1", company: company} %>
+        <%= render partial: 'static_pages/overview/company_row', locals: {number: company.id, company: company} %>
       <% end %>
     </table>
     <div class="panel-footer">
