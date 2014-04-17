@@ -52,6 +52,7 @@ TaxiRatingServer::Application.routes.draw do
 
   #Rides
   resources :rides
+  get 'rides/:id' => 'rides#show', :as => 'show_ride'
   get 'rides_download' => 'rides#download', :as => 'download_rides'
   post 'rides_import' => 'rides#import', :as => 'import_rides'
 
