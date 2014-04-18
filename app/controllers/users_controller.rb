@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   	else
 	    @users = params[:sort] == nil ? User.all : User.order(sort_column + " " + sort_direction)
 	end
+	@users = @users.page(params[:page])
   end
 
   # GET /users/1
@@ -123,7 +124,7 @@ class UsersController < ApplicationController
   end
   
   def sort_column
-    User.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    User.column_names.include?(params[:sort]) ? params[:sort] : ""
   end
 
   def sort_direction
