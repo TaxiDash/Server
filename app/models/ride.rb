@@ -19,4 +19,10 @@ class Ride < ActiveRecord::Base
                   Ride.create! row.to_hash
           end
     end
+    
+    def self.search(query)
+		query = query.downcase
+		p = "%#{query}%"
+		where("driver_id like ? or rating_id like ? or rider_id like ? or start_latitude like ? or start_longitude like ? or end_latitude like ? or end_longitude like ? or estimated_fare like ? or actual_fare like ?", p, p, p, p, p, p, p, p, p)
+	end
 end

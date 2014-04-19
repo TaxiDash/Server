@@ -26,4 +26,10 @@ class Rating < ActiveRecord::Base
           end
     end
 
+	def self.search(query)
+		query = query.downcase
+		p = "%#{query}%"
+		where("driver_id like ? or rider_id like ? or rating like ? or timestamp like ? or comment like ?", p, p, p, p, p)
+	end
+
 end
