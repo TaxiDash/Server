@@ -1,8 +1,8 @@
 class StaticPagesController < ApplicationController
 
   def overview
-    @drivers = Driver.all
-    @companies = Company.all
+    @drivers = {}
+    @companies = {}
     
   end
 
