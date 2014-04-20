@@ -6,6 +6,7 @@ TaxiRatingServer::Application.routes.draw do
   get 'overview' => 'static_pages#overview', :as => 'overview'
   get 'about' => 'static_pages#about', :as => 'about'
   get 'static_pages/import_export', :as => 'import_export'
+  get 'get_best_worst/:time&:sort_dir&:length' => 'static_pages#get_ratings'
 
   #Driver stuff
   resources :drivers
@@ -63,13 +64,6 @@ TaxiRatingServer::Application.routes.draw do
   get "manual/rate", :as => "man_rate"
   get "manual/check_rating", :as => "man_check_rating"
   get "manual/get_stats", :as => "man_get_stats"
-  get "manual/users"
-  get "manual/companies"
-  get "manual/drivers"
-  get "manual/documents"
-  get "manual/ratings"
-  get "manual/riders"
-  get "manual/miscellaneous"
   get "manual/faq", :as => "man_faq"
   #get 'users/new/' => 'users/sign_up'
   # The priority is based upon order of creation: first created -> highest priority.

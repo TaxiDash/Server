@@ -16,8 +16,9 @@ gem 'cancan'
 # Image Attaching/Displaying
 gem 'paperclip', "~> 4.1"
 
-# Graphing Gem
+# Overview page
 gem 'chartkick'
+gem 'underscore-rails'
 
 gem 'sass-rails'
 gem 'uglifier'
