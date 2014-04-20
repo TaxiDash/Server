@@ -1,9 +1,6 @@
 class StaticPagesController < ApplicationController
 
   def overview
-    @drivers = {}
-    @companies = {}
-    
   end
 
   def get_ratings
