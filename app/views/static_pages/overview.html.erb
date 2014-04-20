@@ -66,10 +66,7 @@ new Chartkick.LineChart("Demo_Chart", [{"name":"Green Cab","data":{"2013-02-10 0
     </script>
   </p>
   
-  <table class="table-rankings table-hover">
-      <% @drivers.each do |driver| %>
-        <%= render partial: 'static_pages/overview/driver_row', locals: {number: driver.id, driver: driver} %>
-      <% end %>
+  <table id= "driver_table" class="table-rankings table-hover">
     </table>
     <div class="panel-footer">
       see more... link to dashboard sorted one way or another?
@@ -130,11 +127,35 @@ new Chartkick.LineChart("Demo_Chart", [{"name":"Green Cab","data":{"2013-02-10 0
     </script>
   </p>
   
-  <table class="table-rankings table-hover">
-      <% @companies.each do |company| %>
-        <%= render partial: 'static_pages/overview/company_row', locals: {number: company.id, company: company} %>
-      <% end %>
-    </table>
+  <table id="company_table" class="table-rankings table-hover">
+  </table>
+  <script>
+//TODO Create template with underscorejs
+  
+    function createTables(data){
+
+        //Create the template for the table
+        var companies, drivers;
+        //TODO Create the company info using the template
+        //TODO 
+
+        //Insert the output of the table 
+        $("#drivers_table").append(drivers);
+        $("#company_table").append(companies);
+    }
+     //Get the companies and drivers to display
+     $.ajax({
+         url: 'http://localhost:3000/get_best_worst/day&worst&5.json', 
+         dataType: "json",
+         cache: false})
+        .success( function(data) {
+                createTables(data) })
+         .fail( function (error) {
+             console.log("Could not request company/driver info: " + error);
+     });
+
+
+  </script>
     <div class="panel-footer">
       see more... link to dashboard sorted one way or another?
     </div>
