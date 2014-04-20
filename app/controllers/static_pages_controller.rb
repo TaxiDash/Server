@@ -1,10 +1,10 @@
 class StaticPagesController < ApplicationController
+  before_action :authenticate_user!
 
   def overview
   end
 
   def get_ratings
-      :authenticate_user!
       length = params[:length].to_i || 5 #Entries to return
       sort_dir = params[:sort_dir] || "best" #Entries to return
 
