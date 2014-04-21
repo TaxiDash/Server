@@ -53,6 +53,12 @@ class RatingsController < ApplicationController
 
     @rating.rider_id = @rider.id
 
+    # Create the ride if provided
+    if not rating_params.start_latitude.nil?
+        ride = Ride.new(ride_params)
+        ride.save
+    end
+
     # Check the amount of recent ratings 
     if @rating.rider.ratings.where(:created_at => 24.hours.ago..Time.now).to_a.length < 11 #10 ratings per day
 
@@ -68,10 +74,17 @@ class RatingsController < ApplicationController
       @company.total_ratings +=  1
       @company.save
 
+      # Link rating to ride
+      @rating.ride_id = ride.id || nil
+
       respond_to do |format|
         if @rating.save
           format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
           format.json { render action: 'show', status: :created, location: @rating }
+          if not ride.nil?
+            ride.rating_id = @rating.id
+            ride.save
+          end
         else
           format.html { render action: 'new' }
           format.json { render json: @rating.errors, status: :unprocessable_entity }
@@ -120,6 +133,11 @@ class RatingsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def rating_params
     params.require(:rating).permit(:driver_id, :rider_id, :ride_id, :rating, :comments, :timestamp)
+  end
+
+  def ride_params
+    params.require(:ride).permit(:driver_id, :rider_id, :timestamp,
+      :start_latitude, :start_longitude, :end_latitude, :end_longitude, :estimated_fare, :actual_fare) # ride params
   end
 
   def sort_column
