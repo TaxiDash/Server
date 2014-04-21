@@ -79,7 +79,7 @@ puts ride_params
       @company.save
 
       # Link rating to ride
-      @rating.ride_id = ride.id || nil
+      @rating.ride_id = ride.nil? ? nil : ride.id
 
       respond_to do |format|
         if @rating.save
@@ -140,7 +140,7 @@ puts ride_params
   end
 
   def ride_params
-    params.require(:ride).permit(:driver_id, :rider_id, :timestamp,
+    params.permit(:driver_id, :rider_id, :timestamp,
       :start_latitude, :start_longitude, :end_latitude, :end_longitude, :estimated_fare, :actual_fare) # ride params
   end
 
