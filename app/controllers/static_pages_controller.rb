@@ -75,9 +75,6 @@ class StaticPagesController < ApplicationController
       @companies = @companies[0..length-1]
   end
 
-  def companies_rating(time)
-  end
-
   def import_export
     authorize! :import_export, Driver
     authorize! :import_export, Company
