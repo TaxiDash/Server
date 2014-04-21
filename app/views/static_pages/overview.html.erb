@@ -41,29 +41,6 @@ new Chartkick.LineChart("Demo_Chart", [{"name":"Green Cab","data":{"2013-02-10 0
       </label>
     </div>
     
-    <script>
-      $('#best').click(function () {
-        
-      });
-      $('#worst').click(function () {
-        
-      });
-      $('#day').click(function () {
-        
-      });
-      $('#week').click(function () {
-        
-      });
-      $('#month').click(function () {
-        
-      });
-      $('#year').click(function () {
-        
-      });
-      $('#all').click(function () {
-        
-      });
-    </script>
   </p>
   
   <table id= "driver_table" class="table-rankings table-hover">
@@ -75,86 +52,89 @@ new Chartkick.LineChart("Demo_Chart", [{"name":"Green Cab","data":{"2013-02-10 0
   </div>
   <div class="col-sm-6 col-md-6">
   <h3>Company Rankings</h3>
-  <p>
-    <div class="btn-group" data-toggle="buttons">
-      <label class="btn btn-success btn-xs active">
-        <input type="radio" name="options" id="best">Best of
-      </label>
-      <label class="btn btn-danger btn-xs">
-        <input type="radio" name="options" id="worst">Worst of
-      </label>
-    </div>
-    <div class="btn-group" data-toggle="buttons">
-      <label class="btn btn-default btn-xs">
-        <input type="radio" name="time" id="day">Today
-      </label>
-      <label class="btn btn-default btn-xs">
-        <input type="radio" name="time" id="week">This Week
-      </label>
-      <label class="btn btn-default btn-xs">
-        <input type="radio" name="time" id="month">This Month
-      </label>
-      <label class="btn btn-default btn-xs">
-        <input type="radio" name="time" id="year">This Year
-      </label>
-      <label class="btn btn-default btn-xs active">
-        <input type="radio" name="time" id="all">Overall
-      </label>
-    </div>
-    
-    <script>
-      $('#best').click(function () {
-        
-      });
-      $('#worst').click(function () {
-        
-      });
-      $('#day').click(function () {
-        
-      });
-      $('#week').click(function () {
-        
-      });
-      $('#month').click(function () {
-        
-      });
-      $('#year').click(function () {
-        
-      });
-      $('#all').click(function () {
-        
-      });
-    </script>
-  </p>
   
   <table id="company_table" class="table-rankings table-hover">
   </table>
   <script>
-//TODO Create template with underscorejs
-  
-    function createTables(data){
+      var time = "all",
+          type = "best",
+          count = 5;
 
-        //Create the template for the table
-        var companies, drivers;
-        //TODO Create the company info using the template
-        //TODO 
+      $('best').click(function () {
+              type = 'best';
+              requestData();
+      });
+      $('worst').click(function () {
+              type = 'worst';
+              requestData();
+      });
+      $('day').click(function () {
+              time = 'day';
+              requestData();
+      });
+      $('week').click(function () {
+              time = 'week';
+              requestData();
+      });
+      $('month').click(function () {
+              time = 'month';
+              requestData();
+      });
+      $('year').click(function () {
+              time = 'year';
+              requestData();
+      });
+      $('all').click(function () {
+              time = 'all';
+              requestData();
+      });
 
-        //Insert the output of the table 
-        $("#drivers_table").append(drivers);
-        $("#company_table").append(companies);
-    }
+    var requestData = function(){ 
      //Get the companies and drivers to display
      $.ajax({
-         url: 'http://localhost:3000/get_best_worst/day&worst&5.json', 
+         url: 'http://localhost:3000/get_best_worst/' + time + '&' + type + '&' + count + '.json', 
          dataType: "json",
          cache: false})
         .success( function(data) {
                 createTables(data) })
          .fail( function (error) {
-             console.log("Could not request company/driver info: " + error);
+             console.log("Could not request company/driver info: " + JSON.stringify(error));
      });
+    }
+ 
+    //Create template with underscorejs
+    _.templateSettings = {
+        interpolate: /\{\{\=(.+?)\}\}/g,// {{= }} & {{ }}
+        evaluate: /\{\{(.+?)\}\}/g
+    };
 
+    var c_row = _.template("<tr class=\"table-link\" onclick=\"window.location.href = '{{= url }}'\" >\n <th>#{{= number }}</th>\n  <td>\n    <li class=\"media\">\n      <div class=\"pull-left\">\n        <img src=\"{{= logo }}\" class=\"media-object img-rounded\" alt=\"{{= name }}\"/>\n        <!-- make this image 64xsomething -->\n      </div>\n      <div class=\"media-body\">\n        <h4 class=\"media-heading\">{{= name }}</h4>\n        <em>Average rating of {{= average_rating }}</em>\n      </div>\n    </li>\n  </td>\n</tr>"),
+        d_row = _.template("\n<tr class=\"table-link\" onclick=\"window.location.href = '{{= url }}'\" >\n  <th>#{{= number }}</th>\n  <td>\n    <li class=\"media\">\n      <div class=\"pull-left\">\n        <img src=\"{{= avatar}}\" class=\"media-object img-rounded\" alt=\"{{= name }}\"/>\n        <!-- make this image 64x64 -->\n      </div>\n      \n      <div class=\"media-body\">\n        <h4 class=\"media-heading\">{{= first_name }} {{= last_name }}</h4>\n        <p><em>Average rating of {{= average_rating}} </em></p>\n      </div>\n      \n    </li>\n  </td>\n</tr>\n");
 
+    var createTables = function(data){
+
+        var companies = "",
+            drivers = "",
+            i = -1;
+
+        //Create the company info using the template
+        while(++i < data.companies.length){
+            data.companies[i].number = i+1;
+            companies += c_row(data.companies[i]);
+        }
+
+        i = -1;
+        while(++i < data.drivers.length){
+            data.drivers[i].number = i+1;
+            drivers += d_row(data.drivers[i]);
+        }
+
+        //Insert the output of the table 
+        $("#driver_table").append(drivers);
+        $("#company_table").append(companies);
+    }
+
+    requestData();
   </script>
     <div class="panel-footer">
       see more... link to dashboard sorted one way or another?
