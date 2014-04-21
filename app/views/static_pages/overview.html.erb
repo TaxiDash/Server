@@ -95,7 +95,7 @@
     var requestData = function(){ 
      //Get the companies and drivers to display
      $.ajax({
-         url: 'http://localhost:3000/get_best_worst/' + time + '&' + type + '&' + count + '.json', 
+         url: 'get_best_worst/' + time + '&' + type + '&' + count + '.json', 
          dataType: "json",
          cache: false})
         .success( function(data) {
