@@ -11,11 +11,8 @@ new Chartkick.LineChart("Demo_Chart", [{"name":"Green Cab","data":{"2013-02-10 0
 </script>
 </br>
 <div class="container-fluid">
-<div class="row">
-  <div class="col-sm-6 col-md-6">
-  <h3>Driver Rankings</h3>
   <p>
-    <div class="btn-group" data-toggle="buttons">
+    <div class="btn-group btn-block" data-toggle="buttons">
       <label class="btn btn-success btn-xs active">
         <input type="radio" name="options" id="best">Best of
       </label>
@@ -23,7 +20,7 @@ new Chartkick.LineChart("Demo_Chart", [{"name":"Green Cab","data":{"2013-02-10 0
         <input type="radio" name="options" id="worst">Worst of
       </label>
     </div>
-    <div class="btn-group" data-toggle="buttons">
+    <div class="btn-group btn-block" data-toggle="buttons">
       <label class="btn btn-default btn-xs">
         <input type="radio" name="time" id="day">Today
       </label>
@@ -42,6 +39,10 @@ new Chartkick.LineChart("Demo_Chart", [{"name":"Green Cab","data":{"2013-02-10 0
     </div>
     
   </p>
+<div class="row">
+  <div class="col-sm-6 col-md-6">
+
+  <h3>Driver Rankings</h3>
   
   <table id= "driver_table" class="table-rankings table-hover">
     </table>
