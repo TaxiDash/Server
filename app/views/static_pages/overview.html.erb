@@ -45,9 +45,11 @@ new Chartkick.LineChart("Demo_Chart", [{"name":"Green Cab","data":{"2013-02-10 0
   
   <table id= "driver_table" class="table-rankings table-hover">
     </table>
+<!--
     <div class="panel-footer">
       see more... link to dashboard sorted one way or another?
     </div>
+-->
     
   </div>
   <div class="col-sm-6 col-md-6">
@@ -60,31 +62,31 @@ new Chartkick.LineChart("Demo_Chart", [{"name":"Green Cab","data":{"2013-02-10 0
           type = "best",
           count = 5;
 
-      $('best').click(function () {
+      $("input[id=best]").change(function () {
               type = 'best';
               requestData();
       });
-      $('worst').click(function () {
+      $("input[id=worst]").change(function () {
               type = 'worst';
               requestData();
       });
-      $('day').click(function () {
+      $("input[id=day]").change(function () {
               time = 'day';
               requestData();
       });
-      $('week').click(function () {
+      $("input[id=week]").change(function () {
               time = 'week';
               requestData();
       });
-      $('month').click(function () {
+      $("input[id=month]").change(function () {
               time = 'month';
               requestData();
       });
-      $('year').click(function () {
+      $("input[id=year]").change(function () {
               time = 'year';
               requestData();
       });
-      $('all').click(function () {
+      $("input[id=all]").change(function () {
               time = 'all';
               requestData();
       });
@@ -130,15 +132,17 @@ new Chartkick.LineChart("Demo_Chart", [{"name":"Green Cab","data":{"2013-02-10 0
         }
 
         //Insert the output of the table 
-        $("#driver_table").append(drivers);
-        $("#company_table").append(companies);
+        $("#driver_table").html(drivers);
+        $("#company_table").html(companies);
     }
 
     requestData();
   </script>
-    <div class="panel-footer">
-      see more... link to dashboard sorted one way or another?
+<!--
+    <div class="panel-footer" id="more_companies">
+      See More...
     </div>
+-->
     
   </div>
 </div>
