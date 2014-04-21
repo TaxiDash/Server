@@ -19,7 +19,7 @@
 </p>
 <p>
   <strong>Average Driver Rating:</strong>
-  <%= @company.average_rating %>
+  <%= sprintf( '%.2f', @company.average_rating) %>
 </p>
 <p>
   <strong>Total Ratings:</strong>

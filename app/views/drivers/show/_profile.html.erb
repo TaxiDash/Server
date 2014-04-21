@@ -53,7 +53,7 @@
 	        
           <tr><th>Valid:</th><td><var><%= @driver.valid %></var></td></tr>
 	        <tr><th>Beacon Id:</th><td><var><%= @driver.beacon_id %></var></td></tr>
-	        <tr><th>Average rating:</th><td><var><%= @driver.average_rating %></var></td></tr>
+	        <tr><th>Average rating:</th><td><var><%= sprintf('%.2f', @driver.average_rating) %></var></td></tr>
 	        <tr><th>Total ratings:</th><td><var><%= @driver.total_ratings %></var></td></tr>
         </tbody>
       </table>
