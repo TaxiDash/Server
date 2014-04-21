@@ -54,8 +54,12 @@ class RatingsController < ApplicationController
     @rating.rider_id = @rider.id
 
     # Create the ride if provided
-    if not rating_params.start_latitude.nil?
+puts "--------  --- About to create ride"
+puts ride_params
+    if not ride_params[:start_latitude].nil?
+        puts "RIDE PARAMS: #{ride_params}"
         ride = Ride.new(ride_params)
+        ride.rider_id = @rider.id
         ride.save
     end
 
