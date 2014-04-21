@@ -29,7 +29,7 @@
   <%= @rating.timestamp %>
 </p>
 
-<p>
-  <strong><%= @rating.ride_id.nil? ? "No Associated Ride" : link_to("View Ride", show_ride_path(@rating.ride_id)) %></strong>
-</p>
+<span class="btn btn-lg btn-lnk btn-block">
+  <%= @rating.ride_id.nil? ? "No Associated Ride" : link_to("View Ride", show_ride_path(@rating.ride_id)) %>
+</span>
 
