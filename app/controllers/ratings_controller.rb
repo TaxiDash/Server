@@ -140,7 +140,7 @@ puts ride_params
   end
 
   def ride_params
-    params.permit(:driver_id, :rider_id, :timestamp,
+    params.require(:ride).permit(:driver_id, :rider_id, :timestamp,
       :start_latitude, :start_longitude, :end_latitude, :end_longitude, :estimated_fare, :actual_fare) # ride params
   end
 
