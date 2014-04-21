@@ -3,7 +3,7 @@
 
 <%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
 
-<h3><center>Historical Company Ratings</center></h3>
+<h3>Historical Company Ratings</h3>
 <div id="Demo_Chart">
 </div>
 <script>
@@ -11,34 +11,34 @@ new Chartkick.LineChart("Demo_Chart", [{"name":"Green Cab","data":{"2013-02-10 0
 </script>
 </br>
 <div class="container-fluid">
-  <p>
-    <div class="btn-group btn-block" data-toggle="buttons">
-      <label class="btn btn-success btn-xs active">
+<br>
+  <div class="btn-toolbar">
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-default active">
         <input type="radio" name="options" id="best">Best of
       </label>
-      <label class="btn btn-danger btn-xs">
+      <label class="btn btn-default">
         <input type="radio" name="options" id="worst">Worst of
       </label>
     </div>
-    <div class="btn-group btn-block" data-toggle="buttons">
-      <label class="btn btn-default btn-xs">
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-default">
         <input type="radio" name="time" id="day">Today
       </label>
-      <label class="btn btn-default btn-xs">
+      <label class="btn btn-default">
         <input type="radio" name="time" id="week">This Week
       </label>
-      <label class="btn btn-default btn-xs">
+      <label class="btn btn-default">
         <input type="radio" name="time" id="month">This Month
       </label>
-      <label class="btn btn-default btn-xs">
+      <label class="btn btn-default">
         <input type="radio" name="time" id="year">This Year
       </label>
-      <label class="btn btn-default btn-xs active">
+      <label class="btn btn-default active">
         <input type="radio" name="time" id="all">Overall
       </label>
     </div>
-    
-  </p>
+  </div>
 <div class="row">
   <div class="col-sm-6 col-md-6">
 
