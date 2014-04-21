@@ -95,7 +95,7 @@
     var requestData = function(){ 
      //Get the companies and drivers to display
      $.ajax({
-         url: 'get_best_worst/' + time + '&' + type + '&' + count + '.json', 
+         url: 'http://taxi-rating-server.herokuapp.com/get_best_worst/' + time + '&' + type + '&' + count + '.json', 
          dataType: "json",
          cache: false})
         .success( function(data) {
