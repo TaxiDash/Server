@@ -3,8 +3,6 @@
 
 <%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
 
-<script src="/assets/underscore.js"></script>
-
 <h3><center>Historical Company Ratings</center></h3>
 <div id="Demo_Chart">
 </div>
@@ -108,7 +106,7 @@ new Chartkick.LineChart("Demo_Chart", [{"name":"Green Cab","data":{"2013-02-10 0
     }
  
     //Create template with underscorejs
-    var _ = require("underscore");
+    //var _ = require(["underscore"]);
     _.templateSettings = {
         interpolate: /\{\{\=(.+?)\}\}/g,// {{= }} & {{ }}
         evaluate: /\{\{(.+?)\}\}/g
