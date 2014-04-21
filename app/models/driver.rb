@@ -5,7 +5,7 @@ class Driver < ActiveRecord::Base
     has_attached_file :avatar, 
         :path => ":rails_root/public/images/:class/:id/:basename_:style.:extension",
         :url => "/images/:class/:id/:basename_:style.:extension",
-        :default_style => :preview,
+        :default_style => :thumb,
         :styles => {
             :thumb    => ['100x100^',  :jpg, :quality => 70],
             :preview  => ['300x300^',  :jpg, :quality => 70],

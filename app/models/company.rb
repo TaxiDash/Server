@@ -3,7 +3,7 @@ class Company < ActiveRecord::Base
     has_attached_file :logo, 
         :path => ":rails_root/public/images/:class/:id/:basename_:style.:extension",
         :url => "/images/:class/:id/:basename_:style.:extension",
-        :default_style => :preview,
+        :default_style => :thumb,
         :styles => {
             :thumb    => ['50x50^',  :jpg, :quality => 70],
             :preview  => ['300x300^',  :jpg, :quality => 70],
