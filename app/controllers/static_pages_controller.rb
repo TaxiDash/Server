@@ -26,12 +26,14 @@ class StaticPagesController < ApplicationController
       #Get the relevant ratings based on time
       puts "time is #{params[:time]}"
       case params[:time]
-      when "month"
-        @ratings = Rating.where(:created_at => 1.month.ago..Time.now)
       when "day"
         @ratings = Rating.where(:created_at => 1.day.ago..Time.now)
       when "week"
         @ratings = Rating.where(:created_at => 1.week.ago..Time.now)
+      when "month"
+        @ratings = Rating.where(:created_at => 1.month.ago..Time.now)
+      when "year"
+        @ratings = Rating.where(:created_at => 1.year.ago..Time.now)
       when "all"
         @ratings = Rating.all
       end
