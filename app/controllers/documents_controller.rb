@@ -93,7 +93,7 @@ class DocumentsController < ApplicationController
     end
     
     def sort_column
-    	Document.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    	Document.column_names.include?(params[:sort]) ? params[:sort] : "driver_id"
     end
 
 	def sort_direction

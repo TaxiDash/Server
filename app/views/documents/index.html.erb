@@ -1,4 +1,4 @@
-<% @column_titles = [ {:sort => "driver", :title=>"Driver"}, {:sort => "title", :title => "Title"} ] %>
+<% @column_titles = [ {:sort => "driver_id", :title=>"Driver"}, {:sort => "title", :title => "Title"} ] %>
 
 <%= render partial: "layouts/index", locals: {type: "Document", items: @documents, titles: @column_titles} %>
  
