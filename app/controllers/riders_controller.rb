@@ -22,6 +22,7 @@ class RidersController < ApplicationController
   	else
 	    @riders = params[:sort] == nil ? Rider.all : Rider.order(sort_column + " " + sort_direction)
 	end
+	@riders = @riders.page(params[:page])
   end
 
   # GET /riders/1

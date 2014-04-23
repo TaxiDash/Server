@@ -10,6 +10,7 @@ class DriversController < ApplicationController
   	else
 	    @drivers = params[:sort] == nil ? Driver.all : Driver.order(sort_column + " " + sort_direction)
 	end
+	@drivers = @drivers.page(params[:page])
   end
 
   # GET /drivers/1
