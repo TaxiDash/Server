@@ -112,6 +112,7 @@ new Chartkick.LineChart("Demo_Chart", [{"name":"Green Cab","data":{"2013-02-10 0
         evaluate: /\{\{(.+?)\}\}/g
     };
 
+    //Templates for company row and driver rows
     var c_row = _.template("<tr class=\"table-link\" onclick=\"window.location.href = '{{= url }}'\" >\n <th>#{{= number }}</th>\n  <td>\n    <li class=\"media\">\n      <div class=\"pull-left\">\n        <img src=\"{{= logo }}\" class=\"media-object img-rounded\" alt=\"{{= name }}\"/>\n        <!-- make this image 64xsomething -->\n      </div>\n      <div class=\"media-body\">\n        <h4 class=\"media-heading\">{{= name }}</h4>\n        <em>Average rating of {{= average_rating }}</em>\n      </div>\n    </li>\n  </td>\n</tr>"),
         d_row = _.template("\n<tr class=\"table-link\" onclick=\"window.location.href = '{{= url }}'\" >\n  <th>#{{= number }}</th>\n  <td>\n    <li class=\"media\">\n      <div class=\"pull-left\">\n        <img src=\"{{= avatar}}\" class=\"media-object img-rounded\" alt=\"{{= name }}\"/>\n        <!-- make this image 64x64 -->\n      </div>\n      \n      <div class=\"media-body\">\n        <h4 class=\"media-heading\">{{= first_name }} {{= last_name }}</h4>\n        <p><em>Average rating of {{= average_rating}} </em></p>\n      </div>\n      \n    </li>\n  </td>\n</tr>\n");
 

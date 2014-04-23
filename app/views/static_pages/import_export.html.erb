@@ -37,14 +37,18 @@
         <% end %>
     </td>
     </tr>
--->
 <h2>Users</h2>
     <div>
         <%= button_to(download_users_path, :class => "btn btn-default", :method => :get) do %>            
             <span class="glyphicon glyphicon-export"></span> Export Users
         <% end %>
+        <%= form_tag import_companies_path, multipart: true do %>
+            <%= file_field_tag :file %>
+            <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                <i class="glyphicon glyphicon-import"></i>Import Companies 
+            <% end %>
+        <% end %>
 
-        <%= render partial: 'static_pages/import_export/import', locals: {type: "Users"} %>
     </div>
 
 <h2>Companies</h2>
