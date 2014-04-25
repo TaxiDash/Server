@@ -8,10 +8,10 @@ class CompaniesController < ApplicationController
   	if params[:search]
   		@companies = Company.search(params[:search]).order("name asc")
   	elsif params[:sort] == "drivers.length"
-  		if sort_direction == "desc"
-  			@companies = Company.find(:all, :include => :drivers).sort_by { |c| c.drivers.length }.reverse
+  		if sort_direction == "asc"
+  			@companies = Company.joins(:drivers).group("drivers.company_id").order("count(drivers.company_id) asc")
   		else
-  			@companies = Company.find(:all, :include => :drivers).sort_by { |c| c.drivers.length }
+  			@companies = Company.joins(:drivers).group("drivers.company_id").order("count(drivers.company_id) desc")
   		end
   	else
 	    @companies = params[:sort] == nil ? Company.all : Company.order(sort_column + " " + sort_direction)
@@ -113,15 +113,11 @@ class CompaniesController < ApplicationController
     end
     
     def sort_column
-<<<<<<< HEAD
     	if params[:sort] == "drivers.length"
     		"drivers.length"
     	else
     		Company.column_names.include?(params[:sort]) ? params[:sort] : "name"
     	end
-=======
-    	Company.column_names.include?(params[:sort]) ? params[:sort] : ""
->>>>>>> css
     end
 
 	def sort_direction

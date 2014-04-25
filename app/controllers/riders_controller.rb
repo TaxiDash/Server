@@ -8,16 +8,16 @@ class RidersController < ApplicationController
     if params[:search]
   		@riders = Rider.search(params[:search]).order("uuid asc")
   	elsif params[:sort] == "rides.length"
-  		if sort_direction == "desc"
-  			@riders = Rider.find(:all, :include => :rides).sort_by { |r| r.rides.length }.reverse
+  		if sort_direction == "asc"
+  			@riders = Rider.joins(:rides).group("rides.rider_id").order("count(rides.rider_id) asc")
   		else
-  			@riders = Rider.find(:all, :include => :rides).sort_by { |r| r.rides.length }
+  			@riders = Rider.joins(:rides).group("rides.rider_id").order("count(rides.rider_id) desc")
   		end
   	elsif params[:sort] == "ratings.length"
-  		if sort_direction == "desc"
-  			@riders = Rider.find(:all, :include => :ratings).sort_by { |r| r.ratings.length }.reverse
+  		if sort_direction == "asc"
+  			@riders = Rider.joins(:ratings).group("ratings.rider_id").order("count(ratings.rider_id) asc")
   		else
-  			@riders = Rider.find(:all, :include => :ratings).sort_by { |r| r.ratings.length }
+  			@riders = Rider.joins(:ratings).group("ratings.rider_id").order("count(ratings.rider_id) desc")
   		end  	
   	else
 	    @riders = params[:sort] == nil ? Rider.all : Rider.order(sort_column + " " + sort_direction)
