@@ -23,6 +23,21 @@ class Ride < ActiveRecord::Base
     def self.search(query)
 		query = query.downcase
 		p = "%#{query}%"
-		where("driver_id like ? or rating_id like ? or rider_id like ? or start_latitude like ? or start_longitude like ? or end_latitude like ? or end_longitude like ? or estimated_fare like ? or actual_fare like ?", p, p, p, p, p, p, p, p, p)
+		dl = p
+		df = p
+		r = p
+		a = query.split
+		rn = Company.select('uuid').all.map(&:uuid)
+		ln = Driver.select('last_name').all.map(&:last_name)
+		fn = Driver.select('first_name').all.map(&:last_name)
+		cn.map!{|s| s.downcase}
+		ln.map!{|s| s.downcase}
+		fn.map!{|s| s.downcase}	
+		
+		(rn.include?(query)) ? r = 1 + rn.find_index { |x| x == (query) } : r = r
+		(fn.include?(a[0])) ? df = 1 + fn.find_index { |x| x == (a[0]) } : df = df
+		(ln.include?(a[1])) ? dl = 1 + ln.find_index { |x| x == (a[1]) } : dl = dl
+		
+		where("driver_id like ? or driver_id like ? or rider_id like ? or start_latitude like ? or start_longitude like ? or end_latitude like ? or end_longitude like ? or estimated_fare like ? or actual_fare like ?", dl, df, r, p, p, p, p, p, p)
 	end
 end
