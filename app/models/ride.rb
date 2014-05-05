@@ -27,10 +27,10 @@ class Ride < ActiveRecord::Base
 		df = p
 		r = p
 		a = query.split
-		rn = Company.select('uuid').all.map(&:uuid)
+		rn = Rider.select('uuid').all.map(&:uuid)
 		ln = Driver.select('last_name').all.map(&:last_name)
 		fn = Driver.select('first_name').all.map(&:last_name)
-		cn.map!{|s| s.downcase}
+		rn.map!{|s| s.downcase}
 		ln.map!{|s| s.downcase}
 		fn.map!{|s| s.downcase}	
 		
