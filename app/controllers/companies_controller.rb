@@ -7,9 +7,16 @@ class CompaniesController < ApplicationController
   def index
   	if params[:search]
   		@companies = Company.search(params[:search]).order("name asc")
+  	elsif params[:sort] == "drivers.length"
+  		if sort_direction == "asc"
+  			@companies = Company.joins(:drivers).group("drivers.company_id").order("count(drivers.company_id) asc")
+  		else
+  			@companies = Company.joins(:drivers).group("drivers.company_id").order("count(drivers.company_id) desc")
+  		end
   	else
 	    @companies = params[:sort] == nil ? Company.all : Company.order(sort_column + " " + sort_direction)
 	end
+	@companies = @companies.page(params[:page])
   end
 
   # GET /companies/1
@@ -106,7 +113,11 @@ class CompaniesController < ApplicationController
     end
     
     def sort_column
-    	Company.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    	if params[:sort] == "drivers.length"
+    		"drivers.length"
+    	else
+    		Company.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    	end
     end
 
 	def sort_direction

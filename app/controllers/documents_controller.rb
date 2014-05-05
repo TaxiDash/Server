@@ -1,11 +1,16 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
   helper_method :sort_column, :sort_direction
-
+  
   # GET /documents
   # GET /documents.json
   def index
-    @documents = params[:sort] == nil ? Document.all : Document.order(sort_column + " " + sort_direction)
+    if params[:search]
+  		@documents = Document.search(params[:search]).order("driver_id asc")
+  	else
+	    @documents = params[:sort] == nil ? Document.all : Document.order(sort_column + " " + sort_direction)
+	end
+	@documents = @documents.page(params[:page])
   end
 
   # GET /documents/1
@@ -81,6 +86,10 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def search
+  	@users = Document.search(params[:search])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_document
@@ -93,10 +102,10 @@ class DocumentsController < ApplicationController
     end
     
     def sort_column
-    	Document.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    	Document.column_names.include?(params[:sort]) ? params[:sort] : "driver_id"
     end
 
-	def sort_direction
+    def sort_direction
 		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-	end
+    end
 end

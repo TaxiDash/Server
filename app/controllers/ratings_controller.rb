@@ -5,7 +5,12 @@ class RatingsController < ApplicationController
   # GET /ratings
   # GET /ratings.json
   def index
-    @ratings = params[:sort] == nil ? Rating.all : Rating.order(sort_column + " " + sort_direction)
+  	if params[:search]
+  		@ratings = Rating.search(params[:search]).order("driver_id asc")
+  	else
+	    @ratings = params[:sort] == nil ? Rating.all : Rating.order(sort_column + " " + sort_direction)
+	end
+    @ratings = @ratings.page(params[:page])
   end
 
   # GET /ratings/1
@@ -79,7 +84,7 @@ puts ride_params
       @company.save
 
       # Link rating to ride
-      @rating.ride_id = ride.id || nil
+      @rating.ride_id = ride.nil? ? nil : ride.id
 
       respond_to do |format|
         if @rating.save
@@ -145,7 +150,7 @@ puts ride_params
   end
 
   def sort_column
-    	Rating.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    	Rating.column_names.include?(params[:sort]) ? params[:sort] : "driver_id"
   end
 
   def sort_direction

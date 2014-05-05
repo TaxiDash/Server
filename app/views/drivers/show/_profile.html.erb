@@ -18,8 +18,8 @@
           <tr><th>Zipcode:</th><td><var><%= @driver.zipcode %></var></td></tr>
 	        <tr><th>Race:</th><td><var><%= @driver.race %></var></td></tr>
 	        <tr><th>Sex:</th><td><var><%= @driver.sex %></var></td></tr>
-          <tr><th>Height:</th><td><var><%= @driver.height %></var></td></tr>
-	        <tr><th>Weight:</th><td><var><%= @driver.weight %></var></td></tr>
+          <tr><th>Height:</th><td><var><%= @driver.height/12 %> ft <%= @driver.height%12 %> in</var></td></tr>
+	        <tr><th>Weight:</th><td><var><%= @driver.weight %> lbs</var></td></tr>
 	        <tr><th>License:</th><td><var><%= @driver.license %></var></td></tr>
 	        
 	        <tr>

@@ -25,4 +25,12 @@ class Document < ActiveRecord::Base
                     end
     end
 
+	# search documents in the table
+	def self.search(query)
+		query = query.downcase
+		p = "%#{query}%"
+				
+		where("driver_id like ? or title like ? or description like ?", p, p, p)
+	end
+	
 end

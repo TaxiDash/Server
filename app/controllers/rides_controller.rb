@@ -5,7 +5,12 @@ class RidesController < ApplicationController
   # GET /rides
   # GET /rides.json
   def index
-    @rides = Ride.all
+  	if params[:search]
+  		@rides = Ride.search(params[:search]).order("driver_id asc")
+  	else
+	    @rides = params[:sort] == nil ? Ride.all : Ride.order(sort_column + " " + sort_direction)
+	end
+    @rides = @rides.page(params[:page])
   end
 
   # GET /rides/1
@@ -98,11 +103,10 @@ class RidesController < ApplicationController
     end
 
     def sort_column
-   	  Ride.column_names.include?(params[:sort]) ? params[:sort] : "driver.first_name"
+   	  Ride.column_names.include?(params[:sort]) ? params[:sort] : "driver_id"
     end
 
     def sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
-	
 end

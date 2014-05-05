@@ -5,7 +5,24 @@ class RidersController < ApplicationController
   # GET /riders
   # GET /riders.json
   def index
-    @riders = params[:sort] == nil ? Rider.all : Rider.order(sort_column + " " + sort_direction)
+    if params[:search]
+  		@riders = Rider.search(params[:search]).order("uuid asc")
+  	elsif params[:sort] == "rides.length"
+  		if sort_direction == "asc"
+  			@riders = Rider.joins(:rides).group("rides.rider_id").order("count(rides.rider_id) asc")
+  		else
+  			@riders = Rider.joins(:rides).group("rides.rider_id").order("count(rides.rider_id) desc")
+  		end
+  	elsif params[:sort] == "ratings.length"
+  		if sort_direction == "asc"
+  			@riders = Rider.joins(:ratings).group("ratings.rider_id").order("count(ratings.rider_id) asc")
+  		else
+  			@riders = Rider.joins(:ratings).group("ratings.rider_id").order("count(ratings.rider_id) desc")
+  		end  	
+  	else
+	    @riders = params[:sort] == nil ? Rider.all : Rider.order(sort_column + " " + sort_direction)
+	end
+	@riders = @riders.page(params[:page])
   end
 
   # GET /riders/1
@@ -75,6 +92,10 @@ class RidersController < ApplicationController
     end
   end
 
+  def search
+  	@riders = Rider.search(params[:search])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rider
@@ -87,7 +108,11 @@ class RidersController < ApplicationController
     end
     
     def sort_column
-    	Rider.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    	if params[:sort] == "rides.length" || params[:sort] == "ratings.length"
+    		params[:sort]
+    	else
+    		Rider.column_names.include?(params[:sort]) ? params[:sort] : "uuid"
+    	end
     end
 
 	def sort_direction
