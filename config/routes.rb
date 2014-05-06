@@ -7,6 +7,7 @@ TaxiRatingServer::Application.routes.draw do
   get 'about' => 'static_pages#about', :as => 'about'
   get 'static_pages/import_export', :as => 'import_export'
   get 'get_best_worst/:time&:sort_dir&:length' => 'static_pages#get_ratings'
+  get 'get_hist_companies/' => 'static_pages#get_historical_company_ratings'
 
   #Driver stuff
   resources :drivers
