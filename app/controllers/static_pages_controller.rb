@@ -4,6 +4,43 @@ class StaticPagesController < ApplicationController
   def overview
   end
 
+  def get_historical_company_ratings
+      # Figure out historical company ratings by working back from the current 
+      # average rating and adjust the company rating accordingly
+      # Algorithm:
+      #     Get all companies and their average ratings
+      #     For each company,
+      #         For all increments that will be graphed:
+      #             Get all ratings in that interval
+      #             Change the prev average rating of the company
+      #               given the average ratings in the interval
+      
+      
+      @historical_data = []
+      company_hist_data = {}
+
+      companies = Company.all.index_by(&:id)
+
+      companies.each do |key, c|
+          company_hist_data['name'] = c.name
+          company_hist_data['data'] = c.name
+
+          (1..6).each do |m| #For the last six months
+              avg_int_rat = 0 #average rating over the last interval
+              int_rat_cnt = 0 #rating count over the last interval
+
+              ratings = Rating.where(:created_at => m.month.ago..(m-1).month.ago)
+              ratings.each do |r|
+                  int_rat_cnt += 1
+                  avg_int_rat += r.rating
+              end
+              avg_int_rat /= int_rat_cnt #Get the average
+          end
+
+          @historical_data.add(company_hist_data)
+      end
+  end
+
   def get_ratings
       length = params[:length].to_i || 5 #Entries to return
       sort_dir = params[:sort_dir] || "best" #Entries to return
