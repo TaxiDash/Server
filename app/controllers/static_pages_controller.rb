@@ -50,7 +50,7 @@ class StaticPagesController < ApplicationController
                   c.average_rating = (c.average_rating * n - sum_int_rat)/(n-int_rat_cnt) || 0
                   c.total_ratings = n - int_rat_cnt
 
-                  company_hist_data['data'][m.month.ago] = c.average_rating
+                  company_hist_data['data'][(Time.now - m*interval)] = c.average_rating
               else
                   break;
               end
