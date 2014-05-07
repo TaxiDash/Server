@@ -59,8 +59,6 @@ class RatingsController < ApplicationController
     @rating.rider_id = @rider.id
 
     # Create the ride if provided
-puts "--------  --- About to create ride"
-puts ride_params
     if not ride_params[:start_latitude].nil?
         puts "RIDE PARAMS: #{ride_params}"
         ride = Ride.new(ride_params)
@@ -145,7 +143,7 @@ puts ride_params
   end
 
   def ride_params
-    params.require(:ride).permit(:driver_id, :rider_id, :timestamp,
+    params.permit(:driver_id, :rider_id, :timestamp, :ride,
       :start_latitude, :start_longitude, :end_latitude, :end_longitude, :estimated_fare, :actual_fare) # ride params
   end
 
