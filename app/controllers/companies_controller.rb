@@ -76,6 +76,31 @@ class CompaniesController < ApplicationController
     end
   end
 
+  # GET /companies/recalc/:id
+  def recalculate_average
+      set_company
+      drivers = @company.drivers.all
+
+      drivers.each do |d|
+          if d.ratings.count != d.total_ratings then
+              # Fix the driver's ratings
+              d.total_ratings = d.ratings.count
+              d.average_rating = 0
+
+              d.ratings.each do |r|
+                  d.average_rating += r.rating
+              end
+              d.average_rating /= d.total_ratings
+
+          end
+          @company.total_ratings += d.total_ratings
+          @company.average_rating += d.average_rating * d.total_ratings
+      end
+      @company.average_rating /= @company.total_ratings
+
+      redirect_to @company
+  end
+
   # GET /mobile/images/companies/:id
   def get_image
     @company = Company.find(params[:id])
