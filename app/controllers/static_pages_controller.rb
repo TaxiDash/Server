@@ -5,6 +5,13 @@ class StaticPagesController < ApplicationController
   end
 
   def get_historical_company_ratings
+      # First, we will figure out a good interval to use to display the graph
+      # We will do the smaller of the age of the oldest rating/6 and 1 month
+      
+      interval_by_oldest = (Time.now - Rating.first(:order => 'created_at asc').created_at)/6
+      interval = [1.month, interval_by_oldest].min
+      puts "interval is #{interval}"
+     
       # Figure out historical company ratings by working back from the current 
       # average rating and adjust the company rating accordingly
       # Algorithm:
@@ -15,29 +22,41 @@ class StaticPagesController < ApplicationController
       #             Change the prev average rating of the company
       #               given the average ratings in the interval
       
-      
       @historical_data = []
       company_hist_data = {}
 
-      companies = Company.all.index_by(&:id)
+      companies = Company.all.index_by(&:id).clone
 
       companies.each do |key, c|
           company_hist_data['name'] = c.name
-          company_hist_data['data'] = c.name
+          company_hist_data['data'] = {}
 
           (1..6).each do |m| #For the last six months
-              avg_int_rat = 0 #average rating over the last interval
+              sum_int_rat = 0 #average rating over the last interval
               int_rat_cnt = 0 #rating count over the last interval
 
-              ratings = Rating.where(:created_at => m.month.ago..(m-1).month.ago)
+              ratings = Rating.where(:created_at => 
+                                     (Time.now - m*interval)..(Time.now - (m-1)*interval))
               ratings.each do |r|
-                  int_rat_cnt += 1
-                  avg_int_rat += r.rating
+                  if r.driver.company_id == key
+                    int_rat_cnt += 1
+                    sum_int_rat += r.rating
+                  end
               end
-              avg_int_rat /= int_rat_cnt #Get the average
+
+              # Figure out the avg rating at time 'm'
+              n = c.total_ratings
+              if n != 0 and n != int_rat_cnt then
+                  c.average_rating = (c.average_rating * n - sum_int_rat)/(n-int_rat_cnt) || 0
+                  c.total_ratings = n - int_rat_cnt
+
+                  company_hist_data['data'][(Time.now - m*interval)] = c.average_rating
+              else
+                  break;
+              end
           end
 
-          @historical_data.add(company_hist_data)
+          @historical_data.push(company_hist_data.clone) #This should be copied by value not reference
       end
   end
 
