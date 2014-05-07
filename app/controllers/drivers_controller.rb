@@ -70,6 +70,28 @@ class DriversController < ApplicationController
   # PATCH/PUT /drivers/1
   # PATCH/PUT /drivers/1.json
   def update
+    # Check to see if the company value has changed
+    id = @driver.id
+    old_driver = Driver.find(id)
+
+    if old_driver.company_id != @driver.company_id then
+        # Update the old company ratings
+        old_company = @driver.company
+        old_company.average_rating = (old_company.average_rating*old_company.total_ratings-
+                                  @driver.average_rating*@driver.total_ratings)/
+                                  (old_company.total_ratings-@driver.total_ratings)
+        old_company.total_ratings -= @driver.total_ratings
+        old_company.save
+
+        # Update the new company ratings
+        new_company = @driver.company
+        new_company.average_rating = (new_company.average_rating*new_company.total_ratings+
+                                  @driver.average_rating*@driver.total_ratings)/
+                                  (new_company.total_ratings+@driver.total_ratings)
+        new_company.total_ratings += @driver.total_ratings
+        new_company.save
+    end
+
     respond_to do |format|
       if @driver.update(driver_params)
         format.html { redirect_to @driver, notice: 'Driver was successfully updated.' }
@@ -95,6 +117,19 @@ class DriversController < ApplicationController
   # DELETE /drivers/1
   # DELETE /drivers/1.json
   def destroy
+    #Adjust the company average rating and rating count
+    company = @driver.company
+    company.average_rating = (company.average_rating*company.total_ratings-
+                              @driver.average_rating*@driver.total_ratings)/
+                              (company.total_ratings-@driver.total_ratings)
+    company.total_ratings -= @driver.total_ratings
+    company.save
+
+    #Remove the driver's ratings
+    @driver.ratings.each do |r|
+        r.destroy
+    end
+
     @driver.destroy
     respond_to do |format|
       format.html { redirect_to drivers_url }
