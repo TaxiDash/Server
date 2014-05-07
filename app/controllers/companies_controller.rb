@@ -78,34 +78,48 @@ class CompaniesController < ApplicationController
 
   # GET /companies/recalc/:id
   def recalculate_average
-      set_company
-      drivers = @company.drivers.to_a
-
-      @company.total_ratings = 0
-      @company.average_rating = 0
-
-      if drivers.count > 0 then
-          drivers.each do |d|
-              if d.ratings.count != d.total_ratings then
-                  # Fix the driver's ratings
-                  d.total_ratings = d.ratings.count
-                  d.average_rating = 0
-
-                  d.ratings.each do |r|
-                      d.average_rating += r.rating
-                  end
-                  d.average_rating /= d.total_ratings
-
-              end
-              @company.total_ratings += d.total_ratings
-              @company.average_rating += d.average_rating * d.total_ratings
-          end
-          @company.average_rating /= @company.total_ratings
+      # recalc either a specific one or all
+      if params[:id] == "all"
+          @companies = Company.all.to_a
+      else
+          @companies = Company.find(params[:id]).to_a
       end
+      @companies.each do |company|
+          drivers = company.drivers.to_a
 
-      @company.save
+          company.total_ratings = 0
+          company.average_rating = 0
 
-      redirect_to @company
+          if drivers.count > 0 then
+              drivers.each do |d|
+                  if d.ratings.count != d.total_ratings then
+                      # Fix the driver's ratings
+                      d.total_ratings = d.ratings.count
+                      d.average_rating = 0
+
+                      d.ratings.each do |r|
+                          d.average_rating += r.rating
+                      end
+                      d.average_rating /= d.total_ratings
+
+                  end
+                  company.total_ratings += d.total_ratings
+                  company.average_rating += d.average_rating * d.total_ratings
+              end
+              company.average_rating /= company.total_ratings
+          end
+
+          company.save
+    
+      end
+      
+      #Redirect
+      if params[:id] == "all"
+          redirect_to "/companies"
+      else
+          set_company
+          redirect_to @company
+      end
   end
 
   # GET /mobile/images/companies/:id
