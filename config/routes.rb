@@ -28,6 +28,7 @@ TaxiRatingServer::Application.routes.draw do
   #Company stuff
   resources :companies
   get 'companies/:id' => 'companies#show', :as => 'show_company'
+  get 'companies/recalc/:id' => 'companies#recalculate_average', :as => 'recalc_company'
   get 'mobile/images/companies/:id' => 'companies#get_image'
   get 'companies_download' => 'companies#download', :as => 'download_companies'
   post 'companies_import' => 'companies#import', :as => 'import_companies'
