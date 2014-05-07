@@ -72,19 +72,29 @@ class DriversController < ApplicationController
   def update
     # Check to see if the company value has changed
     id = @driver.id
-    old_driver = Driver.find(id)
+    new_driver = params[:driver]
 
-    if old_driver.company_id != @driver.company_id then
+    puts "\n-----\n-----\n-----\n-----\n"
+    puts "PARAMS #{params[:driver]}\n\n"
+    if new_driver[:company_id] != @driver.company_id then
         # Update the old company ratings
         old_company = @driver.company
-        old_company.average_rating = (old_company.average_rating*old_company.total_ratings-
-                                  @driver.average_rating*@driver.total_ratings)/
-                                  (old_company.total_ratings-@driver.total_ratings)
+        puts "\n\nold_company rating count: #{old_company.total_ratings}\ndriver rating count:#{@driver.total_ratings}\n\n"
+
+        if old_company.total_ratings != @driver.total_ratings then
+            old_company.average_rating = (old_company.average_rating*old_company.total_ratings-
+                                          @driver.average_rating*@driver.total_ratings)/
+                                          (old_company.total_ratings-@driver.total_ratings)
+        else
+            old_company.average_rating = 0
+        end
+        puts "Setting #{old_company.name} to #{old_company.average_rating}"
+
         old_company.total_ratings -= @driver.total_ratings
         old_company.save
 
         # Update the new company ratings
-        new_company = @driver.company
+        new_company = Company.find(new_driver[:company_id])
         new_company.average_rating = (new_company.average_rating*new_company.total_ratings+
                                   @driver.average_rating*@driver.total_ratings)/
                                   (new_company.total_ratings+@driver.total_ratings)
