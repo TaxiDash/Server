@@ -1,8 +1,9 @@
 TaxiRatingServer::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "users/registrations" }, skip: [:registrations]
-  get 'static_pages/help'
+  root 'static_pages#overview'
 
   #Static Pages
+  get 'static_pages/help'
   get 'overview' => 'static_pages#overview', :as => 'overview'
   get 'about' => 'static_pages#about', :as => 'about'
   get 'static_pages/import_export', :as => 'import_export'
@@ -11,7 +12,6 @@ TaxiRatingServer::Application.routes.draw do
 
   #Driver stuff
   resources :drivers
-  root 'drivers#index'
   get 'mobile/:beacon_id' => 'drivers#show'
   get 'mobile/images/drivers/:beacon_id' => 'drivers#get_image'
   get 'drivers/:id' => 'drivers#show', :as => 'show_driver'
