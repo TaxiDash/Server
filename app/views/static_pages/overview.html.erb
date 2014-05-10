@@ -160,6 +160,23 @@ $(requestHistoricalData());
             drivers += d_row(data.drivers[i]);
         }
 
+        //TODO Style these words!
+        if(drivers.length === 0){
+            if(time !== "all"){
+                drivers = "<strong>No ratings received over the past " + time + "!</strong>";
+            }else{
+                drivers = "<strong>No ratings received yet!</strong>";
+            }
+        }
+
+        if(companies.length === 0){
+            if(time !== "all"){
+                companies = "<strong>No ratings received over the past " + time + "!</strong>";
+            }else{
+                companies = "<strong>No ratings received yet!</strong>";
+            }
+        }
+
         //Insert the output of the table 
         $("#driver_table").html(drivers);
         $("#company_table").html(companies);
