@@ -9,11 +9,13 @@
     </thead>
     <tbody>
         <% @driver.ratings.each do |r| %>
-            <% link = "window.location.href = '" << show_rating_path(r) << "'" %>
-            <td class="table-link" onclick="<%= link %>"><%= r.rating %></td>
-            <td class="table-link" onclick="<%= link %>"><%= r.comments %></td>
-            <td class="table-link" onclick="<%= link %>"><%= r.timestamp %></td>
-            <td><%= render partial: 'layouts/index/row_buttons', locals: {item: r} %></td>
+            <tr>
+                <% link = "window.location.href = '" << show_rating_path(r) << "'" %>
+                <td class="table-link" onclick="<%= link %>"><%= r.rating %></td>
+                <td class="table-link" onclick="<%= link %>"><%= r.comments %></td>
+                <td class="table-link" onclick="<%= link %>"><%= r.timestamp %></td>
+                <td><%= render partial: 'layouts/index/row_buttons', locals: {item: r} %></td>
+            </tr>
         <% end %>
     </tbody>
   </table>
