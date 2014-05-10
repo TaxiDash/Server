@@ -1,0 +1,22 @@
+<div class="col-sm-5 col-md-7">
+ <p>
+  <strong>Name:</strong>
+  <%= @company.name %>
+</p>
+<p>
+  <strong>Driver Count:</strong>
+  <%= @company.drivers.length %>
+</p>
+<p>
+  <strong>Average Driver Rating:</strong>
+  <%= sprintf( '%.2f', @company.average_rating) %>
+</p>
+<p>
+  <strong>Total Ratings:</strong>
+  <%= @company.total_ratings %>
+</p>
+<p>
+  <strong>Registered Since:</strong>
+  <%= @company.created_at %>
+</p>
+</div>

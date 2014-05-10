@@ -9,23 +9,17 @@
 <% end %>
  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @company.name %>
-</p>
-<p>
-  <strong>Driver Count:</strong>
-  <%= @company.drivers.length %>
-</p>
-<p>
-  <strong>Average Driver Rating:</strong>
-  <%= sprintf( '%.2f', @company.average_rating) %>
-</p>
-<p>
-  <strong>Total Ratings:</strong>
-  <%= @company.total_ratings %>
-</p>
-<p>
-  <strong>Registered Since:</strong>
-  <%= @company.created_at %>
-</p>
+<!-- Nav tabs -->
+<ul id="showTab" class="nav nav-tabs">
+  <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
+  <li><a href="#drivers" data-toggle="tab">Drivers</a></li>
+  <li><a href="#ratings" data-toggle="tab">Ratings</a></li>
+</ul>
+<br>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane fade in active" id="profile"><%= render partial: 'companies/show/profile' %></div>
+  <div class="tab-pane fade" id="drivers"><%= render partial: 'companies/show/drivers' %></div>
+  <div class="tab-pane fade" id="ratings"><%= render partial: 'companies/show/ratings' %></div>
+</div> 
