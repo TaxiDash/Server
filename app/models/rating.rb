@@ -29,7 +29,22 @@ class Rating < ActiveRecord::Base
 	def self.search(query)
 		query = query.downcase
 		p = "%#{query}%"
-		where("driver_id like ? or rider_id like ? or rating like ? or timestamp like ? or comment like ?", p, p, p, p, p)
+		dl = p
+		df = p
+		r = p
+		a = query.split
+		rn = Rider.select('uuid').all.map(&:uuid)
+		ln = Driver.select('last_name').all.map(&:last_name)
+		fn = Driver.select('first_name').all.map(&:last_name)
+		rn.map!{|s| s.downcase}
+		ln.map!{|s| s.downcase}
+		fn.map!{|s| s.downcase}	
+		
+		(rn.include?(query)) ? r = 1 + rn.find_index { |x| x == (query) } : r = r
+		(fn.include?(a[0])) ? df = 1 + fn.find_index { |x| x == (a[0]) } : df = df
+		(ln.include?(a[1])) ? dl = 1 + ln.find_index { |x| x == (a[1]) } : dl = dl
+		
+		where("driver_id like ? or driver_id like ? rider_id like ? or rating like ? or timestamp like ? or comment like ?", df, dl, rn, p, p, p)
 	end
 
 end

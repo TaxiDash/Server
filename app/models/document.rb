@@ -29,8 +29,20 @@ class Document < ActiveRecord::Base
 	def self.search(query)
 		query = query.downcase
 		p = "%#{query}%"
-				
-		where("driver_id like ? or title like ? or description like ?", p, p, p)
+		dl = p
+		df = p
+		
+		a = query.split
+		ln = Driver.select('last_name').all.map(&:last_name)
+		fn = Driver.select('first_name').all.map(&:last_name)
+		ln.map!{|s| s.downcase}
+		fn.map!{|s| s.downcase}	
+		
+		
+		(fn.include?(a[0])) ? df = 1 + fn.find_index { |x| x == (a[0]) } : df = df
+		(ln.include?(a[1])) ? dl = 1 + ln.find_index { |x| x == (a[1]) } : dl = dl
+		
+		where("driver_id like ? or driver_id like ? or title like ? or description like ?", df, dl, p, p)
 	end
 	
 end
