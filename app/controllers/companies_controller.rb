@@ -82,7 +82,7 @@ class CompaniesController < ApplicationController
       if params[:id] == "all"
           @companies = Company.all.to_a
       else
-          @companies = Company.find(params[:id]).to_a
+          @companies = [ Company.find(params[:id]) ]
       end
       @companies.each do |company|
           drivers = company.drivers.to_a
