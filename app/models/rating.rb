@@ -35,7 +35,7 @@ class Rating < ActiveRecord::Base
 		a = query.split
 		rn = Rider.select('uuid').all.map(&:uuid)
 		ln = Driver.select('last_name').all.map(&:last_name)
-		fn = Driver.select('first_name').all.map(&:last_name)
+		fn = Driver.select('first_name').all.map(&:first_name)
 		rn.map!{|s| s.downcase}
 		ln.map!{|s| s.downcase}
 		fn.map!{|s| s.downcase}	
