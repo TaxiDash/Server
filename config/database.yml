@@ -23,7 +23,7 @@ development:
 production:
    adapter: postgresql
    encoding: unicode
-   database: project_production
+   database: taxi-rating-server_production
    pool: 5
    username:
    password:
