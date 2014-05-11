@@ -20,3 +20,7 @@
   <%= @company.created_at %>
 </p>
 </div>
+<%= button_to(recalc_company_path(@company.id),
+    :class => "btn btn-lg btn-link btn-block", method: :get) do %>            
+    <span class="glyphicon glyphicon-eye"></span>Recalculate Average Rating
+<% end %>
