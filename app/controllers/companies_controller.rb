@@ -82,7 +82,7 @@ class CompaniesController < ApplicationController
       if params[:id] == "all"
           @companies = Company.all.to_a
       else
-          @companies = Company.find(params[:id]).to_a
+          @companies = [ Company.find(params[:id]) ]
       end
       @companies.each do |company|
           drivers = company.drivers.to_a
@@ -92,7 +92,7 @@ class CompaniesController < ApplicationController
 
           if drivers.count > 0 then
               drivers.each do |d|
-                  if d.ratings.count != d.total_ratings then
+                  if d.ratings.count != d.total_ratings or d.average_rating == 0 then
                       # Fix the driver's ratings
                       d.total_ratings = d.ratings.count
                       d.average_rating = 0
@@ -101,6 +101,7 @@ class CompaniesController < ApplicationController
                           d.average_rating += r.rating
                       end
                       d.average_rating /= d.total_ratings
+                      d.save
 
                   end
                   company.total_ratings += d.total_ratings
@@ -155,7 +156,7 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:name, :logo)
+      params.require(:company).permit(:name, :phone_number, :logo)
     end
     
     def sort_column

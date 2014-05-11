@@ -8,32 +8,126 @@
 </div>
 <script>
 
-var requestHistoricalData = function(){
-    $.ajax({
-        url: 'http://<%= SERVER_ADDRESS %>/get_hist_companies.json', 
-        dataType: "json",
-        cache: false})
-        .success( function(data) {
-                createGraph(data) })
-        .fail( function (error) {
-                console.log("Could not request historical info: " + JSON.stringify(error));
-                });
-    //For more graphs that change more frequently
-    //we should have it update itself automatically
-    //every so often.
-};
+/* * * * * * * * * * * * COMPANY GRAPH FUNCTIONS * * * * * * * * * * * */
+    var requestHistoricalData = function(){
+        $.ajax({
+            url: 'http://<%= SERVER_ADDRESS %>/get_hist_companies.json', 
+            dataType: "json",
+            cache: false})
+            .success( function(data) {
+                    createGraph(data) })
+            .fail( function (error) {
+                    console.log("Could not request historical info: " + JSON.stringify(error));
+                    });
+        //For more graphs that change more frequently
+        //we should have it update itself automatically
+        //every so often.
+    };
 
-var createGraph = function(data){
+    var createGraph = function(data){
+        console.log("Adding graph");
+        new Chartkick.LineChart("Demo_Chart", data, {});
+    };
 
-    new Chartkick.LineChart("Demo_Chart", data, {});
-    //new Chartkick.LineChart("Demo_Chart", [
-    //{"name":"Green Cab",
-        // "data":{"2013-02-10 00:00:00 -0800":3,"2013-02-17 00:00:00 -0800":3,"2013-02-24 00:00:00 -0800":3,"2013-03-03 00:00:00 -0800":1,"2013-03-10 00:00:00 -0800":4,"2013-03-17 00:00:00 -0700":3,"2013-03-24 00:00:00 -0700":2,"2013-03-31 00:00:00 -0700":3}}
-    //,{"name":"Allied Cab","data":{"2013-02-10 00:00:00 -0800":0,"2013-02-17 00:00:00 -0800":0,"2013-02-24 00:00:00 -0800":0,"2013-03-03 00:00:00 -0800":0,"2013-03-10 00:00:00 -0800":2,"2013-03-17 00:00:00 -0700":1,"2013-03-24 00:00:00 -0700":0,"2013-03-31 00:00:00 -0700":0}},{"name":"Checker Cab","data":{"2013-02-10 00:00:00 -0800":0,"2013-02-17 00:00:00 -0800":1,"2013-02-24 00:00:00 -0800":0,"2013-03-03 00:00:00 -0800":0,"2013-03-10 00:00:00 -0800":0,"2013-03-17 00:00:00 -0700":1,"2013-03-24 00:00:00 -0700":0,"2013-03-31 00:00:00 -0700":1}},{"name":"Music City Cab","data":{"2013-02-10 00:00:00 -0800":5,"2013-02-17 00:00:00 -0800":3,"2013-02-24 00:00:00 -0800":2,"2013-03-03 00:00:00 -0800":0,"2013-03-10 00:00:00 -0800":0,"2013-03-17 00:00:00 -0700":1,"2013-03-24 00:00:00 -0700":1,"2013-03-31 00:00:00 -0700":0}},{"name":"Yellow Cab","data":{"2013-02-10 00:00:00 -0800":3,"2013-02-17 00:00:00 -0800":2,"2013-02-24 00:00:00 -0800":1,"2013-03-03 00:00:00 -0800":0,"2013-03-10 00:00:00 -0800":2,"2013-03-17 00:00:00 -0700":2,"2013-03-24 00:00:00 -0700":3,"2013-03-31 00:00:00 -0700":0}}], {});
-};
+/* * * * * * * * * * * * DRIVER LIST FUNCTIONS * * * * * * * * * * * */
+    var time = "all",
+        type = "best",
+        count = 5;
 
-$(requestHistoricalData());
+    $("input[id=best]").change(function () {
+            type = 'best';
+            requestData();
+            });
+    $("input[id=worst]").change(function () {
+            type = 'worst';
+            requestData();
+            });
+    $("input[id=day]").change(function () {
+            time = 'day';
+            requestData();
+            });
+    $("input[id=week]").change(function () {
+            time = 'week';
+            requestData();
+            });
+    $("input[id=month]").change(function () {
+            time = 'month';
+            requestData();
+            });
+    $("input[id=year]").change(function () {
+            time = 'year';
+            requestData();
+            });
+    $("input[id=all]").change(function () {
+            time = 'all';
+            requestData();
+            });
 
+    var requestData = function(){ 
+        //Get the companies and drivers to display
+        $.ajax({//RETURN
+    url: 'http://<%= SERVER_ADDRESS %>/get_best_worst/' + time + '&' + type + '&' + count + '.json', 
+    dataType: "json",
+    cache: false})
+            .success( function(data) {
+                    createTables(data) })
+            .fail( function (error) {
+                    console.log("Could not request company/driver info: " + JSON.stringify(error));
+                    });
+    }
+
+    //Create template with underscorejs
+    //var _ = require(["underscore"]);
+    _.templateSettings = {
+    interpolate: /\{\{\=(.+?)\}\}/g,// {{= }} & {{ }}
+    evaluate: /\{\{(.+?)\}\}/g
+    };
+
+    //Templates for company row and driver rows
+    var c_row = _.template("<tr class=\"table-link\" onclick=\"window.location.href = '{{= url }}'\" >\n <th>#{{= number }}</th>\n  <td>\n    <li class=\"media\">\n      <div class=\"pull-left\">\n        <img src=\"{{= logo }}\" class=\"media-object img-rounded\" alt=\"{{= name }}\"/>\n        <!-- make this image 64xsomething -->\n      </div>\n      <div class=\"media-body\">\n        <h4 class=\"media-heading\">{{= name }}</h4>\n        <em>Average rating of {{= average_rating }}</em>\n      </div>\n    </li>\n  </td>\n</tr>"),
+        d_row = _.template("\n<tr class=\"table-link\" onclick=\"window.location.href = '{{= url }}'\" >\n  <th>#{{= number }}</th>\n  <td>\n    <li class=\"media\">\n      <div class=\"pull-left\">\n        <img src=\"{{= avatar}}\" class=\"media-object img-rounded\" alt=\"{{= name }}\"/>\n        <!-- make this image 64x64 -->\n      </div>\n      \n      <div class=\"media-body\">\n        <h4 class=\"media-heading\">{{= first_name }} {{= last_name }}</h4>\n        <p><em>Average rating of {{= average_rating}} </em></p>\n      </div>\n      \n    </li>\n  </td>\n</tr>\n");
+
+    var createTables = function(data){
+
+        var companies = "",
+            drivers = "",
+            i = -1;
+
+        //Create the company info using the template
+        while(++i < data.companies.length){
+            data.companies[i].number = i+1;
+            data.companies[i].average_rating = Math.round(data.companies[i].average_rating*100)/100;
+            companies += c_row(data.companies[i]);
+        }
+
+        i = -1;
+        while(++i < data.drivers.length){
+            data.drivers[i].number = i+1;
+            data.drivers[i].average_rating = Math.round(data.drivers[i].average_rating*100)/100;
+            drivers += d_row(data.drivers[i]);
+        }
+
+        //TODO Style these words!
+        if(drivers.length === 0){
+            if(time !== "all"){
+                drivers = "<strong>No ratings received over the past " + time + "!</strong>";
+            }else{
+                drivers = "<strong>No ratings received yet!</strong>";
+            }
+        }
+
+        if(companies.length === 0){
+            if(time !== "all"){
+                companies = "<strong>No ratings received over the past " + time + "!</strong>";
+            }else{
+                companies = "<strong>No ratings received yet!</strong>";
+            }
+        }
+
+        //Insert the output of the table 
+        $("#driver_table").html(drivers);
+        $("#company_table").html(companies);
+    }
 </script>
 </br>
 <div class="container-fluid">
@@ -85,87 +179,13 @@ $(requestHistoricalData());
   <table id="company_table" class="table-rankings table-hover">
   </table>
   <script>
-      var time = "all",
-          type = "best",
-          count = 5;
 
-      $("input[id=best]").change(function () {
-              type = 'best';
-              requestData();
-      });
-      $("input[id=worst]").change(function () {
-              type = 'worst';
-              requestData();
-      });
-      $("input[id=day]").change(function () {
-              time = 'day';
-              requestData();
-      });
-      $("input[id=week]").change(function () {
-              time = 'week';
-              requestData();
-      });
-      $("input[id=month]").change(function () {
-              time = 'month';
-              requestData();
-      });
-      $("input[id=year]").change(function () {
-              time = 'year';
-              requestData();
-      });
-      $("input[id=all]").change(function () {
-              time = 'all';
-              requestData();
-      });
+    $( document ).ready(function(){
+        requestData();
+        console.log("About to request data for graph");
+        requestHistoricalData();
+    });
 
-    var requestData = function(){ 
-     //Get the companies and drivers to display
-     $.ajax({//RETURN
-         url: 'http://<%= SERVER_ADDRESS %>/get_best_worst/' + time + '&' + type + '&' + count + '.json', 
-         dataType: "json",
-         cache: false})
-        .success( function(data) {
-                createTables(data) })
-         .fail( function (error) {
-             console.log("Could not request company/driver info: " + JSON.stringify(error));
-     });
-    }
- 
-    //Create template with underscorejs
-    //var _ = require(["underscore"]);
-    _.templateSettings = {
-        interpolate: /\{\{\=(.+?)\}\}/g,// {{= }} & {{ }}
-        evaluate: /\{\{(.+?)\}\}/g
-    };
-
-    //Templates for company row and driver rows
-    var c_row = _.template("<tr class=\"table-link\" onclick=\"window.location.href = '{{= url }}'\" >\n <th>#{{= number }}</th>\n  <td>\n    <li class=\"media\">\n      <div class=\"pull-left\">\n        <img src=\"{{= logo }}\" class=\"media-object img-rounded\" alt=\"{{= name }}\"/>\n        <!-- make this image 64xsomething -->\n      </div>\n      <div class=\"media-body\">\n        <h4 class=\"media-heading\">{{= name }}</h4>\n        <em>Average rating of {{= average_rating }}</em>\n      </div>\n    </li>\n  </td>\n</tr>"),
-        d_row = _.template("\n<tr class=\"table-link\" onclick=\"window.location.href = '{{= url }}'\" >\n  <th>#{{= number }}</th>\n  <td>\n    <li class=\"media\">\n      <div class=\"pull-left\">\n        <img src=\"{{= avatar}}\" class=\"media-object img-rounded\" alt=\"{{= name }}\"/>\n        <!-- make this image 64x64 -->\n      </div>\n      \n      <div class=\"media-body\">\n        <h4 class=\"media-heading\">{{= first_name }} {{= last_name }}</h4>\n        <p><em>Average rating of {{= average_rating}} </em></p>\n      </div>\n      \n    </li>\n  </td>\n</tr>\n");
-
-    var createTables = function(data){
-
-        var companies = "",
-            drivers = "",
-            i = -1;
-
-        //Create the company info using the template
-        while(++i < data.companies.length){
-            data.companies[i].number = i+1;
-            companies += c_row(data.companies[i]);
-        }
-
-        i = -1;
-        while(++i < data.drivers.length){
-            data.drivers[i].number = i+1;
-            drivers += d_row(data.drivers[i]);
-        }
-
-        //Insert the output of the table 
-        $("#driver_table").html(drivers);
-        $("#company_table").html(companies);
-    }
-
-    requestData();
   </script>
 <!--
     <div class="panel-footer" id="more_companies">
@@ -174,5 +194,4 @@ $(requestHistoricalData());
 -->
     
   </div>
-</div>
 </div>

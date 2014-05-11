@@ -1,0 +1,34 @@
+<div class="col-sm-5 col-md-7">
+<p>
+  <strong>Name:</strong>
+  <%= @company.name %>
+</p>
+<p>
+  <strong>Phone Number:</strong>
+  <% if not @company.phone_number.nil? %>
+    (<%= @company.phone_number[0, 3] %>) <%= @company.phone_number[3, 3] %>-<%= @company.phone_number[6, 10] %> 
+  <% else %>
+    None Provided
+  <% end %>
+</p>
+<p>
+  <strong>Driver Count:</strong>
+  <%= @company.drivers.length %>
+</p>
+<p>
+  <strong>Average Driver Rating:</strong>
+  <%= sprintf( '%.2f', @company.average_rating) %>
+</p>
+<p>
+  <strong>Total Ratings:</strong>
+  <%= @company.total_ratings %>
+</p>
+<p>
+  <strong>Registered Since:</strong>
+  <%= @company.created_at %>
+</p>
+</div>
+<%= button_to(recalc_company_path(@company.id),
+    :class => "btn btn-lg btn-link btn-block", method: :get) do %>            
+    <span class="glyphicon glyphicon-eye"></span>Recalculate Average Rating
+<% end %>
