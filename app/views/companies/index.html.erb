@@ -1,7 +1,7 @@
 <% @column_titles = [ 
     {:sort => "name", :title=>"Name"},
     {:sort => "drivers.length", :title => "Number of Drivers"},
-    {:sort => "average_rating", :title => "Average Driver Rating"}] %>
+    {:sort => "average_rating", :title => "Average Rating"}] %>
     
 <%= render partial: "layouts/index", locals: {type: "Company", items: @companies, titles: @column_titles} %>
 <!-- to change cells for each row, modify companies/_row_content.html.erb -->
