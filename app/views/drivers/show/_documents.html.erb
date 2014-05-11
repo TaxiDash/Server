@@ -4,9 +4,11 @@
         <thead><%= render partial: 'layouts/index/thead', locals: {titles: [{:sort => "title", :title => "Title"}]} %></thead>
         <tbody>
             <% @driver.documents.each do |d| %>
-            <% link = "window.location.href = '" << show_document_path(d) << "'" %>
-            <td class="table-link" onclick="<%= link %>"><%= d.title %></td>
-            <td><%= render partial: 'layouts/index/row_buttons', locals: {item: d} %></td>
+                <tr>
+                    <% link = "window.location.href = '" << show_document_path(d) << "'" %>
+                    <td class="table-link" onclick="<%= link %>"><%= d.title %></td>
+                    <td><%= render partial: 'layouts/index/row_buttons', locals: {item: d} %></td>
+                </tr>
             <% end %>
         </tbody>
       </table>

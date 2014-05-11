@@ -1,0 +1,25 @@
+<div class="container-fluid">
+<p><div class="row">
+  <table class="table table-striped table-hover col-md-12 col-sm-12 col-xs-12">
+    <thead>
+        <%= render partial: 'layouts/index/thead', locals: {titles: [
+          {:sort => "rating", :title => "Driver"},
+          {:sort => "rating", :title => "Average Rating"},
+          {:sort => "comments", :title => "Total Ratings"},
+          {:sort => "timestamp", :title => "Total Rides"} ]} %>
+    </thead>
+    <tbody>
+        <% @company.drivers.each do |d| %>
+            <tr>
+                <% link = "window.location.href = '" << show_driver_path(d) << "'" %>
+                <td class="table-link" onclick="<%= link %>"><%= "#{d.first_name} #{d.last_name}" %></td>
+                <td class="table-link" onclick="<%= link %>"><%= d.average_rating %></td>
+                <td class="table-link" onclick="<%= link %>"><%= d.total_ratings %></td>
+                <td class="table-link" onclick="<%= link %>"><%= d.ratings.count %></td>
+                <td><%= render partial: 'layouts/index/row_buttons', locals: {item: d} %></td>
+            </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div></p>
+</div>
