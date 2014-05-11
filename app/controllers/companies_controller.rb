@@ -92,7 +92,7 @@ class CompaniesController < ApplicationController
 
           if drivers.count > 0 then
               drivers.each do |d|
-                  if d.ratings.count != d.total_ratings then
+                  if d.ratings.count != d.total_ratings or d.average_rating == 0 then
                       # Fix the driver's ratings
                       d.total_ratings = d.ratings.count
                       d.average_rating = 0
@@ -101,6 +101,7 @@ class CompaniesController < ApplicationController
                           d.average_rating += r.rating
                       end
                       d.average_rating /= d.total_ratings
+                      d.save
 
                   end
                   company.total_ratings += d.total_ratings
