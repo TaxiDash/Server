@@ -1,5 +1,7 @@
-<h1>New document</h1>
+<% provide(:title, 'New Document') %>
+<%= content_for :heading do %>
+    <%= render 'layouts/buttons/back_button' %>
+    New Document
+<% end %>
 
 <%= render 'form' %>
-
-<%= link_to 'Back', documents_path %>
