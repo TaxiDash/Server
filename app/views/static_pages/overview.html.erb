@@ -96,12 +96,14 @@
         //Create the company info using the template
         while(++i < data.companies.length){
             data.companies[i].number = i+1;
+            data.companies[i].average_rating = Math.round(data.companies[i].average_rating*100)/100;
             companies += c_row(data.companies[i]);
         }
 
         i = -1;
         while(++i < data.drivers.length){
             data.drivers[i].number = i+1;
+            data.drivers[i].average_rating = Math.round(data.drivers[i].average_rating*100)/100;
             drivers += d_row(data.drivers[i]);
         }
 
