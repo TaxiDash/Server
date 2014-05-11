@@ -1,7 +1,15 @@
 <div class="col-sm-5 col-md-7">
- <p>
+<p>
   <strong>Name:</strong>
   <%= @company.name %>
+</p>
+<p>
+  <strong>Phone Number:</strong>
+  <% if not @company.phone_number.nil? %>
+    (<%= @company.phone_number[0, 3] %>) <%= @company.phone_number[3, 3] %>-<%= @company.phone_number[6, 10] %> 
+  <% else %>
+    None Provided
+  <% end %>
 </p>
 <p>
   <strong>Driver Count:</strong>

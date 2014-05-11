@@ -15,6 +15,10 @@ class Company < ActiveRecord::Base
         :size => { :in => 0..10.megabytes },
         :content_type => { :content_type => /^image\/(jpeg|png|gif|tiff)$/ }
 
+    NUMBERS_ONLY = /[\d]*/
+    validates :phone_number, format: { with: Regexp.new('\A' + NUMBERS_ONLY.source + '\z'), 
+                                       length: { is: 10, message: 'must be 10 digits long.' }}
+
     # Export as CSV 
     #
     def self.as_csv
