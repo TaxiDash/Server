@@ -13,7 +13,7 @@
             <tr>
                 <% link = "window.location.href = '" << show_driver_path(d) << "'" %>
                 <td class="table-link" onclick="<%= link %>"><%= "#{d.first_name} #{d.last_name}" %></td>
-                <td class="table-link" onclick="<%= link %>"><%= d.average_rating %></td>
+                <td class="table-link" onclick="<%= link %>"><%= sprintf('%.2f', d.average_rating) %></td>
                 <td class="table-link" onclick="<%= link %>"><%= d.total_ratings %></td>
                 <td class="table-link" onclick="<%= link %>"><%= d.ratings.count %></td>
                 <td><%= render partial: 'layouts/index/row_buttons', locals: {item: d} %></td>
