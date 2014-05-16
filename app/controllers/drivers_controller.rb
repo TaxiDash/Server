@@ -20,7 +20,7 @@ class DriversController < ApplicationController
   
   # GET /drivers/ratings/1
   def ratings
-    @driver = Driver.find(params[:id]).page(params[:page])
+    @driver = Rating.where(":driver_id like ?", params[:id]).page(params[:page])
   end
   
   # GET /drivers/docs/1
