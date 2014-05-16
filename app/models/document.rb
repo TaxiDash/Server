@@ -34,7 +34,7 @@ class Document < ActiveRecord::Base
 		
 		a = query.split
 		ln = Driver.select('last_name').all.map(&:last_name)
-		fn = Driver.select('first_name').all.map(&:last_name)
+		fn = Driver.select('first_name').all.map(&:first_name)
 		ln.map!{|s| s.downcase}
 		fn.map!{|s| s.downcase}	
 		
