@@ -1,3 +1,3 @@
 # Defining configuration variables here.
-SERVER_ADDRESS = "taxi-rating-server.herokuapp.com"
+SERVER_ADDRESS = "localhost:3000"
 CITY_NAME = "Nashville"

@@ -1,3 +1,19 @@
+<!--
+	Copyright 2014 Vanderbilt University 
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+ -->
+
+
 <% provide(:title, 'Home') %>
 <% provide(:heading, 'Overview') %> 
 
@@ -6,7 +22,56 @@
 <h3>Historical Company Ratings</h3>
 <div id="Demo_Chart">
 </div>
-<script>
+</br>
+<div class="container-fluid">
+<br>
+  <div class="btn-toolbar">
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-default active">
+        <input type="radio" name="options" id="best">Best of
+      </label>
+      <label class="btn btn-default">
+        <input type="radio" name="options" id="worst">Worst of
+      </label>
+    </div>
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-default">
+        <input type="radio" name="time" id="day">Today
+      </label>
+      <label class="btn btn-default">
+        <input type="radio" name="time" id="week">This Week
+      </label>
+      <label class="btn btn-default">
+        <input type="radio" name="time" id="month">This Month
+      </label>
+      <label class="btn btn-default">
+        <input type="radio" name="time" id="year">This Year
+      </label>
+      <label class="btn btn-default active">
+        <input type="radio" name="time" id="all">Overall
+      </label>
+    </div>
+  </div>
+<div class="row">
+  <div class="col-sm-6 col-md-6">
+
+  <h3>Driver Rankings</h3>
+  
+  <table id= "driver_table" class="table-rankings table-hover">
+    </table>
+<!--
+    <div class="panel-footer">
+      see more... link to dashboard sorted one way or another?
+    </div>
+-->
+    
+  </div>
+  <div class="col-sm-6 col-md-6">
+  <h3>Company Rankings</h3>
+  
+  <table id="company_table" class="table-rankings table-hover">
+  </table>
+  <script>
 
 /* * * * * * * * * * * * COMPANY GRAPH FUNCTIONS * * * * * * * * * * * */
     var requestHistoricalData = function(){
@@ -34,36 +99,44 @@
         type = "best",
         count = 5;
 
+    //Toggling driver rating range button functions
     $("input[id=best]").change(function () {
             type = 'best';
-            requestData();
-            });
+            requestDriverData();
+    });
     $("input[id=worst]").change(function () {
             type = 'worst';
-            requestData();
-            });
+            requestDriverData();
+    });
     $("input[id=day]").change(function () {
             time = 'day';
-            requestData();
-            });
+            requestDriverData();
+    });
     $("input[id=week]").change(function () {
             time = 'week';
-            requestData();
-            });
+            requestDriverData();
+    });
     $("input[id=month]").change(function () {
             time = 'month';
-            requestData();
-            });
+            requestDriverData();
+    });
     $("input[id=year]").change(function () {
             time = 'year';
-            requestData();
-            });
+            requestDriverData();
+    });
     $("input[id=all]").change(function () {
             time = 'all';
-            requestData();
-            });
+            requestDriverData();
+    });
+    //Toggling graph refresh on "Home" button press
+    /*
+    $("overview_button").click(function(){
+            requestHistoricalData();
+            requestDriverData();
+    });
+    */
 
-    var requestData = function(){ 
+    var requestDriverData = function(){ 
         //Get the companies and drivers to display
         $.ajax({//RETURN
     url: 'http://<%= SERVER_ADDRESS %>/get_best_worst/' + time + '&' + type + '&' + count + '.json', 
@@ -128,63 +201,9 @@
         $("#driver_table").html(drivers);
         $("#company_table").html(companies);
     }
-</script>
-</br>
-<div class="container-fluid">
-<br>
-  <div class="btn-toolbar">
-    <div class="btn-group" data-toggle="buttons">
-      <label class="btn btn-default active">
-        <input type="radio" name="options" id="best">Best of
-      </label>
-      <label class="btn btn-default">
-        <input type="radio" name="options" id="worst">Worst of
-      </label>
-    </div>
-    <div class="btn-group" data-toggle="buttons">
-      <label class="btn btn-default">
-        <input type="radio" name="time" id="day">Today
-      </label>
-      <label class="btn btn-default">
-        <input type="radio" name="time" id="week">This Week
-      </label>
-      <label class="btn btn-default">
-        <input type="radio" name="time" id="month">This Month
-      </label>
-      <label class="btn btn-default">
-        <input type="radio" name="time" id="year">This Year
-      </label>
-      <label class="btn btn-default active">
-        <input type="radio" name="time" id="all">Overall
-      </label>
-    </div>
-  </div>
-<div class="row">
-  <div class="col-sm-6 col-md-6">
 
-  <h3>Driver Rankings</h3>
-  
-  <table id= "driver_table" class="table-rankings table-hover">
-    </table>
-<!--
-    <div class="panel-footer">
-      see more... link to dashboard sorted one way or another?
-    </div>
--->
-    
-  </div>
-  <div class="col-sm-6 col-md-6">
-  <h3>Company Rankings</h3>
-  
-  <table id="company_table" class="table-rankings table-hover">
-  </table>
-  <script>
-
-    $( document ).ready(function(){
-        requestData();
-        console.log("About to request data for graph");
-        requestHistoricalData();
-    });
+    requestDriverData();
+    requestHistoricalData();
 
   </script>
 <!--
