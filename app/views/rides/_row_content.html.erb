@@ -14,7 +14,12 @@
  -->
 
 
-<td class="table-link" onclick="<%= link %>"><%= row.driver.first_name %> <%= row.driver.last_name %></td>
+<td class="table-link" onclick="<%= link %>"><% if not row.driver.nil? then %>
+    <%= row.driver.first_name %> <%= row.driver.last_name %>
+    <% else %>
+        UNKNOWN
+    <% end %>
+</td>
 <td class="table-link" onclick="<%= link %>"><%= row.rider.uuid %></td>
 <td class="table-link" onclick="<%= link %>">$<%= row.estimated_fare.nil? ? "N/A" : sprintf('%.2f', row.estimated_fare) %></td>
 <td class="table-link" onclick="<%= link %>">$<%= row.actual_fare.nil? ? "N/A" : sprintf('%.2f', row.actual_fare) %></td>
