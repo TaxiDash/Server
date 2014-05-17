@@ -26,7 +26,11 @@
 
 <p>
   <strong>Driver:</strong>
-  <%= @ride.driver.first_name %> <%= @ride.driver.last_name %>
+  <% if not @ride.driver.nil? then %>
+      <%= @ride.driver.first_name %> <%= @ride.driver.last_name %>
+  <% else %>
+      UNKNOWN
+  <% end -%>
 </p>
 <p>
   <strong>Rider UUID:</strong>

@@ -90,6 +90,13 @@ class CompaniesController < ApplicationController
     end
   end
 
+  # Get the top companies and their phone numbers
+  # GET /mobile/companies/contact.json
+  def contact_companies
+    @companies = Company.all.to_a
+    @companies.sort_by{ |c| -c.average_rating }
+  end
+
   # GET /companies/recalc/:id
   def recalculate_average
       # recalc either a specific one or all
