@@ -94,7 +94,7 @@ class CompaniesController < ApplicationController
   # GET /mobile/companies/contact.json
   def contact_companies
     @companies = Company.all.to_a
-    @companies.sort_by{ |c| -c.average_rating }
+    @companies.sort_by{ |c| -c.average_rating.round(5) }
   end
 
   # GET /companies/recalc/:id
