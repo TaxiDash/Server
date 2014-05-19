@@ -14,8 +14,18 @@
  -->
 
 
-<td class="table-link" onclick="<%= link %>"><%= row.driver.last_name %>, <%= row.driver.first_name %></td>
-<td class="table-link" onclick="<%= link %>"><%= row.driver.company.name %></td>
+<td class="table-link" onclick="<%= link %>"> <% if not row.driver.nil? then %>
+        <%= row.driver.last_name %>, <%= row.driver.first_name %>
+    <% else %>
+        UNKNOWN
+    <% end %>
+</td>
+<td class="table-link" onclick="<%= link %>"> <% if not row.driver.nil? then %>
+        <%= row.driver.company.name %>
+    <% else %>
+        UNKNOWN
+    <% end -%>
+</td>
 <td class="table-link" onclick="<%= link %>"><%= row.rating %></td>
 <td class="table-link" onclick="<%= link %>"><%= row.comments %></td>
 <td class="table-link" onclick="<%= link %>"><%= row.timestamp %></td>

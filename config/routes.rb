@@ -2,6 +2,12 @@ TaxiRatingServer::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "users/registrations" }, skip: [:registrations]
   root 'static_pages#overview'
 
+  #Mobile Access Pages
+  get 'mobile/:beacon_id' => 'drivers#show'
+  get 'mobile/companies/contact' => 'companies#contact_companies'
+  get 'mobile/images/drivers/:beacon_id' => 'drivers#get_image'
+  get 'mobile/images/companies/:id' => 'companies#get_image'
+
   #Static Pages
   get 'static_pages/help'
   get 'overview' => 'static_pages#overview', :as => 'overview'
@@ -12,8 +18,6 @@ TaxiRatingServer::Application.routes.draw do
 
   #Driver stuff
   resources :drivers
-  get 'mobile/:beacon_id' => 'drivers#show'
-  get 'mobile/images/drivers/:beacon_id' => 'drivers#get_image'
   get 'drivers/:id' => 'drivers#show', :as => 'show_driver'
   get 'drivers/documents/new/:driver_id' => 'documents#new', :as => 'attach_doc'
   get 'drivers_download' => 'drivers#download', :as => 'download_drivers'
@@ -30,7 +34,6 @@ TaxiRatingServer::Application.routes.draw do
   resources :companies
   get 'companies/:id' => 'companies#show', :as => 'show_company'
   get 'companies/recalc/:id' => 'companies#recalculate_average', :as => 'recalc_company'
-  get 'mobile/images/companies/:id' => 'companies#get_image'
   get 'companies_download' => 'companies#download', :as => 'download_companies'
   post 'companies_import' => 'companies#import', :as => 'import_companies'
 
