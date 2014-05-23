@@ -7,6 +7,7 @@ TaxiRatingServer::Application.routes.draw do
   get 'mobile/companies/contact' => 'companies#contact_companies'
   get 'mobile/images/drivers/:beacon_id' => 'drivers#get_image'
   get 'mobile/images/companies/:id' => 'companies#get_image'
+  #Rate a driver with a post message
 
   #Static Pages
   get 'static_pages/help'
