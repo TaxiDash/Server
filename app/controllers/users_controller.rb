@@ -26,7 +26,6 @@ class UsersController < ApplicationController
   	else
 	    @users = params[:sort] == nil ? User.all : User.order(sort_column + " " + sort_direction)
 	end
-	@users = @users.page(params[:page])
   end
 
   # GET /users/1

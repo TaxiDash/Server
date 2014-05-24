@@ -30,7 +30,6 @@ class CompaniesController < ApplicationController
   	else
 	    @companies = params[:sort] == nil ? Company.all : Company.order(sort_column + " " + sort_direction)
 	end
-	@companies = @companies.page(params[:page])
   end
 
   # GET /companies/1

@@ -24,7 +24,6 @@ class RatingsController < ApplicationController
   	else
 	    @ratings = params[:sort] == nil ? Rating.all : Rating.order(sort_column + " " + sort_direction)
 	end
-    @ratings = @ratings.page(params[:page])
   end
 
   # GET /ratings/1

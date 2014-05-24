@@ -24,7 +24,6 @@ class DriversController < ApplicationController
   	else
 	    @drivers = params[:sort] == nil ? Driver.all : Driver.order(sort_column + " " + sort_direction)
 	end
-	@drivers = @drivers.page(params[:page])
   end
 
   # GET /drivers/1
@@ -35,7 +34,6 @@ class DriversController < ApplicationController
   # GET /drivers/ratings/1
   def ratings
     @driver = driver.find(params[:id])
-    @ratings = @drivers.raitings.page(params[:page])
   end
   
   # GET /drivers/docs/1
