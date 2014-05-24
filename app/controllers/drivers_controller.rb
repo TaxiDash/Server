@@ -35,7 +35,7 @@ class DriversController < ApplicationController
   # GET /drivers/ratings/1
   def ratings
     @driver = driver.find(params[:id])
-    @driver = Kaminari.paginate_array(@driver).page(params[:page])
+    @ratings = @drivers.raitings.page(params[:page])
   end
   
   # GET /drivers/docs/1
