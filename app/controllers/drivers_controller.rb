@@ -131,7 +131,7 @@ class DriversController < ApplicationController
     @driver = Driver.where(:beacon_id => params[:beacon_id]).first
     if !@driver.nil?
         puts "Getting the image for " << @driver.first_name << " " << @driver.last_name
-        File.open(@driver.avatar.path, 'rb') do |f|
+        File.open(@driver.avatar.path(:preview), 'rb') do |f|
           send_data f.read, :type => @driver.avatar.content_type, :filename => @driver.last_name, :disposition => "inline"
         end
     end
