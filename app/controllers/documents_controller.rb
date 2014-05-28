@@ -24,7 +24,6 @@ class DocumentsController < ApplicationController
   	else
 	    @documents = params[:sort] == nil ? Document.all : Document.order(sort_column + " " + sort_direction)
 	end
-	@documents = @documents.page(params[:page])
   end
 
   # GET /documents/1

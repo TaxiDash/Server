@@ -24,7 +24,6 @@ class RidesController < ApplicationController
   	else
 	    @rides = params[:sort] == nil ? Ride.all : Ride.order(sort_column + " " + sort_direction)
 	end
-    @rides = @rides.page(params[:page])
   end
 
   # GET /rides/1

@@ -24,7 +24,6 @@ class DriversController < ApplicationController
   	else
 	    @drivers = params[:sort] == nil ? Driver.all : Driver.order(sort_column + " " + sort_direction)
 	end
-	@drivers = @drivers.page(params[:page])
   end
 
   # GET /drivers/1
@@ -35,7 +34,6 @@ class DriversController < ApplicationController
   # GET /drivers/ratings/1
   def ratings
     @driver = driver.find(params[:id])
-    @driver = Kaminari.paginate_array(@driver).page(params[:page])
   end
   
   # GET /drivers/docs/1
@@ -133,7 +131,7 @@ class DriversController < ApplicationController
     @driver = Driver.where(:beacon_id => params[:beacon_id]).first
     if !@driver.nil?
         puts "Getting the image for " << @driver.first_name << " " << @driver.last_name
-        File.open(@driver.avatar.path, 'rb') do |f|
+        File.open(@driver.avatar.path(:preview), 'rb') do |f|
           send_data f.read, :type => @driver.avatar.content_type, :filename => @driver.last_name, :disposition => "inline"
         end
     end
