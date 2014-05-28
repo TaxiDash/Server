@@ -7,7 +7,7 @@ TaxiDash is an open source taxi permit infrastructure for maintaining taxi drive
 TaxiDash also provides invaluable taxi usage statistics such as where and when rides are occurring and relative cost of various taxi drivers (that is, how their rates compare to the estimate fare for any given trip). All usage data is reported anonymously to protect the privacy of the taxi rider.
 
 ##Requirements
-+ ruby
++ ruby 2.0
 + rubygems
 + bundler
 + imagemagick
