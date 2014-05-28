@@ -38,5 +38,8 @@ group :production do
     gem 'rails_12factor'
 end
 
+#Ensure that there is a js runtime 
+gem 'therubyracer'
+
 # Index Pagination
 gem 'kaminari'
