@@ -11,6 +11,9 @@ TaxiDash also provides invaluable taxi usage statistics such as where and when r
 + rubygems
 + bundler
 + imagemagick
++ database
+    + sqlite3 (development)
+    + postgresql (production)
 
 ##Quick Start
 
