@@ -1,0 +1,43 @@
+<!--
+	Copyright 2014 Vanderbilt University 
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+ -->
+
+
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#importModal">
+  Import <%= type %>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="importModalLabel">Import <%= type %></h4>
+      </div>
+        <%= form_tag import_#{type}_path, multipart: true do %>
+          <div class="modal-body">
+            <%= file_field_tag :file, class: "btn btn-nav" %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+                Import <%= type %>
+            <% end %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>

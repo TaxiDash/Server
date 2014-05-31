@@ -16,134 +16,40 @@
 
 <% provide(:title, 'Import/Export Data') %>
 <% provide(:heading, 'Import/Export Data') %>
-    
-    <%= button_to(import_users_path, class:"btn btn-link") do%>
-      <i class="glyphicon glyphicon-import"></i>Import Users 
-            <% end %>
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  <i class="glyphicon glyphicon-import"></i>Import Users 
+
+<br><br>
+<div class="col-md-6 col-sm-6 col-lg-4">
+<button type="button" class="btn btn-lg btn-block" data-toggle="collapse" data-target="#import">
+    <i class="glyphicon glyphicon-import"></i> Import <span class="caret"></span>
 </button>
 
-<table cellspacing=20 cellpadding="20%">
-    <tbody>
-    <tr>
-    <td>
-<h2>Users</h2>
-    </td>
-    <td>
-    </td>
-    <td>
-<h2>Drivers</h2>
-    </td>
-    </tr>
+<div id="import" class="collapse">
+     <%= render partial: 'import_modal', locals: {modal_type: "Users", import_url: url_for(import_users_path)} %>
+     <%= render partial: 'import_modal', locals: {modal_type: "Companies", import_url: url_for(import_companies_path)} %>
+     <%= render partial: 'import_modal', locals: {modal_type: "Drivers", import_url: url_for(import_drivers_path)} %>
+     <%= render partial: 'import_modal', locals: {modal_type: "Documents", import_url: url_for(import_documents_path)} %>
+     <%= render partial: 'import_modal', locals: {modal_type: "Ratings", import_url: url_for(import_ratings_path)} %>
+     <%= render partial: 'import_modal', locals: {modal_type: "Riders", import_url: url_for(import_riders_path)} %>
+     <%= render partial: 'import_modal', locals: {modal_type: "Rides", import_url: url_for(import_rides_path)} %>
+</div>
+</div>
 
-    <tr>
-    <td>
-        <%= form_tag import_users_path, multipart: true do %>
-            <%= file_field_tag :file %>
-            <%= button_tag(type: "submit", class: "btn btn-default") do %>
-                <i class="glyphicon glyphicon-import"></i>Import Users 
-            <% end %>
-        <% end %>
-    </td>
+<div class="col-md-6 col-sm-6 col-lg-4">
+<button type="button" class="btn btn-lg btn-block" data-toggle="collapse" data-target="#export">
+    <i class="glyphicon glyphicon-export"></i> Export <span class="caret"></span>
+</button>
 
-    <td>
-        <%= button_to(download_users_path, :class => "btn btn-default", :method => :get) do %>            
-            <span class="glyphicon glyphicon-export"></span> Export Users
-        <% end %>
-    </td>
-    </tr>
-<h2>Users</h2>
-    <div>
-        <%= button_to(download_users_path, :class => "btn btn-default", :method => :get) do %>            
-            <span class="glyphicon glyphicon-export"></span> Export Users
-        <% end %>
-        <%= form_tag import_companies_path, multipart: true do %>
-            <%= file_field_tag :file %>
-            <%= button_tag(type: "submit", class: "btn btn-default") do %>
-                <i class="glyphicon glyphicon-import"></i>Import Companies 
-            <% end %>
-        <% end %>
+<div id="export" class="collapse">
+     <%= render partial: 'export_button', locals: {modal_type: "Users", path_export: download_users_path} %>
+     <%= render partial: 'export_button', locals: {modal_type: "Companies", path_export: download_companies_path} %>
+     <%= render partial: 'export_button', locals: {modal_type: "Drivers", path_export: download_drivers_path} %>
+     <%= render partial: 'export_button', locals: {modal_type: "Documents", path_export: download_documents_path} %>
+     <%= render partial: 'export_button', locals: {modal_type: "Ratings", path_export: download_ratings_path} %>
+     <%= render partial: 'export_button', locals: {modal_type: "Riders", path_export: download_riders_path} %>
+     <%= render partial: 'export_button', locals: {modal_type: "Rides", path_export: download_rides_path} %>
+</div>
+</div>
 
-    </div>
 
-<h2>Companies</h2>
-    <div>
-        <%= button_to(download_companies_path, :class => "btn btn-default", :method => :get) do %>            
-            <span class="glyphicon glyphicon-export"></span> Export Companies
-        <% end %>
 
-        <%= form_tag import_companies_path, multipart: true do %>
-            <%= file_field_tag :file %>
-            <%= button_tag(type: "submit", class: "btn btn-default") do %>
-                <i class="glyphicon glyphicon-import"></i>Import Companies 
-            <% end %>
-        <% end %>
-    </div>
 
-<h2>Drivers</h2>
-    <div>
-        <%= button_to(download_drivers_path, :class => "btn btn-default", :method => :get) do %>            
-            <span class="glyphicon glyphicon-export"></span> Export Drivers
-        <% end %>
-
-        <%= form_tag import_drivers_path, multipart: true do %>
-            <%= file_field_tag :file %>
-            <%= button_tag(type: "submit", class: "btn btn-default") do %>
-                <i class="glyphicon glyphicon-import"></i>Import Drivers 
-            <% end %>
-        <% end %>
-    </div>
-<h2>Documents</h2>
-    <div>
-        <%= button_to(download_documents_path, :class => "btn btn-default", :method => :get) do %>            
-            <span class="glyphicon glyphicon-export"></span> Export Documents
-        <% end %>
-
-        <%= form_tag import_documents_path, multipart: true do %>
-            <%= file_field_tag :file %>
-            <%= button_tag(type: "submit", class: "btn btn-default") do %>
-                <i class="glyphicon glyphicon-import"></i>Import Documents 
-            <% end %>
-        <% end %>
-    </div>
-<h2>Ratings</h2>
-    <div>
-        <%= button_to(download_ratings_path, :class => "btn btn-default", :method => :get) do %>            
-            <span class="glyphicon glyphicon-export"></span> Export Ratings
-        <% end %>
-
-        <%= form_tag import_ratings_path, multipart: true do %>
-            <%= file_field_tag :file %>
-            <%= button_tag(type: "submit", class: "btn btn-default") do %>
-                <i class="glyphicon glyphicon-import"></i>Import Ratings 
-            <% end %>
-        <% end %>
-    </div>
-<h2>Riders</h2>
-    <div>
-        <%= button_to(download_riders_path, :class => "btn btn-default", :method => :get) do %>            
-            <span class="glyphicon glyphicon-export"></span> Export Riders
-        <% end %>
-
-        <%= form_tag import_riders_path, multipart: true do %>
-            <%= file_field_tag :file %>
-            <%= button_tag(type: "submit", class: "btn btn-default") do %>
-                <i class="glyphicon glyphicon-import"></i>Import Riders 
-            <% end %>
-        <% end %>
-    </div>
-<h2>Rides</h2>
-    <div>
-        <%= button_to(download_rides_path, :class => "btn btn-default", :method => :get) do %>            
-            <span class="glyphicon glyphicon-export"></span> Export Rides
-        <% end %>
-
-        <%= form_tag import_rides_path, multipart: true do %>
-            <%= file_field_tag :file %>
-            <%= button_tag(type: "submit", class: "btn btn-default") do %>
-                <i class="glyphicon glyphicon-import"></i>Import Rides 
-            <% end %>
-        <% end %>
-    </div>
-<table>
