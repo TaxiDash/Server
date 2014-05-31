@@ -1,0 +1,149 @@
+<!--
+	Copyright 2014 Vanderbilt University 
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+ -->
+
+
+<% provide(:title, 'Import/Export Data') %>
+<% provide(:heading, 'Import/Export Data') %>
+    
+    <%= button_to(import_users_path, class:"btn btn-link") do%>
+      <i class="glyphicon glyphicon-import"></i>Import Users 
+            <% end %>
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  <i class="glyphicon glyphicon-import"></i>Import Users 
+</button>
+
+<table cellspacing=20 cellpadding="20%">
+    <tbody>
+    <tr>
+    <td>
+<h2>Users</h2>
+    </td>
+    <td>
+    </td>
+    <td>
+<h2>Drivers</h2>
+    </td>
+    </tr>
+
+    <tr>
+    <td>
+        <%= form_tag import_users_path, multipart: true do %>
+            <%= file_field_tag :file %>
+            <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                <i class="glyphicon glyphicon-import"></i>Import Users 
+            <% end %>
+        <% end %>
+    </td>
+
+    <td>
+        <%= button_to(download_users_path, :class => "btn btn-default", :method => :get) do %>            
+            <span class="glyphicon glyphicon-export"></span> Export Users
+        <% end %>
+    </td>
+    </tr>
+<h2>Users</h2>
+    <div>
+        <%= button_to(download_users_path, :class => "btn btn-default", :method => :get) do %>            
+            <span class="glyphicon glyphicon-export"></span> Export Users
+        <% end %>
+        <%= form_tag import_companies_path, multipart: true do %>
+            <%= file_field_tag :file %>
+            <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                <i class="glyphicon glyphicon-import"></i>Import Companies 
+            <% end %>
+        <% end %>
+
+    </div>
+
+<h2>Companies</h2>
+    <div>
+        <%= button_to(download_companies_path, :class => "btn btn-default", :method => :get) do %>            
+            <span class="glyphicon glyphicon-export"></span> Export Companies
+        <% end %>
+
+        <%= form_tag import_companies_path, multipart: true do %>
+            <%= file_field_tag :file %>
+            <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                <i class="glyphicon glyphicon-import"></i>Import Companies 
+            <% end %>
+        <% end %>
+    </div>
+
+<h2>Drivers</h2>
+    <div>
+        <%= button_to(download_drivers_path, :class => "btn btn-default", :method => :get) do %>            
+            <span class="glyphicon glyphicon-export"></span> Export Drivers
+        <% end %>
+
+        <%= form_tag import_drivers_path, multipart: true do %>
+            <%= file_field_tag :file %>
+            <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                <i class="glyphicon glyphicon-import"></i>Import Drivers 
+            <% end %>
+        <% end %>
+    </div>
+<h2>Documents</h2>
+    <div>
+        <%= button_to(download_documents_path, :class => "btn btn-default", :method => :get) do %>            
+            <span class="glyphicon glyphicon-export"></span> Export Documents
+        <% end %>
+
+        <%= form_tag import_documents_path, multipart: true do %>
+            <%= file_field_tag :file %>
+            <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                <i class="glyphicon glyphicon-import"></i>Import Documents 
+            <% end %>
+        <% end %>
+    </div>
+<h2>Ratings</h2>
+    <div>
+        <%= button_to(download_ratings_path, :class => "btn btn-default", :method => :get) do %>            
+            <span class="glyphicon glyphicon-export"></span> Export Ratings
+        <% end %>
+
+        <%= form_tag import_ratings_path, multipart: true do %>
+            <%= file_field_tag :file %>
+            <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                <i class="glyphicon glyphicon-import"></i>Import Ratings 
+            <% end %>
+        <% end %>
+    </div>
+<h2>Riders</h2>
+    <div>
+        <%= button_to(download_riders_path, :class => "btn btn-default", :method => :get) do %>            
+            <span class="glyphicon glyphicon-export"></span> Export Riders
+        <% end %>
+
+        <%= form_tag import_riders_path, multipart: true do %>
+            <%= file_field_tag :file %>
+            <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                <i class="glyphicon glyphicon-import"></i>Import Riders 
+            <% end %>
+        <% end %>
+    </div>
+<h2>Rides</h2>
+    <div>
+        <%= button_to(download_rides_path, :class => "btn btn-default", :method => :get) do %>            
+            <span class="glyphicon glyphicon-export"></span> Export Rides
+        <% end %>
+
+        <%= form_tag import_rides_path, multipart: true do %>
+            <%= file_field_tag :file %>
+            <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                <i class="glyphicon glyphicon-import"></i>Import Rides 
+            <% end %>
+        <% end %>
+    </div>
+<table>
