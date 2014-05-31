@@ -28,6 +28,7 @@ gem 'turbolinks'
 gem 'jbuilder'
 gem 'safe_attributes' #Handling name collisions
 gem 'bootstrap-sass' 
+gem 'bootstrap_form' 
 
 group :doc do
     gem 'sdoc', '0.3.20', require: false
