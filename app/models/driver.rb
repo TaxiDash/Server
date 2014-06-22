@@ -114,4 +114,39 @@ class Driver < ActiveRecord::Base
 	   	where("last_name like ? or first_name like ? or middle_name like ? or type_id like ?or company_id like ? or permit_expiration_date like ? or valid like ? or beacon_id like ? or permit_number like ?", p, p, p, p, c, p, v, p, p)
 	end
 	
+	
+	def self.advanced_search(query)
+		name = query[0].downcase
+		name = name.split
+		
+		f_name = name[0]
+		l_name = f_name
+		op = "OR"
+
+		if name.length >= 2
+			l_name = name[name.length - 1]
+			op = "AND"
+			
+		end
+		
+		f_name = "%#{f_name}%"
+		l_name = "%#{l_name}%"
+
+		license = query[1]
+		license = "%#{license}%"
+		
+		permit = query[2]
+		permit = "%#{permit}%"
+		
+		v = (query[4] == "1")
+		
+		beacon = query[5]
+		beacon = "%#{beacon}%"
+		
+		
+		min_rating = query[6]
+		max_rating = query[7]
+		
+		where("(first_name LIKE ? " + op + " last_name LIKE ?) AND license LIKE ? AND permit_number LIKE ? AND beacon_id LIKE ? AND valid LIKE ? AND average_rating >= ? AND average_rating <= ?", f_name, l_name, license, permit, beacon, v, min_rating, max_rating)
+	end
 end
