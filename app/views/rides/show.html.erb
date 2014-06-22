@@ -66,3 +66,7 @@
     :class => "btn btn-lg btn-link btn-block", title: "View", method: :get) do %>            
     <span class="glyphicon glyphicon-eye"></span>View Ride on Map
 <% end %>
+<%= @ride.rating.nil? ? "" : link_to(show_rating_path(@ride.rating_id), 
+    :class => "btn btn-lg btn-link btn-block",) do  %>
+    <span class="glyphicon glyphicon-eye"></span>View Associated Rating
+<% end %>
