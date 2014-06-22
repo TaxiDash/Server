@@ -21,6 +21,8 @@ class DriversController < ApplicationController
   def index
   	if params[:search]
   		@drivers = Driver.search(params[:search]).order("last_name asc")
+  	elsif params[:advanced_search]
+  		@drivers = Driver.advanced_search(params[:advanced_search]).order("last_name asc")
   	else
 	    @drivers = params[:sort] == nil ? Driver.all : Driver.order(sort_column + " " + sort_direction)
 	end
@@ -162,6 +164,10 @@ class DriversController < ApplicationController
 
   def search
   	@drivers = Driver.search(params[:search])
+  end
+
+  def advanced_search
+  	@drivers = Driver.advanced_search(params[:search_name, :search_license_number, :search_permit_number, :search_beacon_id, :search_valid, :min_rating, :max_rating])
   end
 
   private

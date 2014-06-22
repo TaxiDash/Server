@@ -6,6 +6,15 @@ TaxiDash is an open source taxi permit infrastructure for maintaining taxi drive
 
 TaxiDash also provides invaluable taxi usage statistics such as where and when rides are occurring and relative cost of various taxi drivers (that is, how their rates compare to the estimate fare for any given trip). All usage data is reported anonymously to protect the privacy of the taxi rider.
 
+##Requirements
++ ruby 2.0
++ rubygems
++ bundler
++ imagemagick
++ database
+    + sqlite3 (development)
+    + postgresql (production)
+
 ##Quick Start
 
 Edit the configuration file
@@ -16,7 +25,7 @@ to reflect the city name and ip address of the machine running TaxiDash.
 
 Make sure you have *gem* installed and up to date then run
 
-     bundle install 
+     bundle install --without production
      bundle exec rake db:migrate
 
 Next, we will create our first admin user

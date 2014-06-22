@@ -1,0 +1,78 @@
+<!--
+	Copyright 2014 Vanderbilt University 
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+ -->
+<div class="col-md-2 col-sm-2 col-lg-2" id="advanced">
+<button type="button" class="btn btn-xs btn" data-toggle="collapse" data-target="#advanced_filter" onclick="toggle_advanced()" id="adv_btn">
+    Advanced
+</button>
+
+<div class="collapse" id="advanced_filter">
+<div class="panel panel-default">
+	<h2 class="col-sm-offset-4"><Strong><font size="4">Advanced Search</font></Strong></h2>
+	<%= form_tag({:controller => controller.controller_path}, method: :get, :class => "input-group") do %>
+	<div class="form-horizontal" role="search">
+		<div class="form-group">
+			<div class="col-sm-3 control-label"><strong>Name</strong></div>
+			<div class="col-sm-7"><%= text_field :advanced_search, params[:search_name], :class => "form-control", placeholder: "Name..." %></div>
+		</div>
+	
+		<div class="form-group">
+			<div class="col-sm-3 control-label"><strong>License Number</strong></div>
+			<div class="col-sm-7"><%= text_field :advanced_search, params[:search_license_number], :class => "form-control", placeholder: "License Number..." %></div>
+		</div>
+	
+		<div class="form-group">
+			<div class="col-sm-3 control-label"><strong>Permit Number</strong></div>
+			<div class="col-sm-7"><%= text_field :advanced_search, params[:search_permit_number], :class => "form-control", placeholder: "Permit Number..." %></div>
+			<%= check_box :advanced_search, params[:search_valid], :class=>"checkbox-inline", :checked => true %>
+			<strong>Valid</strong>
+		    
+		</div>
+	
+		<div class="form-group">
+			<div class="col-sm-3 control-label"><strong>Beacon ID</strong></div>
+			<div class="col-sm-7"><%= text_field :advanced_search, params[:search_beacon_id], :class => "form-control", placeholder: "Beacon ID Number..." %></div>
+		</div>
+		<div class="row">
+			<div class="form-group">
+				<div class="col-sm-3 control-label"><strong>Rating</strong></div>
+				<div class="col-sm-7">
+					<%= select :advanced_search, params[:min_rating], [1, 2, 3, 4, 5], :selected => 1, :class => "form-control" %>
+					<strong>&nbsp;-&nbsp;</strong>
+					<%= select :advanced_search, params[:max_rating], [1, 2, 3, 4, 5], :selected => 5, :class => "form-control" %>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-offset-4 col-sm-7"> 
+			<span class="input-group-btn"> 
+				<%= button_to({:controller => controller.controller_path}, :class => "btn btn-default", role: "button", title: "Search", :method => :advanced_search) do %> 
+					<span type="submit" class="glyphicon glyphicon-search"> Search</span> 
+				<% end %>
+			</span>
+			<br>
+		</div>
+	</div>
+</div>
+</div>
+<% end %>
+</div>
+
+<script>
+	function toggle_advanced() {
+		if (document.getElementById("advanced").getAttribute('class') === 'col-md-2 col-sm-2 col-lg-2')
+			document.getElementById("advanced").setAttribute('class', 'col-md-7 col-sm-7 col-lg-5')
+		else 
+			setTimeout(function() {document.getElementById("advanced").setAttribute('class', 'col-md-2 col-sm-2 col-lg-2') }, 200)
+	}
+</script>
