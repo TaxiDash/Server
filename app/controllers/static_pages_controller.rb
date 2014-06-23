@@ -13,9 +13,17 @@
 
 
 class StaticPagesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :unless => [:get_server_info]
 
   def overview
+  end
+
+  def get_server_info
+    # get general server info
+    @info = {}
+    @info['city'] = CITY_NAME
+    @info['state'] = STATE_ABBREVIATION
+    #puts "info is #{@info}"
   end
 
   def get_historical_company_ratings
