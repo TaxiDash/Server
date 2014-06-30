@@ -3,6 +3,8 @@ TaxiRatingServer::Application.routes.draw do
   root 'static_pages#overview'
 
   #Mobile Access Pages
+  get 'general_info' => 'static_pages#get_server_info'
+
   get 'mobile/:beacon_id' => 'drivers#show'
   get 'mobile/companies/contact' => 'companies#contact_companies'
   get 'mobile/images/drivers/:beacon_id' => 'drivers#get_image'

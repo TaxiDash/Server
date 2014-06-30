@@ -7,6 +7,7 @@ SERVER_ADDRESS = "localhost:3000"
 # in branding of the app and notifying the smartphone
 # users of the city they are connected to
 CITY_NAME = "Nashville"
+STATE_ABBREVIATION = "TN"
 
 # Number of items to show up per page
 # Fewer items will load faster
