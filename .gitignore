@@ -19,6 +19,7 @@ test/
 public/
 doc/
 *.swp
+*.bak
 
 #Decided to add vendor files: http://stackoverflow.com/questions/14607636/is-it-advisable-to-include-the-contents-of-vendor-cache-in-git-in-a-rails-3-2-ap
 vendor/
