@@ -13,7 +13,8 @@
 
 
 class StaticPagesController < ApplicationController
-  before_action :authenticate_user!, :unless => [:get_server_info]
+  before_action :authenticate_user!
+  skip_before_action :authenticate_user!, :only => [:get_server_info]
 
   def overview
   end
