@@ -4,6 +4,7 @@ TaxiRatingServer::Application.routes.draw do
 
   #Mobile Access Pages
   get 'general_info' => 'static_pages#get_server_info'
+  get 'mobile/estimate_fare' => 'static_pages#estimate_fare'
 
   get 'mobile/:beacon_id' => 'drivers#show'
   get 'mobile/companies/contact' => 'companies#contact_companies'
