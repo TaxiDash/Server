@@ -14,9 +14,25 @@
 
 class StaticPagesController < ApplicationController
   before_action :authenticate_user!
-  skip_before_action :authenticate_user!, :only => [:get_server_info]
+  skip_before_action :authenticate_user!, :only => [:get_server_info, :estimate_fare]
 
   def overview
+  end
+
+  #This next method may later be moved toa nother controller
+  #Currently, it is simply implemented for testing the mobile app
+  def estimate_fare
+      #fix the rounding
+      per_mile_cost = 2.50;
+      per_person_cost = 1
+      #unit_accuracy = .2
+      distance = params[:distance].to_f#Math.floor((params[:distance].to_f)/unit_accuracy)
+      base_fare = distance*PER_MILE_RATE
+      @fare = {}
+      @fare['fares'] = []
+      (0..10).each do |i|
+          @fare['fares'].push(base_fare + PER_PERSON_ADDITIONAL_CHARGE*i);
+      end
   end
 
   def get_server_info
