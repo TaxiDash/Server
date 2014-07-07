@@ -22,11 +22,7 @@ class StaticPagesController < ApplicationController
   #This next method may later be moved toa nother controller
   #Currently, it is simply implemented for testing the mobile app
   def estimate_fare
-      #fix the rounding
-      per_mile_cost = 2.50;
-      per_person_cost = 1
-      #unit_accuracy = .2
-      distance = params[:distance].to_f#Math.floor((params[:distance].to_f)/unit_accuracy)
+      distance = params[:distance].to_f
       base_fare = distance*PER_MILE_RATE
       @fare = {}
       @fare['fares'] = []
