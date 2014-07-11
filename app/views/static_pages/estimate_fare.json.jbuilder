@@ -1,4 +1,1 @@
-json.fares do 
-  json.array! @fare['fares']
-end
-
+json.fare @fare
