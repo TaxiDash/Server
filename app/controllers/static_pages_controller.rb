@@ -23,7 +23,7 @@ class StaticPagesController < ApplicationController
   #Currently, it is simply implemented for testing the mobile app
   def estimate_fare
       distance = params[:distance].to_f
-      base_fare = distance*PER_MILE_RATE
+      base_fare = distance*PER_MILE_RATE + BASE_CHARGE
       @fare = {}
       @fare['fares'] = []
       (0..10).each do |i|
